@@ -1,19 +1,12 @@
 class StatisticsController < ApplicationController
 
 
-######################################################
-# Statements of global variables
-
 @@STATES_LIST = State.all_states
 
 @@sanjana = Sanction.all_years
 
-@@SANCTION_TYPE_LIST = SanctionType.all_sanction_types
+@@SANCTION_LIST_TYPE = SanctionType.all_sanction_types
 
-
-######################################################
-
-# Methods from controller
 
   def  index
   end
@@ -52,12 +45,9 @@ class StatisticsController < ApplicationController
     titulo = "Gráfico de Sanções por Estado"
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => titulo)
-      if(params[:year_].to_i != 0){
+      if(params[:year_].to_i != 0)
          f.title(:text => params[:year_].to_i )
-      }
-      else {
-        #nothig to do
-      }
+       end
       f.xAxis(:categories => @@STATES_LIST)
       f.series(:name => "Número de Sanções", :yAxis => 0, :data => total_by_state)
       f.yAxis [
@@ -93,13 +83,10 @@ class StatisticsController < ApplicationController
         })
     end
 
-    if (!@states){
+    if (!@states)
       @states = @@STATES_LIST.clone
       @states.unshift("Todos")
-    }
-    else {
-      #nothing to do
-    }
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.js
@@ -109,7 +96,7 @@ class StatisticsController < ApplicationController
 
 
 ######################################################
-# This may go to one helper class
+# Auxiliary methods 
 
   def total_by_state()
     results = []
@@ -118,14 +105,13 @@ class StatisticsController < ApplicationController
       state = State.find_by_abbreviation("#{s}")
       sanctions_by_state = Sanction.where(state_id: state[:id])
       selected_year = []
-      if(params[:year_].to_i != 0){
+      if(params[:year_].to_i != 0)
         sanctions_by_state.each do |s|
-          if(s.initial_date.year ==  params[:year_].to_i){
+          if(s.initial_date.year ==  params[:year_].to_i)
             selected_year << s
-          }
-      }
+          end
+      end
         results << (selected_year.count)
-        #need to be revised
       else
         results << (sanctions_by_state.count)
       end
@@ -141,12 +127,12 @@ class StatisticsController < ApplicationController
 
     state = State.find_by_abbreviation(params[:state_])
 
-    @@SANCTION_TYPE_LIST.each do |s|
+    @@SANCTION_LIST_TYPE.each do |s|
       sanction = SanctionType.find_by_description(s[0])
       sanctions_by_type = Sanction.where(sanction_type:  sanction)
-      if (params[:state_] && params[:state_] != "Todos"){
+      if (params[:state_] && params[:state_] != "Todos")
         sanctions_by_type = sanctions_by_type.where(state_id: state[:id])
-      }
+      end
       cont = cont + (sanctions_by_type.count)
       results2 << s[1]
       results2 << (sanctions_by_type.count)
@@ -154,12 +140,11 @@ class StatisticsController < ApplicationController
       results2 = []
     end
     results2 << "Não Informado"
-      if (params[:state_] && params[:state_] != "Todos"){
+      if (params[:state_] && params[:state_] != "Todos")
         total =Sanction.where(state_id: state[:id] ).count
-      }
-      else{
+      else
         total = Sanction.count
-      }
+      end
     results2 << (total - cont)
     results << results2
     results = results.sort_by { |i| i[0] }
