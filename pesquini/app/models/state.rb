@@ -1,16 +1,23 @@
+######################################################################
+# Class name: State
+# File name: state.rb
+# Description: Represents all the brazilian states
+######################################################################
+
 class State < ActiveRecord::Base
-  has_many :sanctions
-  validates_uniqueness_of :abbreviation
 
-  def refresh!
-    s = State.find_by_abbreviation(self.abbreviation)
-  end
+    has_many :sanctions
+    validates_uniqueness_of :abbreviation
 
-  def self.all_states
-    states = ["BA", "DF", "RJ", "PA", "MG", "SP", "AM", "RS", "SC", "ES", "PR",
-     "PB", "RN", "CE", "AL", "RR", "SE", "RO","PI" , "AC",
-    "TO", "GO", "PE", "AP", "MS", "MT", "MA","Não Informado"]
-    states
-  end
+    def refresh!
+        actual_sanction = State.find_by_abbreviation(self.abbreviation)
+    end
+
+    def self.all_states
+        states = [ "BA", "DF", "RJ", "PA", "MG", "SP", "AM", "RS", "SC",
+        "ES", "PR", "PB", "RN", "CE", "AL", "RR", "SE", "RO","PI" , "AC",
+        "TO", "GO", "PE", "AP", "MS", "MT", "MA", "Não Informado" ]
+        return states
+    end
 
 end
