@@ -1,6 +1,6 @@
         <div class =" lowercase-letter">
           <% @sanctions.each_with_index do |p, index| %>
-            <h4><b><div class= "index_number"><%= @page_num*@per_page + index +1%></div></b></h4>
+            <h4><b><div class= "index_number"><%= @page_number*@results_per_page + index +1%></div></b></h4>
             <h4> <b>Órgao Sancionador: </b> <%= p.sanction_organ.downcase! %> </h4>
             <h4> <b> Número do processo: </b> <%= p.process_number %> </h4>
             <h4> <b>Data de Inicio da Sanção: </b> <%= p.initial_date.nil? ? "Dado nao informado" :p.initial_date.strftime("%d/%m/%Y") %> </h4>
