@@ -1,80 +1,89 @@
-######################################################################
+# #####################################################################
 # Class name: Enterprise.
 # File name: enterprise.rb.
 # Description: Represents a brazilian enterprise that will be searched
-#by the user.
+# by the user.
 ######################################################################
 
 class Enterprise < ActiveRecord::Base
 
     has_many :sanctions
     has_many :payments
-    #Cnpj is an identifier that all brazilian enterprises must have.
+    # CNPJ is an identifier that all brazilian enterprises must have.
     validates_uniqueness_of :cnpj
 
     scope :featured_sanctions, ->(number=nil){number ? order('sanctions_count DESC').limit(number) :order('sanctions_count DESC')}
     scope :featured_payments, -> (number=nil){number ? order('payments_sum DESC').limit(number) :order('payments_sum DESC')}
 
-    #finds and returns a specific sanction object.
+    # Finds and returns the last sanction, by date, of an Enterprise object.
     def last_sanction
-        sanction = self.sanctions.last
-        if not sanction.nil?
-            self.sanctions.each do |s|
-                sanction = s if s.initial_date > sanction.initial_date
+        last_sanction = self.sanctions.last
+        # Runs through all the sanctions, selecting that which has the most 
+        # recent date
+        if (not last_sanction.nil?)
+            self.sanctions.each do |sanction|
+                if (sanction.initial_date > last_sanction.initial_date)
+                    last_sanction = sanction 
+                else
+                    # Nothing to do.
+                end
             end
         else
-            #nothing to do
+            # Nothing to do.
         end
-
-        return sanction
+        return last_sanction
     end
 
-    #finds and returns a specific payment object.
+    # Finds and returns the last Payment object.
     def last_payment
-        payment = self.payments.last
-        if not payment.nil?
-            self.payments.each do |f|
-                payment = f if f.sign_date > payment.sign_date
+        most_recent_payment = self.payments.last
+        if (not most_recent_payment.nil?)
+            self.payments.each do |payment|
+                if (payment.sign_date > most_recent_payment.sign_date)
+                    most_recent_payment = payment 
+                else
+                    # Nothing to do.
+                end
             end
         else
-            #nothing to do
+            # Nothing to do.
         end
 
-        return payment
+        return most_recent_payment
     end
 
-    #verifies that the initial date of sanction is greather than
-    #sign date of payment.
+    # Verifies that the initial date of sanction is greather than
+    # sign date of payment.
     def payment_after_sanction?
         sanction = last_sanction
-        assert_object_is_not_null(sanction)
         payment = last_payment
-        assert_object_is_not_null(payment)
-        if sanction && payment
+        if (sanction && payment)
             payment.sign_date < sanction.initial_date
         else
             return false
         end
     end
 
-    #returns an enterprise recovered by its cnpj.
+    # Returns an enterprise recovered by its CNPJ.
     def refresh!
         enterprise = Enterprise.find_by_cnpj(self.cnpj)
     end
 
-    #returns the index of an specific enterprise.
+    # Returns the index of an specific enterprise.
     def self.enterprise_position(enterprise)
-        orderedSanc = self.featured_sanctions
-        groupedSanc = orderedSanc.uniq.group_by(&:sanctions_count).to_a
-
-        groupedSanc.each_with_index do |k,index|
-            if k[0] == enterprise.sanctions_count
+        ordered_sanctions = self.featured_sanctions
+        grouped_sanctions = ordered_sanctions.uniq.group_by(&:sanctions_count).to_a
+    # Finds the enterprise position based on its sanctions.
+        grouped_sanctions.each_with_index do |sanction,index|
+            if (sanction[0] == enterprise.sanctions_count)
                 return index + 1
+            else 
+                # Nothing to do.
             end
         end
     end
 
-    #returns a variable with the enterprises sorted and grouped.
+    # Returns a variable with the enterprises sorted and grouped.
     def self.most_sanctioned_ranking
         enterprise_group = []
         enterprise_group_count = []
