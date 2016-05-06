@@ -21,6 +21,12 @@ class ApplicationController < ActionController::Base
         #{params[:unmatched_route]}")
     end
 
+    def assert_error_null
+    end
+
+    def assert_error_type_of_object
+    end
+
     # Set default error message that was called when an error occur
     # rendering template.
     def render_not_found
@@ -33,10 +39,7 @@ class ApplicationController < ActionController::Base
         if( not object.nil? )
             # Object is not null, nothing to do.
         else
-            # Show a flash a message.
-
-            # Abort the software.
-            exit
+            redirect_to assert_error_null_path
         end
     end
 
@@ -44,10 +47,7 @@ class ApplicationController < ActionController::Base
         if( type_is_correct )
             # Object has the expected type, nothing to do.
         else
-            # Show a flash a message.
-
-            # Abort the software.
-            exit
+            redirect_to assert_error_type_of_object_path
         end
     end
 end

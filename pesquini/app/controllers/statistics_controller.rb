@@ -53,6 +53,7 @@ class StatisticsController < ApplicationController
         else
             @ENTERPRISES = Enterprise.featured_payments(10)
         end
+        assert_object_is_not_null( @ENTERPRISES )
 
         return @ENTERPRISES
     end
@@ -62,13 +63,12 @@ class StatisticsController < ApplicationController
     # Parameters: none.
     # Return: @ENTERPRISES.
     def enterprise_group_ranking
-        @QUANTIDADE = params[:sanctions_count]
-        assert_type_of_object( @QUANTIDADE.kind_of? Fixnum )
+        @QUANTITY = params[:sanctions_count]
         @ENTERPRISES = Enterprise.where(sanctions_count:
-                                        @QUANTIDADE).paginate(:page =>
+                                        @QUANTITY).paginate(:page =>
                                                               params[:page],
                                                               :per_page => 10)
-        assert_object_is_not_null( @enterprises )
+        assert_object_is_not_null( @ENTERPRISES )
 
         return @ENTERPRISES
     end
@@ -77,10 +77,9 @@ class StatisticsController < ApplicationController
     # Parameters: none.
     # Return: @ENTERPRISES.
     def payment_group_ranking
-        @QUANTIDADE = params[:payments_count]
-        assert_type_of_object( @QUANTIDADE.kind_of? Fixnum )
+        @QUANTITY = params[:payments_count]
         @ENTERPRISES = Enterprise.where(payments_count:
-                                        @QUANTIDADE).paginate(:page =>
+                                        @QUANTITY).paginate(:page =>
                                                               params[:page],
                                                               :per_page => 10)
         assert_object_is_not_null( @enterprises )
@@ -97,6 +96,7 @@ class StatisticsController < ApplicationController
         gon.states = @@STATES_LIST
         gon.dados = total_by_state
         titulo = "Gráfico de Sanções por Estado"
+
         @CHART = LazyHighCharts::HighChart.new('graph') do |f|
         f.title(:text => titulo)
 
@@ -184,6 +184,7 @@ class StatisticsController < ApplicationController
                 results << (sanctions_by_state.count)
             end
         end
+        assert_object_is_not_null( results )
 
         return results
     end
@@ -221,6 +222,7 @@ class StatisticsController < ApplicationController
         results2 << (total - cont)
         results << results2
         results = results.sort_by { |i| i[0] }
+        assert_object_is_not_null( results )
 
         return results
     end

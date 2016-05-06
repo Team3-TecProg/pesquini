@@ -12,11 +12,13 @@ class User < ActiveRecord::Base
 
 	# Generates an unique random string for user
 	def User.new_remember_token
-  		SecureRandom.urlsafe_base64
-  	end
+  		secure_token = SecureRandom.urlsafe_base64
+      return token
+  end
 
 	# Encrypts the parameter received
-  	def User.digest(token)
-  		Digest::SHA1.hexdigest(token.to_s)
- 	end
+  def User.digest(token)
+  		encripted_token = Digest::SHA1.hexdigest(token.to_s)
+      return encripted_token
+  end
 end

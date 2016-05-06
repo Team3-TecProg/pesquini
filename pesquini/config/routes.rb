@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   delete '/signout' => 'sessions#destroy'
   resources :sessions, only: [:new, :create, :destroy]
 
+  get '/assert_error_null' => 'application#assert_error_null'
+  get '/assert_error_type_of_object' => 'application#assert_error_type_of_object'
   get '/rankings' => 'rankings#index'
   get '/statistics' => 'statistics#index'
   get '/statistics/enterprise_group_ranking' => 'statistics#enterprise_group_ranking'
