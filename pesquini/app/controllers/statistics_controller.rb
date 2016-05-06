@@ -37,22 +37,34 @@ class StatisticsController < ApplicationController
     # Return: @ENTERPRISES.
     def most_paymented_ranking
         have_sanctions_in_year = false
-        if params[:sanjana]
+        if ( params[:sanjana] )
             have_sanctions_in_year = true
-            @ENTERPRISES = Enterprise.featured_payments.paginate(:page => params[:page], :per_page => 20)
+            @ENTERPRISES = Enterprise.featured_payments.paginate(:page =>
+                                                                 params[:page],
+                                                                 :per_page => 
+                                                                 20)
         else
             @ENTERPRISES = Enterprise.featured_payments(10)
         end
     end
 
+    # Description: This method return the 10 most sanction enterprises.
+    # Parameters: none.
+    # Return: @ENTERPRISES.
     def enterprise_group_ranking
-        @quantidade = params[:sanctions_count]
-        @ENTERPRISES = Enterprise.where(sanctions_count: @quantidade).paginate(:page => params[:page], :per_page => 10)
+        @QUANTIDADE = params[:sanctions_count]
+        @ENTERPRISES = Enterprise.where(sanctions_count: 
+                                        @QUANTIDADE).paginate(:page =>
+                                                              params[:page],
+                                                              :per_page => 10)
     end
 
     def payment_group_ranking
-        @quantidade = params[:payments_count]
-        @ENTERPRISES = Enterprise.where(payments_count: @quantidade).paginate(:page => params[:page], :per_page => 10)
+        @QUANTIDADE = params[:payments_count]
+        @ENTERPRISES = Enterprise.where(payments_count: 
+                                        @QUANTIDADE).paginate(:page =>
+                                                              params[:page],
+                                                              :per_page => 10)
     end
 
     def sanction_by_state_graph
@@ -67,11 +79,13 @@ class StatisticsController < ApplicationController
             end
 
             f.xAxis(:categories => @@STATES_LIST)
-            f.series(:name => "Número de Sanções", :yAxis => 0, :data => total_by_state)
+            f.series(:name => "Número de Sanções", :yAxis => 0, :data =>
+                     total_by_state)
             f.yAxis [
             {:title => {:text => "Sanções", :margin => 30} },
                     ]
-            f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+            f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, 
+                     :x => -50, :layout => 'vertical',)
             f.chart({:defaultSeriesType=>"column"})
         end
     end
@@ -95,7 +109,8 @@ class StatisticsController < ApplicationController
                                   :cursor=>"pointer" ,
                                   :dataLabels=> { :enabled=>true, 
                                                   :color=>"black",
-                                                  :style=> { :font=>"12px Trebuchet MS, Verdana, sans-serif" }
+                                                  :style=> { :font => 
+                                                  "12px Trebuchet MS, Verdana, sans-serif" }
                                                 }
                                  }
                           )
