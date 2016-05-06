@@ -29,7 +29,7 @@
 
   <div class="container">
 
-    <% if @enterprises.blank? %>
+    <% if @ENTERPRISES.blank? %>
       <div class="entreprises_title">
         <h3>Não existem sanções contra a empresa procurada.</h3>
         <hr>
@@ -40,14 +40,14 @@
         <h1> Lista das empresas encontradas</h1>
         <hr>
       </div>
-      <% @enterprises.each do |p| %>
+      <% @ENTERPRISES.each do |p| %>
         <span class="same_line">  <h3>Empresa:</h3><%= link_to p.corporate_name, p %>  </span>
         <span class="same_line">  <h3>CNPJ:</h3> <%= p.cnpj %>  </span>
         <hr>
       <% end %>
     <% end %>
    <div class="pagination">
-      <%= will_paginate @enterprises, renderer: BootstrapPagination::Rails %>
+      <%= will_paginate @ENTERPRISES, renderer: BootstrapPagination::Rails %>
     </div>
   </div>
 

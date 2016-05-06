@@ -5,7 +5,7 @@
 <h2 align="center">Ranking das empresas que mais receberam verba em pagamentos</h2>
 
 <br><br>
-<%@enterprises.each_with_index do |e, index| %>
+<%@ENTERPRISES.each_with_index do |e, index| %>
 
 <h3><%= index + 1 %> )  <%= link_to e.corporate_name, e %><br></h3>
 <B>Total de pagamentos feitos a empresa:</B> <%=  number_to_currency(e.payments_sum, unit: "R$ ", separator: ",", delimiter: ".") %>
@@ -19,7 +19,7 @@
   <%= link_to "Todas", controller: 'statistics', action: 'most_paymented_ranking', sanjana: ""%>
   <% end %>
   <% if @all %>
-  <%= will_paginate @enterprises,  renderer: BootstrapPagination::Rails %>
+  <%= will_paginate @ENTERPRISES,  renderer: BootstrapPagination::Rails %>
   <% end %>
 <span class="division"> <hr> </span>
 </div>

@@ -1,17 +1,22 @@
 class StatisticsController < ApplicationController
 
 
-    @STATES_LIST = State.all_states
+    @@STATES_LIST = State.all_states
 
     @sanjana = Sanction.all_years
 
-    @SANCTION_LIST_TYPE = SanctionType.all_sanction_types
+    @@SANCTION_LIST_TYPE = SanctionType.all_sanction_types
 
-    # Method to call view of statistics.
+    # Description: Method to call view of statistics.
+    # Parameters: none.
+    # Return: none.
     def  index
     end
 
-    # This method return a array with the sanctioned ranking of enterprises.
+    # Description: This method return a array with the sanctioned ranking of
+    # enterprises.
+    # Parameters: none.
+    # Return: none.
     def most_sanctioned_ranking
         # Array thats contains objects of the moste sanctioned enterprises.
         enterprise_group_array = Enterprise.most_sanctioned_ranking
@@ -27,25 +32,27 @@ class StatisticsController < ApplicationController
         assert_object_is_not_null(@ENTERPRISE_GROUP)
     end
 
-    #
+    # Description: This method return the 10 most sanction enterprises.
+    # Parameters: none.
+    # Return: @ENTERPRISES.
     def most_paymented_ranking
         have_sanctions_in_year = false
         if params[:sanjana]
             have_sanctions_in_year = true
-            @enterprises = Enterprise.featured_payments.paginate(:page => params[:page], :per_page => 20)
+            @ENTERPRISES = Enterprise.featured_payments.paginate(:page => params[:page], :per_page => 20)
         else
-            @enterprises = Enterprise.featured_payments(10)
+            @ENTERPRISES = Enterprise.featured_payments(10)
         end
     end
 
     def enterprise_group_ranking
         @quantidade = params[:sanctions_count]
-        @enterprises = Enterprise.where(sanctions_count: @quantidade).paginate(:page => params[:page], :per_page => 10)
+        @ENTERPRISES = Enterprise.where(sanctions_count: @quantidade).paginate(:page => params[:page], :per_page => 10)
     end
 
     def payment_group_ranking
         @quantidade = params[:payments_count]
-        @enterprises = Enterprise.where(payments_count: @quantidade).paginate(:page => params[:page], :per_page => 10)
+        @ENTERPRISES = Enterprise.where(payments_count: @quantidade).paginate(:page => params[:page], :per_page => 10)
     end
 
     def sanction_by_state_graph

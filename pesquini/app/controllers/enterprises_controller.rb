@@ -14,13 +14,13 @@ class EnterprisesController < ApplicationController
         if params[:q].nil?
             @search = Enterprise.search( params[:q].try(:merge, m: 'or' ) )
             assert_object_is_not_null ( @search )
-            @enterprises = Enterprise.paginate(:page => params[:page], :per_page => 10 )
+            @ENTERPRISES = Enterprise.paginate(:page => params[:page], :per_page => 10 )
             assert_object_is_not_null ( @entreprises )
         else
             params[:q][:cnpj_eq] = params[:q][:corporate_name_cont]
             @search = Enterprise.search( params[:q].try( :merge, m: 'or' ) )
             assert_object_is_not_null ( @search )
-            @enterprises = @search.result.paginate( :page => params[:page],
+            @ENTERPRISES = @search.result.paginate( :page => params[:page],
                                                       :per_page => 10 )
             assert_object_is_not_null ( @entreprises )
         end
