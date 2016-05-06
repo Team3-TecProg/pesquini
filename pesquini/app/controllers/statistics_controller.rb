@@ -3,7 +3,7 @@ class StatisticsController < ApplicationController
 
     @@STATES_LIST = State.all_states
 
-    @sanjana = Sanction.all_years
+    @@sanjana = Sanction.all_years
 
     @@SANCTION_LIST_TYPE = SanctionType.all_sanction_types
 
@@ -48,7 +48,8 @@ class StatisticsController < ApplicationController
         end
     end
 
-    # Description: This method return the 10 most sanction enterprises.
+    # Description: This method return the 10 most sanctions
+    # enterprises per page.
     # Parameters: none.
     # Return: @ENTERPRISES.
     def enterprise_group_ranking
@@ -59,6 +60,9 @@ class StatisticsController < ApplicationController
                                                               :per_page => 10)
     end
 
+    # Description: This method return the 10 most payeds enterprises per page.
+    # Parameters: none.
+    # Return: @ENTERPRISES.
     def payment_group_ranking
         @QUANTIDADE = params[:payments_count]
         @ENTERPRISES = Enterprise.where(payments_count: 
@@ -67,11 +71,16 @@ class StatisticsController < ApplicationController
                                                               :per_page => 10)
     end
 
+    # Description: This method prepare the data to be ploted in JS using
+    # highChart, the global variable @CHART do this. The chart is about the
+    # states where sanctions made in each state.
+    # Parameters: none.
+    # Return: none.
     def sanction_by_state_graph
         gon.states = @@STATES_LIST
         gon.dados = total_by_state
         titulo = "Gráfico de Sanções por Estado"
-        @chart = LazyHighCharts::HighChart.new('graph') do |f|
+        @CHART = LazyHighCharts::HighChart.new('graph') do |f|
         f.title(:text => titulo)
 
             if(params[:year_].to_i != 0)
@@ -90,10 +99,14 @@ class StatisticsController < ApplicationController
         end
     end
 
-
+    # Description: This method prepare the data to be ploted in JS using
+    # highChart, the global variable @CHART do this. The chart is about the
+    # states where the kind of sanctions were made in each state.
+    # Parameters: none.
+    # Return: none.
     def sanction_by_type_graph
         titulo = "Gráfico Sanções por Tipo"
-        @chart = LazyHighCharts::HighChart.new('pie') do |f|
+        @CHART = LazyHighCharts::HighChart.new('pie') do |f|
             f.chart({:defaultSeriesType=>"pie" ,:margin=> [50, 10, 10, 10]} )
             f.series({
                 :type=> 'pie',
@@ -110,15 +123,16 @@ class StatisticsController < ApplicationController
                                   :dataLabels=> { :enabled=>true, 
                                                   :color=>"black",
                                                   :style=> { :font => 
-                                                  "12px Trebuchet MS, Verdana, sans-serif" }
+                                                  "12px Trebuchet MS, "+
+                                                  "Verdana, sans-serif" }
                                                 }
                                  }
                           )
         end
 
-        if (!@states)
-            @states = @@STATES_LIST.clone
-            @states.unshift("Todos")
+        if (!@STATES)
+            @STATES = @@STATES_LIST.clone
+            @STATES.unshift("Todos")
         end
 
         respond_to do |format|
