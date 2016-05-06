@@ -7,9 +7,10 @@
 
 class EnterprisesController < ApplicationController
 
-    # Lists all the enterprises in the database, if the user did not provide
-    # a query to search, or lists the enterprise that matches the provided query
-    # otherwise.
+    # Description: Searchs for a enterprise according the params sent by user,
+    # once did it, return a set of enterprises with pagination.
+    # Parameters: none.
+    # Return: @enterprises.
     def index
         if params[:q].nil?
             @search = Enterprise.search( params[:q].try(:merge, m: 'or' ) )
@@ -26,6 +27,12 @@ class EnterprisesController < ApplicationController
         end
     end
 
+    # Description: Sets the main params for exibition of enterprises, like
+    # quantity of enterprises by page and the entrepise's informations that
+    # should be showed.
+    # Parameters: none.
+    # Return: @page_number, @enterprise, @collection, @payments, @sanctions,
+    # @payment_position, @position.
     def show
         @results_per_page = 10
         # Matches a given Enterprise to its position in the page index.
@@ -51,6 +58,9 @@ class EnterprisesController < ApplicationController
         assert_object_is_not_null ( @position )
     end
 
+    # Description: Recover the index of a specific enterprise.
+    # Parameters: enterprise.
+    # Return: index.
     def enterprise_payment_position(enterprise)
         enterprises_ordered_by_payments = Enterprise.featured_payments
         enterprises_ordered_by_payments.each_with_index do |organization, index|

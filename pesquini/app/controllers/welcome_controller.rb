@@ -5,8 +5,10 @@
 ######################################################################
 
 class WelcomeController < ApplicationController
-    # Searches for an Enterprise from the database
+    # Description: Searches for an Enterprise from the database
     # according to the information provided by the user.
+    # Parameters: none.
+    # Return: enterprises.
     def index
         params[:q][:cnpj_eq] = params[:q][:corporate_name_cont] unless params[:q].nil?
         @search = Enterprise.search( params[:q].try( :merge, m: 'or' ) )
