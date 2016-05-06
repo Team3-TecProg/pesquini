@@ -31,19 +31,23 @@ class ApplicationController < ActionController::Base
 
     def assert_object_is_not_null( object )
         if( not object.nil? )
-            # Object is not null, nothing to do
+            # Object is not null, nothing to do.
         else
-            # redirect to a page
-            # flash a message
+            # Show a flash a message.
+
+            # Abort the software.
+            exit
         end
     end
 
     def assert_type_of_object( type_is_correct )
         if( type_is_correct )
-            # Object has the expected type, nothing to do
+            # Object has the expected type, nothing to do.
         else
-            # redirect to a page
-            # flash a message
+            # Show a flash a message.
+
+            # Abort the software.
+            exit
         end
     end
 end

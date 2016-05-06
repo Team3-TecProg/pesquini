@@ -11,18 +11,22 @@ class StatisticsController < ApplicationController
   def  index
   end
 
+  # This method return a array with the sanctioned ranking of enterprises.
   def most_sanctioned_ranking
 
+    # Array thats contains objects of the moste sanctioned enterprises.
     enterprise_group_array = Enterprise.most_sanctioned_ranking
-    @enterprise_group = enterprise_group_array[0]
-    @enterprise_group_count = enterprise_group_array[1]
+    @ENTERPRISE_GROUP = enterprise_group_array[0]
+    assert_object_is_not_null(@ENTERPRISE_GROUP)
+    @ENTERPRISE_GROUP_COUNT = enterprise_group_array[1]
+    assert_object_is_not_null(@ENTERPRISE_GROUP)
 
   end
 
   def most_paymented_ranking
-    @all = false
+    have_sanctions_in_year = false
     if params[:sanjana]
-      @all = true
+      have_sanctions_in_year = true
       @enterprises = Enterprise.featured_payments.paginate(:page => params[:page], :per_page => 20)
     else
       @enterprises = Enterprise.featured_payments(10)
@@ -94,7 +98,7 @@ class StatisticsController < ApplicationController
 
   end
 
-
+# Move this to helper.
 ######################################################
 # Auxiliary methods 
 

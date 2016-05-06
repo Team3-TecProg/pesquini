@@ -5,8 +5,8 @@
   <div id="titulo_ranking"><h2>Ranking de empresas com mais sanções</h2>
   <hr>
   </div>
-  <% @enterprise_group.each_with_index do |e, index| %>
-    <% qtde = @enterprise_group_count[index]%>
+  <% @ENTERPRISE_GROUP.each_with_index do |e, index| %>
+    <% qtde = @ENTERPRISE_GROUP_COUNT[index]%>
     <h3><%= index +1 %> )   <%= link_to "Grupo de Empresas com #{e} sanções - (#{qtde})", controller: 'statistics', action: 'enterprise_group_ranking', sanctions_count: e %><br></h3>
   <% end %>
 </div>
