@@ -9,16 +9,16 @@ class SanctionType < ActiveRecord::Base
     has_many :sanctions
     validates_uniqueness_of :description
 
+    # Reloads the Sanction object.
     def refresh!
-        # Reloads the Sanction object.
         actual_sanction = SanctionType.find_by_description(self.description)
     end
 
     def self.all_sanction_types
-        # The array containing all the possible sanction types is used for 
+        # The array containing all the possible sanction types is used for
         # statistics in StatisticsController.
         stantion_types = [
-        [ "INIDONEIDADE - LEGISLAçãO ESTADUAL", 
+        [ "INIDONEIDADE - LEGISLAçãO ESTADUAL",
             "Inidoneidade - Legislação Estadual"],
         [ "IMPEDIMENTO - LEI DO PREGãO", "Impedimento - Lei do Pregão"],
         [ "PROIBIçãO - LEI ELEITORAL", "Proibição - Lei Eleitoral"],
@@ -33,7 +33,7 @@ class SanctionType < ActiveRecord::Base
         [ "INIDONEIDADE - LEI DA ANTT E ANTAQ ",
             "Inidoneidade - Lei da ANTT e ANTAQ"] ,
         [ "INIDONEIDADE - LEI ORGâNICA TCU", "Inidoneidade - Lei Orgânica TCU"],
-        [ "IMPEDIMENTO - LEGISLAçãO ESTADUAL", 
+        [ "IMPEDIMENTO - LEGISLAçãO ESTADUAL",
             "Impedimento - Legislação Estadual"],
         [ "SUSPENSãO E IMPEDIMENTO - LEI DE ACESSO à INFORMAçãO",
             "Suspensão e Impedimento - Lei de Acesso à Informação"],
@@ -41,6 +41,7 @@ class SanctionType < ActiveRecord::Base
         [ "IMPEDIMENTO - LEI DO RDC", "Impedimento - Lei do RDC"],
         [ "PROIBIçãO - LEI AMBIENTAL", "Proibição - Lei Ambiental" ],
         ]
+
         return stantion_types
     end
 

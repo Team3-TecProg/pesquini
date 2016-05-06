@@ -1,10 +1,17 @@
+######################################################################
+# Class name: StatiticsController.
+# File name: statistics_controller.rb.
+# Description: Controller that contains methods to ranking
+# manipulation.
+######################################################################
+
 class StatisticsController < ApplicationController
 
-
+    #A list that stores all states.
     @@STATES_LIST = State.all_states
-
+    #A list that stores the sanctions of all years.
     @@sanjana = Sanction.all_years
-
+    #A list that stores all the types of sanctions.
     @@SANCTION_LIST_TYPE = SanctionType.all_sanction_types
 
     # Description: Method to call view of statistics.
@@ -22,7 +29,7 @@ class StatisticsController < ApplicationController
         enterprise_group_array = Enterprise.most_sanctioned_ranking
 
         # Send the first element to a global variable.
-        @ENTERPRISE_GROUP = enterprise_group_array[0] 
+        @ENTERPRISE_GROUP = enterprise_group_array[0]
         # Assert if the object is valid, whithout null value.
         assert_object_is_not_null(@ENTERPRISE_GROUP)
 
@@ -41,11 +48,13 @@ class StatisticsController < ApplicationController
             have_sanctions_in_year = true
             @ENTERPRISES = Enterprise.featured_payments.paginate(:page =>
                                                                  params[:page],
-                                                                 :per_page => 
+                                                                 :per_page =>
                                                                  20)
         else
             @ENTERPRISES = Enterprise.featured_payments(10)
         end
+
+        return @ENTERPRISES
     end
 
     # Description: This method return the 10 most sanctions
@@ -54,10 +63,14 @@ class StatisticsController < ApplicationController
     # Return: @ENTERPRISES.
     def enterprise_group_ranking
         @QUANTIDADE = params[:sanctions_count]
-        @ENTERPRISES = Enterprise.where(sanctions_count: 
+        assert_type_of_object( @QUANTIDADE.kind_of? Fixnum )
+        @ENTERPRISES = Enterprise.where(sanctions_count:
                                         @QUANTIDADE).paginate(:page =>
                                                               params[:page],
                                                               :per_page => 10)
+        assert_object_is_not_null( @enterprises )
+
+        return @ENTERPRISES
     end
 
     # Description: This method return the 10 most payeds enterprises per page.
@@ -65,10 +78,14 @@ class StatisticsController < ApplicationController
     # Return: @ENTERPRISES.
     def payment_group_ranking
         @QUANTIDADE = params[:payments_count]
-        @ENTERPRISES = Enterprise.where(payments_count: 
+        assert_type_of_object( @QUANTIDADE.kind_of? Fixnum )
+        @ENTERPRISES = Enterprise.where(payments_count:
                                         @QUANTIDADE).paginate(:page =>
                                                               params[:page],
                                                               :per_page => 10)
+        assert_object_is_not_null( @enterprises )
+
+        return @ENTERPRISES
     end
 
     # Description: This method prepare the data to be ploted in JS using
@@ -93,7 +110,7 @@ class StatisticsController < ApplicationController
             f.yAxis [
             {:title => {:text => "Sanções", :margin => 30} },
                     ]
-            f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, 
+            f.legend(:align => 'right', :verticalAlign => 'top', :y => 75,
                      :x => -50, :layout => 'vertical',)
             f.chart({:defaultSeriesType=>"column"})
         end
@@ -114,15 +131,15 @@ class StatisticsController < ApplicationController
                 :data => total_by_type
             })
             f.options[:title][:text] = titulo
-            f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', 
-                                                    :bottom=> 'auto', 
-                                                    :right=> '50px', 
+            f.legend(:layout=> 'vertical',:style=> {:left=> 'auto',
+                                                    :bottom=> 'auto',
+                                                    :right=> '50px',
                                                     :top=> '100px'})
             f.plot_options(:pie=>{:allowPointSelect=>true,
                                   :cursor=>"pointer" ,
-                                  :dataLabels=> { :enabled=>true, 
+                                  :dataLabels=> { :enabled=>true,
                                                   :color=>"black",
-                                                  :style=> { :font => 
+                                                  :style=> { :font =>
                                                   "12px Trebuchet MS, "+
                                                   "Verdana, sans-serif" }
                                                 }
@@ -143,58 +160,69 @@ class StatisticsController < ApplicationController
 
 # Move this to helper.
 ######################################################
-# Auxiliary methods 
+# Auxiliary methods
 
-  def total_by_state()
-    results = []
-    @years = @@sanjana
-    @@STATES_LIST.each do |s|
-      state = State.find_by_abbreviation("#{s}")
-      sanctions_by_state = Sanction.where(state_id: state[:id])
-      selected_year = []
-      if(params[:year_].to_i != 0)
-        sanctions_by_state.each do |s|
-          if(s.initial_date.year ==  params[:year_].to_i)
-            selected_year << s
-          end
-      end
-        results << (selected_year.count)
-      else
-        results << (sanctions_by_state.count)
-      end
+    #Retrieves an array with the sanctions filtered by a state, in a specific year.
+    # Parameters: none.
+    # Return: results.
+    def total_by_state
+        results = []
+        @years = @@sanjana
+
+        @@STATES_LIST.each do |s|
+            state = State.find_by_abbreviation("#{s}")
+            sanctions_by_state = Sanction.where(state_id: state[:id])
+            selected_year = []
+            if(params[:year_].to_i != 0)
+                sanctions_by_state.each do |s|
+                    if(s.initial_date.year ==  params[:year_].to_i)
+                        selected_year << s
+                    end
+            end
+            results << (selected_year.count)
+            else
+                results << (sanctions_by_state.count)
+            end
+        end
+
+        return results
     end
-    results
-  end
 
+    #Retrieves an array with the sanctions filtered by its type.
+    # Parameters: none.
+    # Return: results.
+    def total_by_type
+        results = []
+        results2 = []
+        cont = 0
 
-  def total_by_type()
-    results = []
-    results2 = []
-    cont = 0
+        state = State.find_by_abbreviation(params[:state_])
 
-    state = State.find_by_abbreviation(params[:state_])
+        @@SANCTION_LIST_TYPE.each do |s|
+            sanction = SanctionType.find_by_description(s[0])
+            sanctions_by_type = Sanction.where(sanction_type:  sanction)
+            if (params[:state_] && params[:state_] != "Todos")
+                sanctions_by_type = sanctions_by_type.where(state_id: state[:id])
+            end
+            cont = cont + (sanctions_by_type.count)
+            results2 << s[1]
+            results2 << (sanctions_by_type.count)
+            results << results2
+            results2 = []
+        end
 
-    @@SANCTION_LIST_TYPE.each do |s|
-      sanction = SanctionType.find_by_description(s[0])
-      sanctions_by_type = Sanction.where(sanction_type:  sanction)
-      if (params[:state_] && params[:state_] != "Todos")
-        sanctions_by_type = sanctions_by_type.where(state_id: state[:id])
-      end
-      cont = cont + (sanctions_by_type.count)
-      results2 << s[1]
-      results2 << (sanctions_by_type.count)
-      results << results2
-      results2 = []
+        results2 << "Não Informado"
+            if (params[:state_] && params[:state_] != "Todos")
+                total =Sanction.where(state_id: state[:id] ).count
+            else
+                total = Sanction.count
+            end
+
+        results2 << (total - cont)
+        results << results2
+        results = results.sort_by { |i| i[0] }
+
+        return results
     end
-    results2 << "Não Informado"
-      if (params[:state_] && params[:state_] != "Todos")
-        total =Sanction.where(state_id: state[:id] ).count
-      else
-        total = Sanction.count
-      end
-    results2 << (total - cont)
-    results << results2
-    results = results.sort_by { |i| i[0] }
-    results
-  end
+
 end

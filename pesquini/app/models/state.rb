@@ -19,6 +19,7 @@ class State < ActiveRecord::Base
         states = [ "BA", "DF", "RJ", "PA", "MG", "SP", "AM", "RS", "SC",
         "ES", "PR", "PB", "RN", "CE", "AL", "RR", "SE", "RO","PI" , "AC",
         "TO", "GO", "PE", "AP", "MS", "MT", "MA", "Não Informado" ]
+
         return states
     end
 
