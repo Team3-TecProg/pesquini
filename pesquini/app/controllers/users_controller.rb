@@ -5,8 +5,9 @@
 ######################################################################
 
 class UsersController < ApplicationController
-    # Creates a new user
+    # Creates a new user.
     def new
         @user = User.new
+        assert_object_is_not_null( @user )
   end
  end

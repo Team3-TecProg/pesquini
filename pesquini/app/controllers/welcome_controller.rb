@@ -9,7 +9,9 @@ class WelcomeController < ApplicationController
     # according to the information provided by the user.
     def index
         params[:q][:cnpj_eq] = params[:q][:corporate_name_cont] unless params[:q].nil?
-        @search = Enterprise.search(params[:q].try(:merge, m: 'or'))
+        @search = Enterprise.search( params[:q].try( :merge, m: 'or' ) )
+        assert_object_is_not_null( @search )
         @enterprises = @search.result
+        assert_object_is_not_null( @enterprises )
     end
 end
