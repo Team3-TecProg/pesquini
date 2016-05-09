@@ -97,22 +97,22 @@ class StatisticsController < ApplicationController
         gon.dados = total_by_state
         titulo = "Gráfico de Sanções por Estado"
 
-        @CHART = LazyHighCharts::HighChart.new('graph') do |f|
-        f.title(:text => titulo)
+        @CHART = LazyHighCharts::HighChart.new('graph') do |graph_function|
+        graph_function.title(:text => titulo)
 
             if(params[:year_].to_i != 0)
-                f.title(:text => params[:year_].to_i )
+                graph_function.title(:text => params[:year_].to_i )
             end
 
-            f.xAxis(:categories => @@STATES_LIST)
-            f.series(:name => "Número de Sanções", :yAxis => 0, :data =>
+            graph_function.xAxis(:categories => @@STATES_LIST)
+            graph_function.series(:name => "Número de Sanções", :yAxis => 0, :data =>
                      total_by_state)
-            f.yAxis [
+            graph_function.yAxis [
             {:title => {:text => "Sanções", :margin => 30} },
                     ]
-            f.legend(:align => 'right', :verticalAlign => 'top', :y => 75,
+            graph_function.legend(:align => 'right', :verticalAlign => 'top', :y => 75,
                      :x => -50, :layout => 'vertical',)
-            f.chart({:defaultSeriesType=>"column"})
+            graph_function.chart({:defaultSeriesType=>"column"})
         end
     end
 
@@ -123,19 +123,19 @@ class StatisticsController < ApplicationController
     # Return: none.
     def sanction_by_type_graph
         titulo = "Gráfico Sanções por Tipo"
-        @CHART = LazyHighCharts::HighChart.new('pie') do |f|
-            f.chart({:defaultSeriesType=>"pie" ,:margin=> [50, 10, 10, 10]} )
-            f.series({
+        @CHART = LazyHighCharts::HighChart.new('pie') do |graph_function|
+            graph_function.chart({:defaultSeriesType=>"pie" ,:margin=> [50, 10, 10, 10]} )
+            graph_function.series({
                 :type=> 'pie',
                 :name=> 'Sanções Encontradas',
                 :data => total_by_type
             })
-            f.options[:title][:text] = titulo
-            f.legend(:layout=> 'vertical',:style=> {:left=> 'auto',
+            graph_function.options[:title][:text] = titulo
+            graph_function.legend(:layout=> 'vertical',:style=> {:left=> 'auto',
                                                     :bottom=> 'auto',
                                                     :right=> '50px',
                                                     :top=> '100px'})
-            f.plot_options(:pie=>{:allowPointSelect=>true,
+            graph_function.plot_options(:pie=>{:allowPointSelect=>true,
                                   :cursor=>"pointer" ,
                                   :dataLabels=> { :enabled=>true,
                                                   :color=>"black",
@@ -195,7 +195,7 @@ class StatisticsController < ApplicationController
     def total_by_type
         results = []
         results2 = []
-        cont = 0
+        count = 0
 
         state = State.find_by_abbreviation(params[:state_])
 
@@ -205,7 +205,7 @@ class StatisticsController < ApplicationController
             if (params[:state_] && params[:state_] != "Todos")
                 sanctions_by_type = sanctions_by_type.where(state_id: state[:id])
             end
-            cont = cont + (sanctions_by_type.count)
+            count = count + (sanctions_by_type.count)
             results2 << s[1]
             results2 << (sanctions_by_type.count)
             results << results2
@@ -219,7 +219,7 @@ class StatisticsController < ApplicationController
                 total = Sanction.count
             end
 
-        results2 << (total - cont)
+        results2 << (total - count)
         results << results2
         results = results.sort_by { |i| i[0] }
         assert_object_is_not_null( results )
