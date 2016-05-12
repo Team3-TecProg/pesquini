@@ -31,7 +31,7 @@ class EnterprisesController < ApplicationController
     # quantity of enterprises by page and the entrepise's informations that
     # should be showed.
     # Parameters: none.
-    # Return: @page_number, @enterprise, @collection, @payments, @sanctions,
+    # Return: @page_number, @enterprise, @single_sanction, @payments, @sanctions,
     # @payment_position, @position.
     def show
         @results_per_page = 10
@@ -49,15 +49,15 @@ class EnterprisesController < ApplicationController
         assert_object_is_not_null ( @entreprise )
 
         #Take a sanction from the enterprise.
-        @collection = Sanction.where( enterprise_id: @enterprise.id )
-        assert_object_is_not_null ( @collection )
+        @single_sanction = Sanction.where( enterprise_id: @enterprise.id )
+        assert_object_is_not_null ( @single_sanction )
 
         #Take payments from the enterprise an shows 10 each time.
         @payments = Payment.where( enterprise_id: @enterprise.id).paginate( :page => params[:page], :per_page => @results_per_page )
         assert_object_is_not_null ( @payments)
 
         #Take 10 sanctions to show in the same page.
-        @sanctions = @collection.paginate( :page => params[:page], :per_page => @results_per_page )
+        @sanctions = @single_sanction.paginate( :page => params[:page], :per_page => @results_per_page )
         assert_object_is_not_null ( @sanctions )
 
         #Take a ordened list of payments from the enterprise.
