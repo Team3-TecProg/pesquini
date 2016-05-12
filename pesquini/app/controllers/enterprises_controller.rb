@@ -44,16 +44,27 @@ class EnterprisesController < ApplicationController
         end
 
         # Instance variables to be used in the Enterprise Show view.
+        #Have a enterprise from the id taken.
         @enterprise = Enterprise.find( params[:id] )
         assert_object_is_not_null ( @entreprise )
+
+        #Take a sanction from the enterprise.
         @collection = Sanction.where( enterprise_id: @enterprise.id )
         assert_object_is_not_null ( @collection )
+
+        #Take payments from the enterprise an shows 10 each time.
         @payments = Payment.where( enterprise_id: @enterprise.id).paginate( :page => params[:page], :per_page => @results_per_page )
         assert_object_is_not_null ( @payments)
+
+        #Take 10 sanctions to show in the same page.
         @sanctions = @collection.paginate( :page => params[:page], :per_page => @results_per_page )
         assert_object_is_not_null ( @sanctions )
+
+        #Take a ordened list of payments from the enterprise.
         @payment_position = enterprise_payment_position( @enterprise )
         assert_object_is_not_null ( @payment_position )
+
+        #Take the position of enterprise in a ordened list.
         @position = Enterprise.enterprise_position( @enterprise )
         assert_object_is_not_null ( @position )
     end
