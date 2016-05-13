@@ -30,7 +30,8 @@ class Sanction < ActiveRecord::Base
     #discovers percentual value.
     def self.percentual_sanction(value)
         total = Sanction.all.count
-        percentual = value * 100.0 / total
+        percentage = 100.0
+        percentual = value * percentage / total
         return percentual
     end
 
