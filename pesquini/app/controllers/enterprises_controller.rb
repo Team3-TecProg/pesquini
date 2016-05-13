@@ -12,17 +12,18 @@ class EnterprisesController < ApplicationController
     # Parameters: none.
     # Return: @enterprises.
     def index
+        page_enterprise = 10
         if params[:q].nil?
             @search = Enterprise.search( params[:q].try(:merge, m: 'or' ) )
             assert_object_is_not_null ( @search )
-            @ENTERPRISES = Enterprise.paginate(:page => params[:page], :per_page => 10 )
+            @ENTERPRISES = Enterprise.paginate(:page => params[:page], :per_page => page_enterprise )
             assert_object_is_not_null ( @entreprises )
         else
             params[:q][:cnpj_eq] = params[:q][:corporate_name_cont]
             @search = Enterprise.search( params[:q].try( :merge, m: 'or' ) )
             assert_object_is_not_null ( @search )
             @ENTERPRISES = @search.result.paginate( :page => params[:page],
-                                                      :per_page => 10 )
+                                                      :per_page => page_enterprise )
             assert_object_is_not_null ( @entreprises )
         end
     end
@@ -36,8 +37,10 @@ class EnterprisesController < ApplicationController
     def show
         @results_per_page = 10
         # Matches a given Enterprise to its position in the page index.
-        if ( params[:page].to_i > 0 )
-            @page_number = params[:page].to_i - 1
+        page_invalid = 0
+        page_valid = 1
+        if ( params[:page].to_i > page_invalid )
+            @page_number = params[:page].to_i - page_valid
             assert_object_is_not_null ( @page_number )
         else
             @page_number = 0
@@ -72,12 +75,13 @@ class EnterprisesController < ApplicationController
     # Description: Recover the index of a specific enterprise.
     # Parameters: enterprise.
     # Return: index.
-    def enterprise_payment_position(enterprise)
+    def enterprise_payment_position( enterprise )
         enterprises_ordered_by_payments = Enterprise.featured_payments
         enterprises_ordered_by_payments.each_with_index do |organization, index|
         # Returns the position of the Enterprise, based on its payment sum
+        iterator_position = 1
         if organization.payments_sum == enterprise.payments_sum
-            return index + 1
+            return index + iterator_position
         else
             # Nothing to do.
         end
