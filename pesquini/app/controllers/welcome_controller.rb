@@ -10,6 +10,8 @@ class WelcomeController < ApplicationController
     # Parameters: none.
     # Return: enterprises.
     def index
+        # q is Identifier enterprise.
+        # cnpj is National Register of Legal Entities.
         params[:q][:cnpj_eq] = params[:q][:corporate_name_cont] unless params[:q].nil?
         @search = Enterprise.search( params[:q].try( :merge, m: 'or' ) )
         assert_object_is_not_null( @search )
