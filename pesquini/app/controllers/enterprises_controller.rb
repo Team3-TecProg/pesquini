@@ -13,12 +13,14 @@ class EnterprisesController < ApplicationController
     # Return: @enterprises.
     def index
         page_enterprise = 10
+        # q is Identifier enterprise.
         if params[:q].nil?
             @search = Enterprise.search( params[:q].try(:merge, m: 'or' ) )
             assert_object_is_not_null ( @search )
             @ENTERPRISES = Enterprise.paginate(:page => params[:page], :per_page => page_enterprise )
             assert_object_is_not_null ( @entreprises )
         else
+            # cnpj is National Register of Legal Entities.
             params[:q][:cnpj_eq] = params[:q][:corporate_name_cont]
             @search = Enterprise.search( params[:q].try( :merge, m: 'or' ) )
             assert_object_is_not_null ( @search )
