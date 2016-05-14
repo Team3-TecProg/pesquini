@@ -9,11 +9,16 @@ class SanctionType < ActiveRecord::Base
     has_many :sanctions
     validates_uniqueness_of :description
 
-    # Reloads the Sanction object.
+    # Description: Reloads the Sanction object.
+    # Parameters: none.
+    # return: actual_sanction.
     def refresh!
         actual_sanction = SanctionType.find_by_description(self.description)
     end
 
+    # Description: Recover all sanction types.
+    # Parameters: none.
+    # return: sanction_types.
     def self.all_sanction_types
         # The array containing all the possible sanction types is used for
         # statistics in StatisticsController.
