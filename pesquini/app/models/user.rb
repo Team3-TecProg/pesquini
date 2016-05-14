@@ -10,15 +10,21 @@ class User < ActiveRecord::Base
 	validates :login, length: { maximum: 50, minimum: 5 }, uniqueness: { case_sensitive: false }, allow_blank: false
 	validates :password, length: { minimum: 8 }, allow_blank: false
 
-	# Generates an unique random string for user
-	def User.new_remember_token
+	# Description: Generates an unique random string for user.
+	# Parameters: none.
+  # Return: secure_token.
+  def User.new_remember_token
   		secure_token = SecureRandom.urlsafe_base64
-      return token
+
+      return secure_token
   end
 
-	# Encrypts the parameter received
+	# Description: Encrypts the parameter received.
+  # Parameters: none.
+  # Return: encripted_token.
   def User.digest(token)
   		encripted_token = Digest::SHA1.hexdigest(token.to_s)
+
       return encripted_token
   end
 end

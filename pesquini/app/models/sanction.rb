@@ -12,7 +12,9 @@ class Sanction < ActiveRecord::Base
     validates_uniqueness_of :process_number
     scope :by_year, lambda { |year| where('extract(year from initial_date) = ?', year) }
 
-    #returns all the relevant years.
+    # Description: returns all the relevant years.
+    # Parameters: none.
+    # Return: years.
     def self.all_years
         # Array to be used for statistics in StatisticsController.
         years = ["Todos",1988, 1991, 1992, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002,
@@ -22,14 +24,18 @@ class Sanction < ActiveRecord::Base
         return years
     end
 
-    # Reloads the Sanction object.
+    # Description: Reloads the Sanction object.
+    # Parameters: none.
+    # Return: actual_sanction.
     def refresh!
         actual_sanction = Sanction.find_by_process_number(self.process_number)
 
         return actual_sanction
     end
 
-    #discovers percentual value.
+    # Description: discovers percentual value of a sanction.
+    # Parameters: value.
+    # Return: percentual.
     def self.percentual_sanction(value)
         total = Sanction.all.count
         percentage = 100.0

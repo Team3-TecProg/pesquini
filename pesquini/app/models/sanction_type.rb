@@ -11,14 +11,14 @@ class SanctionType < ActiveRecord::Base
 
     # Description: Reloads the Sanction object.
     # Parameters: none.
-    # return: actual_sanction.
+    # Return: actual_sanction.
     def refresh!
         actual_sanction = SanctionType.find_by_description(self.description)
     end
 
     # Description: Recover all sanction types.
     # Parameters: none.
-    # return: sanction_types.
+    # Return: sanction_types.
     def self.all_sanction_types
         # The array containing all the possible sanction types is used for
         # statistics in StatisticsController.
