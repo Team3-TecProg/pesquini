@@ -18,12 +18,12 @@ class Enterprise < ActiveRecord::Base
     # Finds and returns the last sanction, by date, of an Enterprise object.
     def last_sanction
         last_sanction = self.sanctions.last
-        # Runs through all the sanctions, selecting that which has the most 
+        # Runs through all the sanctions, selecting that which has the most
         # recent date
         if (not last_sanction.nil?)
             self.sanctions.each do |sanction|
                 if (sanction.initial_date > last_sanction.initial_date)
-                    last_sanction = sanction 
+                    last_sanction = sanction
                 else
                     # Nothing to do.
                 end
@@ -31,6 +31,7 @@ class Enterprise < ActiveRecord::Base
         else
             # Nothing to do.
         end
+
         return last_sanction
     end
 
@@ -40,7 +41,7 @@ class Enterprise < ActiveRecord::Base
         if (not most_recent_payment.nil?)
             self.payments.each do |payment|
                 if (payment.sign_date > most_recent_payment.sign_date)
-                    most_recent_payment = payment 
+                    most_recent_payment = payment
                 else
                     # Nothing to do.
                 end
@@ -57,6 +58,7 @@ class Enterprise < ActiveRecord::Base
     def payment_after_sanction?
         sanction = last_sanction
         payment = last_payment
+
         if (sanction && payment)
             payment.sign_date < sanction.initial_date
         else
@@ -74,10 +76,10 @@ class Enterprise < ActiveRecord::Base
         ordered_sanctions = self.featured_sanctions
         grouped_sanctions = ordered_sanctions.uniq.group_by(&:sanctions_count).to_a
     # Finds the enterprise position based on its sanctions.
-        grouped_sanctions.each_with_index do |sanction,index|
+        grouped_sanctions.each_with_index do |sanction,enterprise_index|
             if (sanction[0] == enterprise.sanctions_count)
-                return index + 1
-            else 
+                return enterprise_index + 1
+            else
                 # Nothing to do.
             end
         end
@@ -88,17 +90,20 @@ class Enterprise < ActiveRecord::Base
         enterprise_group = []
         enterprise_group_count = []
         @enterprise_group_array = []
-        a = Enterprise.all.sort_by{|x| x.sanctions_count}
-        b = a.uniq.group_by(&:sanctions_count).to_a.reverse
+        #Sorts all enterprise by its sanctions_count attributes.
+        sorted_enterprises = Enterprise.all.sort_by{|x| x.sanctions_count}
+        #Filters possible repetition of enterprise.
+        filtered_enteprises = sorted_enterprises.uniq.group_by(&:sanctions_count).to_a.reverse
 
-        b.each do |k|
-            enterprise_group << k[0]
-            enterprise_group_count << k[1].count
+        filtered_enteprises.each do |enterprise|
+            enterprise_group << enterprise[0]
+            enterprise_group_count << enterprise[1].count
         end
 
         @enterprise_group_array << enterprise_group
         @enterprise_group_array << enterprise_group_count
-        @enterprise_group_array
+
+        return @enterprise_group_array
     end
 
 end

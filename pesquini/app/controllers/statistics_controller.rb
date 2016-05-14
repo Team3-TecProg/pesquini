@@ -95,10 +95,10 @@ class StatisticsController < ApplicationController
     def sanction_by_state_graph
         gon.states = @@STATES_LIST
         gon.dados = total_by_state
-        titulo = "Gráfico de Sanções por Estado"
+        tittle = "Gráfico de Sanções por Estado"
 
         @CHART = LazyHighCharts::HighChart.new('graph') do |graph_function|
-        graph_function.title(:text => titulo)
+        graph_function.title(:text => tittle)
 
             if(params[:year_].to_i != 0)
                 graph_function.title(:text => params[:year_].to_i )
@@ -122,7 +122,7 @@ class StatisticsController < ApplicationController
     # Parameters: none.
     # Return: none.
     def sanction_by_type_graph
-        titulo = "Gráfico Sanções por Tipo"
+        tittle = "Gráfico Sanções por Tipo"
         @CHART = LazyHighCharts::HighChart.new('pie') do |graph_function|
             graph_function.chart({:defaultSeriesType=>"pie" ,:margin=> [50, 10, 10, 10]} )
             graph_function.series({
@@ -130,7 +130,7 @@ class StatisticsController < ApplicationController
                 :name=> 'Sanções Encontradas',
                 :data => total_by_type
             })
-            graph_function.options[:title][:text] = titulo
+            graph_function.options[:title][:text] = tittle
             graph_function.legend(:layout=> 'vertical',:style=> {:left=> 'auto',
                                                     :bottom=> 'auto',
                                                     :right=> '50px',
@@ -221,7 +221,7 @@ class StatisticsController < ApplicationController
 
         results2 << (total - count)
         results << results2
-        results = results.sort_by { |i| i[0] }
+        results = results.sort_by { |iterator| iterator[0] }
         assert_object_is_not_null( results )
 
         return results
