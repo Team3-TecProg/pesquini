@@ -13,6 +13,7 @@ class Payment < ActiveRecord::Base
   def refresh!
   	# Reloads the Payment object.
     payment = Payment.find_by_process_number(self.process_number)
+
     return payment
   end
 

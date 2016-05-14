@@ -1,4 +1,4 @@
-# #####################################################################
+# ######indexindexindex###############################################################
 # Class name: Enterprise.
 # File name: enterprise.rb.
 # Description: Represents a brazilian enterprise that will be searched
@@ -15,11 +15,14 @@ class Enterprise < ActiveRecord::Base
     scope :featured_sanctions, ->(number=nil){number ? order('sanctions_count DESC').limit(number) :order('sanctions_count DESC')}
     scope :featured_payments, -> (number=nil){number ? order('payments_sum DESC').limit(number) :order('payments_sum DESC')}
 
-    # Finds and returns the last sanction, by date, of an Enterprise object.
+    #Description: Finds and returns the last sanction
+    # , by date, of an Enterprise object.
+    #Parameters: none.
+    #return: last_sanction.
     def last_sanction
         last_sanction = self.sanctions.last
-        # Runs through all the sanctions, selecting that which has the most
-        # recent date
+        # Runs through all the sanctions, selecting that which has the most.
+        # recent date.
         if (not last_sanction.nil?)
             self.sanctions.each do |sanction|
                 if (sanction.initial_date > last_sanction.initial_date)
@@ -35,7 +38,9 @@ class Enterprise < ActiveRecord::Base
         return last_sanction
     end
 
-    # Finds and returns the last Payment object.
+    #Description: Finds and returns the last Payment object.
+    #Parameters: none
+    #return: most_recent_payment
     def last_payment
         most_recent_payment = self.payments.last
         if (not most_recent_payment.nil?)
@@ -53,8 +58,10 @@ class Enterprise < ActiveRecord::Base
         return most_recent_payment
     end
 
-    # Verifies that the initial date of sanction is greather than
-    # sign date of payment.
+    # Description: Verifies that the initial date of sanction
+    # is greather than sign date of payment.
+    # Parameters: none
+    # return: boolean
     def payment_after_sanction?
         sanction = last_sanction
         payment = last_payment
@@ -66,12 +73,16 @@ class Enterprise < ActiveRecord::Base
         end
     end
 
-    # Returns an enterprise recovered by its CNPJ.
+    # Description: Returns an enterprise recovered by its CNPJ.
+    # Parameters: none
+    # return: enterprise
     def refresh!
         enterprise = Enterprise.find_by_cnpj(self.cnpj)
     end
 
-    # Returns the index of an specific enterprise.
+    # Description: Returns the index of an specific enterprise.
+    # Parameters: none
+    # return: enterprise
     def self.enterprise_position(enterprise)
         ordered_sanctions = self.featured_sanctions
         grouped_sanctions = ordered_sanctions.uniq.group_by(&:sanctions_count).to_a
@@ -85,7 +96,10 @@ class Enterprise < ActiveRecord::Base
         end
     end
 
-    # Returns a variable with the enterprises sorted and grouped.
+    # Descríption: Returns a variable with the
+    # enterprises sorted and grouped.
+    # Parameters: none.
+    # return: @enterprise_group_array
     def self.most_sanctioned_ranking
         enterprise_group = []
         enterprise_group_count = []
