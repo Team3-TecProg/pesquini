@@ -164,9 +164,9 @@ class StatisticsController < ApplicationController
 
     #Retrieves an array with the sanctions filtered by a state, in a specific year.
     # Parameters: none.
-    # Return: results.
+    # Return: total_sanction_state.
     def total_by_state
-        results = []
+        total_sanction_state = []
         @years = @@sanjana
 
         @@STATES_LIST.each do |s|
@@ -179,22 +179,22 @@ class StatisticsController < ApplicationController
                         selected_year << s
                     end
             end
-            results << (selected_year.count)
+            total_sanction_state << (selected_year.count)
             else
-                results << (sanctions_by_state.count)
+                total_sanction_state << (sanctions_by_state.count)
             end
         end
-        assert_object_is_not_null( results )
+        assert_object_is_not_null( total_sanction_state )
 
-        return results
+        return total_sanction_state
     end
 
     #Retrieves an array with the sanctions filtered by its type.
     # Parameters: none.
-    # Return: results.
+    # Return: total_sanction_state.
     def total_by_type
-        results = []
-        results2 = []
+        total_sanction_state = []
+        total_sanction_type = []
         count = 0
 
         state = State.find_by_abbreviation(params[:state_])
@@ -206,25 +206,25 @@ class StatisticsController < ApplicationController
                 sanctions_by_type = sanctions_by_type.where(state_id: state[:id])
             end
             count = count + (sanctions_by_type.count)
-            results2 << s[1]
-            results2 << (sanctions_by_type.count)
-            results << results2
-            results2 = []
+            total_sanction_type  << s[1]
+            total_sanction_type  << (sanctions_by_type.count)
+            total_sanction_state << total_sanction_type
+            total_sanction_type  = []
         end
 
-        results2 << "Não Informado"
+        total_sanction_type  << "Não Informado"
             if (params[:state_] && params[:state_] != "Todos")
-                total =Sanction.where(state_id: state[:id] ).count
+                total = Sanction.where(state_id: state[:id] ).count
             else
                 total = Sanction.count
             end
 
-        results2 << (total - count)
-        results << results2
-        results = results.sort_by { |iterator| iterator[0] }
-        assert_object_is_not_null( results )
+        total_sanction_type  << (total - count)
+        total_sanction_state << total_sanction_type
+        total_sanction_state = total_sanction_state.sort_by { |iterator| iterator[0] }
+        assert_object_is_not_null( total_sanction_state )
 
-        return results
+        return total_sanction_state
     end
 
 end
