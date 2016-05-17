@@ -193,9 +193,12 @@ class StatisticsController < ApplicationController
     # Parameters: none.
     # Return: total_sanction_state.
     def total_by_type
+        # Array of total sanctions made in a state.
         total_sanction_state = []
+        # Array of total types of sanctions.
         total_sanction_type = []
-        count = 0
+        # Iterator begining in 0. contains the quantity of sanctions by type.
+        count_total_types_of_sanctions = 0
 
         state = State.find_by_abbreviation(params[:state_])
 
@@ -205,7 +208,8 @@ class StatisticsController < ApplicationController
             if (params[:state_] && params[:state_] != "Todos")
                 sanctions_by_type = sanctions_by_type.where(state_id: state[:id])
             end
-            count = count + (sanctions_by_type.count)
+            count_total_types_of_sanctions = count_total_types_of_sanctions
+                                             + (sanctions_by_type.count)
             total_sanction_type  << s[1]
             total_sanction_type  << (sanctions_by_type.count)
             total_sanction_state << total_sanction_type
