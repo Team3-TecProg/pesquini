@@ -1,8 +1,8 @@
 ######################################################################
 # Class name: ApplicationController
 # File name: application_controller.rb
-# Description: Default parent controller, all others controllers..
-#..inherit it
+# Description: Default parent controller, all others controllers
+# inherit it
 ######################################################################
 
 class ApplicationController < ActionController::Base
@@ -27,8 +27,10 @@ class ApplicationController < ActionController::Base
     def assert_error_type_of_object
     end
 
-    # Set default error message that was called when an error occur
-    # rendering template.
+    # Description: Set default error message that was called when an error
+    # occured rendering template.
+    # Parameters: none.
+    # Return: none.
     def render_not_found
         respond_to do |f|
             f.html{ render :template => "errors/404", :status => 404 }
