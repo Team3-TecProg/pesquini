@@ -1,3 +1,9 @@
+######################################################################
+# Class name: EnterpriseTest
+# File name: enterprise_test.rb
+# Description: Class that contains all unit tests for enterprise model
+######################################################################
+
 require 'test_helper'
 
 class EnterpriseTest < ActiveSupport::TestCase
@@ -12,7 +18,11 @@ class EnterpriseTest < ActiveSupport::TestCase
     #     @sanction.process_number = 21
     #     @sanction.save!
 
-    #     @enterprise.sanction = @sanction
+    #     @enterprise = Enterprise.new
+    #     @enterprise.cnpj = 12
+    #     @enterprise.save!
+
+    #     @enterprise.sanctions << @sanction
 
     #     expected_last_sanction = @sanction
     #     returned_last_sanction = @enterprise.last_sanction
