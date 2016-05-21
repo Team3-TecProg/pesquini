@@ -10,7 +10,7 @@ class StatisticsController < ApplicationController
     #A list that stores all states.
     @@STATES_LIST = State.all_states
     #A list that stores the sanctions of all years.
-    @@sanjana = Sanction.all_years
+    @@sanjana = Sanction.get_all_years
     #A list that stores all the types of sanctions.
     @@SANCTION_LIST_TYPE = SanctionType.all_sanction_types
 
