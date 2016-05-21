@@ -18,6 +18,7 @@ class EnterprisesController < ApplicationController
             @search = Enterprise.search( params[:q].try(:merge, m: 'or' ) )
             assert_object_is_not_null ( @search )
             @ENTERPRISES = Enterprise.paginate(:page => params[:page], :per_page => page_enterprise )
+
             assert_object_is_not_null ( @entreprises )
         else
             # cnpj is National Register of Legal Entities.
@@ -41,6 +42,7 @@ class EnterprisesController < ApplicationController
         # Matches a given Enterprise to its position in the page index.
         page_invalid = 0
         page_valid = 1
+
         if ( params[:page].to_i > page_invalid )
             @page_number = params[:page].to_i - page_valid
             assert_object_is_not_null ( @page_number )
