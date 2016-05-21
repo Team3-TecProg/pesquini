@@ -8,14 +8,13 @@ class WelcomeController < ApplicationController
     # Description: Searches for an Enterprise from the database
     # according to the information provided by the user.
     # Parameters: none.
-    # Return: enterprises.
+    # Return: none.
     def index
-        # q is Identifier enterprise.
-        # cnpj is National Register of Legal Entities.
-        params[:q][:cnpj_eq] = params[:q][:corporate_name_cont] unless params[:q].nil?
-        @search = Enterprise.search( params[:q].try( :merge, m: 'or' ) )
-        assert_object_is_not_null( @search )
-        @ENTERPRISES = @search.result
+        # query is the information provided, by the user, to search.
+        # cnpj is the Brazil's National Register of Legal Entities.
+        @SEARCH = Enterprise.search( params[:query] )
+        assert_object_is_not_null( @SEARCH )
+        @ENTERPRISES = @SEARCH.result
         assert_object_is_not_null( @ENTERPRISES )
     end
 end

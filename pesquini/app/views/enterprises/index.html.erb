@@ -11,7 +11,7 @@
         <div class="search_form_enterprises">
           <h1>Ferramenta de busca</h1>
           <hr>
-          <%= search_form_for @search do |f| %>
+          <%= search_form_for @SEARCH do |f| %>
             <%= f.label :corporate_name_cont, "Nome ou CNPJ:" %>
             <%= f.search_field :corporate_name_cont%>
             <%= f.submit %>

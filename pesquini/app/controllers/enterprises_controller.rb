@@ -7,27 +7,29 @@
 
 class EnterprisesController < ApplicationController
 
-    # Description: Searchs for a enterprise according the params sent by user,
-    # once did it, return a set of enterprises with pagination.
+    # Description: Searchs for an enterprise according to the query sent by the
+    # user. Then, shows a set paginated enterprises.
     # Parameters: none.
     # Return: @enterprises.
     def index
-        page_enterprise = 10
-        # q is Identifier enterprise.
-        if params[:q].nil?
-            @search = Enterprise.search( params[:q].try(:merge, m: 'or' ) )
-            assert_object_is_not_null ( @search )
-            @ENTERPRISES = Enterprise.paginate(:page => params[:page], :per_page => page_enterprise )
+        enterprises_per_page = 10
+        # query is the information provided, by the user, to search.
+        if !params[:query].nil?
+            # cnpj is National Register of Legal Entities.
+            params[:query][:cnpj_eq] = params[:query][:corporate_name_cont]
+            @SEARCH = Enterprise.search( params[:query].try( :merge, m: 'or' ) )
+            assert_object_is_not_null ( @SEARCH )
+            @ENTERPRISES = @SEARCH.result.paginate( :page => params[:page],
+                                            :per_page => enterprises_per_page )
 
             assert_object_is_not_null ( @entreprises )
         else
-            # cnpj is National Register of Legal Entities.
-            params[:q][:cnpj_eq] = params[:q][:corporate_name_cont]
-            @search = Enterprise.search( params[:q].try( :merge, m: 'or' ) )
-            assert_object_is_not_null ( @search )
-            @ENTERPRISES = @search.result.paginate( :page => params[:page],
-                                                      :per_page => page_enterprise )
-            assert_object_is_not_null ( @entreprises )
+            @SEARCH = Enterprise.search( params[:query])
+            assert_object_is_not_null ( @SEARCH )
+            @ENTERPRISES = Enterprise.paginate(:page => params[:page], 
+                                            :per_page => enterprises_per_page )
+ 
+ 						assert_object_is_not_null ( @entreprises )       
         end
     end
 
@@ -90,5 +92,6 @@ class EnterprisesController < ApplicationController
             # Nothing to do.
         end
     end
+
   end
 end
