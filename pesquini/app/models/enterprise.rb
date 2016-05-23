@@ -13,7 +13,7 @@ class Enterprise < ActiveRecord::Base
     validates_uniqueness_of :cnpj
 
     scope :featured_sanctions, ->(number=nil){number ? order('sanctions_count DESC').limit(number) :order('sanctions_count DESC')}
-    scope :featured_payments, -> (number=nil){number ? orde3r('payments_sum DESC').limit(number) :order('payments_sum DESC')}
+    scope :featured_payments, -> (number=nil){number ? order('payments_sum DESC').limit(number) :order('payments_sum DESC')}
 
     #Description: Finds and returns the last sanction
     # , by date, of an Enterprise object.
