@@ -52,13 +52,13 @@ describe State do
     end
 
     describe "#get_all_states" do
-        expected_return = [ "BA", "DF", "RJ", "PA", "MG", "SP",
+        expected_returned_array_of_states = [ "BA", "DF", "RJ", "PA", "MG", "SP",
         "AM", "RS", "SC","ES", "PR", "PB", "RN", "CE", "AL", "RR", "SE",
         "RO","PI" , "AC","TO", "GO", "PE", "AP", "MS", "MT", "MA",
         "Não Informado" ]
 
         it "should return an array with all states" do
-            expect(State.get_all_states).to eq(expected_return)
+            expect(State.get_all_states).to eq(expected_returned_array_of_states)
         end
     end
   end
