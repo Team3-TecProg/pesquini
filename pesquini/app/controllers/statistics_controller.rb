@@ -12,7 +12,7 @@ class StatisticsController < ApplicationController
     #A list that stores the sanctions of all years.
     @@sanjana = Sanction.get_all_years
     #A list that stores all the types of sanctions.
-    @@SANCTION_LIST_TYPE = SanctionType.all_sanction_types
+    @@SANCTION_LIST_TYPE = SanctionType.get_all_sanction_types
 
     # Description: Method to call view of statistics.
     # Parameters: none.

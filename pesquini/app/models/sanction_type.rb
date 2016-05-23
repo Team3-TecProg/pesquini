@@ -19,10 +19,10 @@ class SanctionType < ActiveRecord::Base
     # Description: Recover all sanction types.
     # Parameters: none.
     # Return: sanction_types.
-    def self.all_sanction_types
+    def self.get_all_sanction_types
         # The array containing all the possible sanction types is used for
         # statistics in StatisticsController.
-        stantion_types = [
+        sanction_types = [
         [ "INIDONEIDADE - LEGISLAçãO ESTADUAL",
             "Inidoneidade - Legislação Estadual"],
         [ "IMPEDIMENTO - LEI DO PREGãO", "Impedimento - Lei do Pregão"],
@@ -47,7 +47,7 @@ class SanctionType < ActiveRecord::Base
         [ "PROIBIçãO - LEI AMBIENTAL", "Proibição - Lei Ambiental" ],
         ]
 
-        return stantion_types
+        return sanction_types
     end
 
 end
