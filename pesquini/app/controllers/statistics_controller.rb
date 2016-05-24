@@ -1,8 +1,7 @@
 ######################################################################
 # Class name: StatiticsController.
 # File name: statistics_controller.rb.
-# Description: Controller that contains methods to ranking
-# manipulation.
+# Description: Controller that contains methods to ranking manipulation.
 ######################################################################
 
 class StatisticsController < ApplicationController
@@ -14,60 +13,55 @@ class StatisticsController < ApplicationController
     #A list that stores all the types of sanctions.
     @@SANCTION_LIST_TYPE = SanctionType.get_all_sanction_types
 
-    # Description: Method to call view of statistics.
+    # Description: Method to call the Statistics 'Index' view.
     # Parameters: none.
     # Return: none.
     def  index
     end
 
-    # Description: This method return a array with the sanctioned ranking of
+    # Description: This method returns an array with the ranking of sanctioned
     # enterprises.
     # Parameters: none.
     # Return: none.
     def most_sanctioned_ranking
-        # Array thats contains objects of the moste sanctioned enterprises.
+        # Array thats contains objects of the most sanctioned enterprises.
         enterprise_group_array = Enterprise.most_sanctioned_ranking
 
-        # Send the first element to a global variable.
+        # Sends the first element to a global variable.
         @ENTERPRISE_GROUP = enterprise_group_array[0]
-        # Assert if the object is valid, whithout null value.
         assert_object_is_not_null(@ENTERPRISE_GROUP)
 
-        # Send the second element to a global variable.
+        # Sends the second element to a global variable.
         @ENTERPRISE_GROUP_COUNT = enterprise_group_array[1]
-        # Assert if the object is valid, whithout null value.
         assert_object_is_not_null(@ENTERPRISE_GROUP)
     end
 
-    # Description: This method return the 10 most sanction enterprises.
+    # Description: This method returns the 10 most sanctioned enterprises.
     # Parameters: none.
     # Return: @ENTERPRISES.
-    def most_paymented_ranking
+    def most_payed_ranking
         have_sanctions_in_year = false
         if ( params[:sanjana] )
             have_sanctions_in_year = true
-            @ENTERPRISES = Enterprise.featured_payments.paginate(:page =>
-                                                                 params[:page],
-                                                                 :per_page =>
-                                                                 20)
+            page_params = {:page => params[:page], :per_page => 20}
+            @ENTERPRISES = Enterprise.featured_payments.paginate( page_params )
         else
-            @ENTERPRISES = Enterprise.featured_payments(10)
+            @ENTERPRISES = Enterprise.featured_payments( 10 )
         end
         assert_object_is_not_null( @ENTERPRISES )
 
         return @ENTERPRISES
     end
 
-    # Description: This method return the 10 most sanctions
-    # enterprises per page.
+    # Description: This method returns the 10 most sanctioned enterprises per 
+    # page.
     # Parameters: none.
     # Return: @ENTERPRISES.
     def enterprise_group_ranking
         @QUANTITY = params[:sanctions_count]
-        @ENTERPRISES = Enterprise.where(sanctions_count:
-                                        @QUANTITY).paginate(:page =>
-                                                              params[:page],
-                                                              :per_page => 10)
+        page_param = {:page => params[:page], :per_page => 10}
+        sanction_param = {sanctions_count: @QUANTITY}
+        @ENTERPRISES = Enterprise.where( sanction_param ).paginate( page_param )
         assert_object_is_not_null( @ENTERPRISES )
 
         return @ENTERPRISES
@@ -223,7 +217,7 @@ class StatisticsController < ApplicationController
                 total = Sanction.count
             end
 
-        total_sanction_type  << (total - count)
+        total_sanction_type  << (total - count_total_types_of_sanctions)
         total_sanction_state << total_sanction_type
         total_sanction_state = total_sanction_state.sort_by { |iterator| iterator[0] }
         assert_object_is_not_null( total_sanction_state )

@@ -16,7 +16,7 @@
 <div = class="container"
 <span class="division"> <hr> </span>
   <% if !@all %>
-  <%= link_to "Todas", controller: 'statistics', action: 'most_paymented_ranking', sanjana: ""%>
+  <%= link_to "Todas", controller: 'statistics', action: 'most_payed_ranking', sanjana: ""%>
   <% end %>
   <% if @all %>
   <%= will_paginate @ENTERPRISES,  renderer: BootstrapPagination::Rails %>

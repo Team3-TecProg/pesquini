@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get '/statistics/sanction_by_state_graph' => 'statistics#sanction_by_state_graph'
   get '/statistics/most_sanctioned_ranking' => 'statistics#most_sanctioned_ranking'
   get '/statistics/sanction_by_type_graph' => 'statistics#sanction_by_type_graph'
-  get '/statistics/most_paymented_ranking' => 'statistics#most_paymented_ranking'
+  get '/statistics/most_payed_ranking' => 'statistics#most_payed_ranking'
   get '/more' => 'welcome#more'
   get '/graphics' => 'graphics#index'
   match 'statistics', controller: 'statistics', action: 'total_by_state', via: 'get'

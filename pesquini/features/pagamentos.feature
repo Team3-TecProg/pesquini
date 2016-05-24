@@ -13,6 +13,6 @@ Entao vejo o ranking das 10 empresas que mais receberam pagamentos
 
 Cenario: Visualizar o ranking de todas as sançoes atraves de um botao.
 
-Dado que eu estou na pagina "/statistics/most_paymented_ranking"
+Dado que eu estou na pagina "/statistics/most_payed_ranking"
 Quando eu clico no link "Todas"
 Então eu devo visualizar o ranking de todas as empresas que mais receberam pagamentos
