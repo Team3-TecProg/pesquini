@@ -76,7 +76,7 @@ class Enterprise < ActiveRecord::Base
     # Description: Returns an enterprise recovered by its CNPJ.
     # Parameters: none
     # return: enterprise
-    def update
+    def update_enterprise
         enterprise = Enterprise.find_by_cnpj( self.cnpj )
     end
 

@@ -46,11 +46,11 @@ describe Sanction do
             end
 
             it "should return sanction" do
-                expect(@s.update).to eq(@s);
+                expect(@s.update_sanction).to eq(@s);
             end
 
             it "should not return other sanction" do
-                expect(@s.update).not_to eq(@sanction);
+                expect(@s.update_sanction).not_to eq(@sanction);
             end
         end
 

@@ -37,11 +37,11 @@ describe SanctionType do
             end
 
             it "should return SanctionType" do
-              expect(@s.update).to eq(@s);
+              expect(@s.update_sanction_type).to eq(@s);
             end
 
             it "should not return other SanctionType" do
-              expect(@s.update).not_to eq(@sanction_type);
+              expect(@s.update_sanction_type).not_to eq(@sanction_type);
             end
         end
 

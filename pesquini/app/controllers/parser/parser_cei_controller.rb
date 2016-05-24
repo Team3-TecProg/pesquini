@@ -3,9 +3,9 @@ class Parser::ParserCeiController < Parser::ParserController
   require 'csv'
   @@filename = 'parser_data/CEIS.csv'
 
-  before_filter :authorize, only: [:check_nil_ascii, :check_date, :import, 
-                                       :build_state, :build_sanction_type, 
-                                       :build_enterprise, :build_sanction, 
+  before_filter :authorize, only: [:check_nil_ascii, :check_date, :import,
+                                       :build_state, :build_sanction_type,
+                                       :build_enterprise, :build_sanction,
                                        :check_and_save]
 
   def index
@@ -79,7 +79,7 @@ class Parser::ParserCeiController < Parser::ParserController
       c.save!
       c
     rescue ActiveRecord::RecordInvalid
-      c = c.update
+      c = c.update_sanction_type
       c
     end
   end

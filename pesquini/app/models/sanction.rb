@@ -27,7 +27,7 @@ class Sanction < ActiveRecord::Base
     # Description: Reloads the Sanction object.
     # Parameters: none.
     # Return: actual_sanction.
-    def update
+    def update_sanction
         actual_sanction = Sanction.find_by_process_number(self.process_number)
 
         return actual_sanction

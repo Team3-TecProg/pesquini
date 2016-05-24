@@ -10,7 +10,7 @@ class Payment < ActiveRecord::Base
   validates_uniqueness_of :process_number
 
   #returns a payment recovered by its process number.
-  def update
+  def update_payment
   	# Reloads the Payment object.
     payment = Payment.find_by_process_number( self.process_number)
 

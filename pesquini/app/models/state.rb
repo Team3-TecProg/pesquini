@@ -10,7 +10,7 @@ class State < ActiveRecord::Base
     validates_uniqueness_of :abbreviation
 
     # Refreshes the abbreviation
-    def update
+    def update_state
         actual_sanction = State.find_by_abbreviation(self.abbreviation)
     end
 

@@ -79,11 +79,11 @@ describe Enterprise do
       end
 
       it "should return enterprise" do
-        expect(@e.update).to eq(@e);
+        expect(@e.update_enterprise).to eq(@e);
       end
 
       it "should not return other enterprise" do
-        expect(@e.update).not_to eq(@enterprise);
+        expect(@e.update_enterprise).not_to eq(@enterprise);
       end
     end
   end

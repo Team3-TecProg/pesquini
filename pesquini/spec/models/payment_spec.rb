@@ -38,11 +38,11 @@ describe Payment do
         end
 
         it "should return Payment" do
-            expect(@p.update).to eq(@p);
+            expect(@p.update_payment).to eq(@p);
         end
 
         it "should not return other Payment" do
-            expect(@p.update).not_to eq(@payment);
+            expect(@p.update_payment).not_to eq(@payment);
         end
     end
   end

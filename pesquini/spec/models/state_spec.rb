@@ -43,11 +43,11 @@ describe State do
         end
 
         it "should return state" do
-            expect(@new_state.update).to eq(@new_state);
+            expect(@new_state.update_state).to eq(@new_state);
         end
 
         it "should not return other state" do
-            expect(@new_state.update).not_to eq(@state);
+            expect(@new_state.update_state).not_to eq(@state);
         end
     end
 
