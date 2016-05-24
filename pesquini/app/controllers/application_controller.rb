@@ -23,13 +23,13 @@ class ApplicationController < ActionController::Base
         #{params[:unmatched_route]}")
     end
 
-    # Description: Abort the system if an object has null contet. 
+    # Description: Abort the system if an object has null contet.
     # Parameters: none.
     # Return: none.
     def assert_error_null
     end
 
-    # Description: Abort the system if an object has a type note correct 
+    # Description: Abort the system if an object has a type note correct
     # Parameters: none.
     # Return: none.
     def assert_error_type_of_object
@@ -45,14 +45,14 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    # Description: Abort the system if an object nedded to be null but does'nt. 
+    # Description: Abort the system if an object nedded to be null but does'nt.
     # Parameters: none.
     # Return: none.
     def assert_object_is_not_null( object )
         if( not object.nil? )
             # Object is not null, nothing to do.
         else
-            redirect_to assert_error_null_path
+            #redirect_to assert_error_null_path
         end
     end
 
@@ -63,7 +63,7 @@ class ApplicationController < ActionController::Base
         if( type_is_correct )
             # Object has the expected type, nothing to do.
         else
-            redirect_to assert_error_type_of_object_path
+            #redirect_to assert_error_type_of_object_path
         end
     end
 end
