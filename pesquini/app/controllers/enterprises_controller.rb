@@ -31,6 +31,7 @@ class EnterprisesController < ApplicationController
  
  						assert_object_is_not_null ( @entreprises )       
         end
+        return @ENTERPRISES
     end
 
     # Description: Sets the main params for exibition of enterprises, like
@@ -54,27 +55,27 @@ class EnterprisesController < ApplicationController
 
         # Instance variables to be used in the Enterprise Show view.
         #Have a enterprise from the id taken.
-        @enterprise = Enterprise.find( params[:id] )
+        return @enterprise = Enterprise.find( params[:id] )
         assert_object_is_not_null ( @entreprise )
 
         #Take a sanction from the enterprise.
-        @single_sanction = Sanction.where( enterprise_id: @enterprise.id )
+        return @single_sanction = Sanction.where( enterprise_id: @enterprise.id )
         assert_object_is_not_null ( @single_sanction )
 
         #Take payments from the enterprise an shows 10 each time.
-        @payments = Payment.where( enterprise_id: @enterprise.id).paginate( :page => params[:page], :per_page => @results_per_page )
+        return @payments = Payment.where( enterprise_id: @enterprise.id).paginate( :page => params[:page], :per_page => @results_per_page )
         assert_object_is_not_null ( @payments)
 
         #Take 10 sanctions to show in the same page.
-        @sanctions = @single_sanction.paginate( :page => params[:page], :per_page => @results_per_page )
+        return @sanctions = @single_sanction.paginate( :page => params[:page], :per_page => @results_per_page )
         assert_object_is_not_null ( @sanctions )
 
         #Take a ordened list of payments from the enterprise.
-        @payment_position = enterprise_payment_position( @enterprise )
+        return @payment_position = enterprise_payment_position( @enterprise )
         assert_object_is_not_null ( @payment_position )
 
         #Take the position of enterprise in a ordened list.
-        @position = Enterprise.enterprise_position( @enterprise )
+        return @position = Enterprise.enterprise_position( @enterprise )
         assert_object_is_not_null ( @position )
     end
 
