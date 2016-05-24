@@ -38,8 +38,7 @@ class EnterprisesController < ApplicationController
     # quantity of enterprises by page and the entrepise's informations that
     # should be showed.
     # Parameters: none.
-    # Return: @page_number, @enterprise, @single_sanction, @payments, @sanctions,
-    # @payment_position, @position.
+    # Return: none.
     def show
         @results_per_page = 10
         # Matches a given Enterprise to its position in the page index.
@@ -55,27 +54,27 @@ class EnterprisesController < ApplicationController
 
         # Instance variables to be used in the Enterprise Show view.
         #Have a enterprise from the id taken.
-        return @enterprise = Enterprise.find( params[:id] )
+        @enterprise = Enterprise.find( params[:id] )
         assert_object_is_not_null ( @entreprise )
 
         #Take a sanction from the enterprise.
-        return @single_sanction = Sanction.where( enterprise_id: @enterprise.id )
+        @single_sanction = Sanction.where( enterprise_id: @enterprise.id )
         assert_object_is_not_null ( @single_sanction )
 
         #Take payments from the enterprise an shows 10 each time.
-        return @payments = Payment.where( enterprise_id: @enterprise.id).paginate( :page => params[:page], :per_page => @results_per_page )
+        @payments = Payment.where( enterprise_id: @enterprise.id).paginate( :page => params[:page], :per_page => @results_per_page )
         assert_object_is_not_null ( @payments)
 
         #Take 10 sanctions to show in the same page.
-        return @sanctions = @single_sanction.paginate( :page => params[:page], :per_page => @results_per_page )
+        @sanctions = @single_sanction.paginate( :page => params[:page], :per_page => @results_per_page )
         assert_object_is_not_null ( @sanctions )
 
         #Take a ordened list of payments from the enterprise.
-        return @payment_position = enterprise_payment_position( @enterprise )
+        @payment_position = enterprise_payment_position( @enterprise )
         assert_object_is_not_null ( @payment_position )
 
         #Take the position of enterprise in a ordened list.
-        return @position = Enterprise.enterprise_position( @enterprise )
+        @position = Enterprise.enterprise_position( @enterprise )
         assert_object_is_not_null ( @position )
     end
 
