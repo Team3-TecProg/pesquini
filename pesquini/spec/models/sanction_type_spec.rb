@@ -29,7 +29,7 @@ describe SanctionType do
             end
         end
 
-        describe "#refresh!" do
+        describe "#update" do
             before do
                 @s = SanctionType.new
                 @s.description = "Teste 1"
@@ -37,11 +37,11 @@ describe SanctionType do
             end
 
             it "should return SanctionType" do
-              expect(@s.refresh!).to eq(@s);
+              expect(@s.update).to eq(@s);
             end
 
             it "should not return other SanctionType" do
-              expect(@s.refresh!).not_to eq(@sanction_type);
+              expect(@s.update).not_to eq(@sanction_type);
             end
         end
 

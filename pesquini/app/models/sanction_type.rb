@@ -12,7 +12,7 @@ class SanctionType < ActiveRecord::Base
     # Description: Reloads the Sanction object.
     # Parameters: none.
     # Return: actual_sanction.
-    def refresh!
+    def update
         actual_sanction = SanctionType.find_by_description(self.description)
     end
 

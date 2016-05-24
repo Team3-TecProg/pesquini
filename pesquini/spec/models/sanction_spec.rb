@@ -38,7 +38,7 @@ describe Sanction do
             end
         end
 
-        describe "#refresh!" do
+        describe "#update" do
             before do
                 @s = Sanction.new
                 @s.process_number = "356754"
@@ -46,11 +46,11 @@ describe Sanction do
             end
 
             it "should return sanction" do
-                expect(@s.refresh!).to eq(@s);
+                expect(@s.update).to eq(@s);
             end
 
             it "should not return other sanction" do
-                expect(@s.refresh!).not_to eq(@sanction);
+                expect(@s.update).not_to eq(@sanction);
             end
         end
 

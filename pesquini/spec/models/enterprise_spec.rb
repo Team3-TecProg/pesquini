@@ -19,22 +19,22 @@ describe Enterprise do
     @payment.enterprise_id = @enterprise.id
     @payment.save
   end
-  
+
   subject { @enterprise }
     it { should respond_to(:cnpj) }
     it { should respond_to(:corporate_name) }
   it { should be_valid }
 
   describe "uniqueness validation of cnpj" do
-    
+
     describe "unique cnpj" do
       it "should be_valid" do
         uniqueness_enterprise = Enterprise.new
-        uniqueness_enterprise.cnpj = "1234" 
+        uniqueness_enterprise.cnpj = "1234"
         expect(uniqueness_enterprise).to be_valid
       end
     end
-    
+
   describe "duplicated cnpj" do
       it "should not be_valid" do
         duplicated_enterprise = Enterprise.new
@@ -71,7 +71,7 @@ describe Enterprise do
       end
     end
 
-    describe "#refresh!" do
+    describe "#update" do
       before do
         @e = Enterprise.new
         @e.cnpj = "12575431567543"
@@ -79,12 +79,12 @@ describe Enterprise do
       end
 
       it "should return enterprise" do
-        expect(@e.refresh!).to eq(@e);
+        expect(@e.update).to eq(@e);
       end
 
       it "should not return other enterprise" do
-        expect(@e.refresh!).not_to eq(@enterprise);
-      end  
+        expect(@e.update).not_to eq(@enterprise);
+      end
     end
-  end   
+  end
 end

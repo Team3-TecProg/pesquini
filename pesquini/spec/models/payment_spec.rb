@@ -30,7 +30,7 @@ describe Payment do
         end
     end
 
-    describe "#refresh!" do
+    describe "#update" do
         before do
             @p = Payment.new
             @p.process_number = "437924"
@@ -38,11 +38,11 @@ describe Payment do
         end
 
         it "should return Payment" do
-            expect(@p.refresh!).to eq(@p);
+            expect(@p.update).to eq(@p);
         end
 
         it "should not return other Payment" do
-            expect(@p.refresh!).not_to eq(@payment);
+            expect(@p.update).not_to eq(@payment);
         end
     end
   end

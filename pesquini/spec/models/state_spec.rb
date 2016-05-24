@@ -35,7 +35,7 @@ describe State do
     end
 
 
-    describe "#refresh!" do
+    describe "#update" do
         before do
             @new_state = State.new
             @new_state.abbreviation = "Es_Teste"
@@ -43,11 +43,11 @@ describe State do
         end
 
         it "should return state" do
-            expect(@new_state.refresh!).to eq(@new_state);
+            expect(@new_state.update).to eq(@new_state);
         end
 
         it "should not return other state" do
-            expect(@new_state.refresh!).not_to eq(@state);
+            expect(@new_state.update).not_to eq(@state);
         end
     end
 

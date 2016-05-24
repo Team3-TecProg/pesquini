@@ -58,7 +58,7 @@ class Parser::ParserPaymentController < Parser::ParserController
       c.save!
       c
     rescue ActiveRecord::RecordInvalid
-      c = c.refresh!
+      c = c.update
       c
     end
   end
