@@ -6,7 +6,7 @@
 ######################################################################
 
 class EnterprisesController < ApplicationController
-    include ApplicationHelper
+    include Assertions
 
     # Description: Searches for an enterprise according to the query sent by the
     # user. Then, shows a set of paginated enterprises.

@@ -5,6 +5,7 @@
 ######################################################################
 
 class SanctionType < ActiveRecord::Base
+    include Assertions
 
     has_many :sanctions
     validates_uniqueness_of :description
@@ -13,7 +14,9 @@ class SanctionType < ActiveRecord::Base
     # Parameters: none.
     # Return: actual_sanction.
     def update_sanction_type
-        actual_sanction = SanctionType.find_by_description(self.description)
+        actual_sanction = SanctionType.find_by_description( self.description )
+        assert_object_is_not_null( actual_sanction )
+        return actual_sanction
     end
 
     # Description: Recover all sanction types.

@@ -5,7 +5,7 @@
 ######################################################################
 
 class UsersController < ApplicationController
-    include ApplicationHelper
+    include Assertions
     
     # Description: Creates a new user.
     # Parameters: none.

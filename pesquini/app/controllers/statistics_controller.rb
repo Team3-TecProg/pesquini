@@ -5,7 +5,7 @@
 ######################################################################
 
 class StatisticsController < ApplicationController
-    include ApplicationHelper
+    include Assertions
     
     #A list that stores all states.
     @@STATES_LIST = State.get_all_states

@@ -5,16 +5,23 @@
 ######################################################################
 
 class State < ActiveRecord::Base
+    include Assertions
 
     has_many :sanctions
     validates_uniqueness_of :abbreviation
 
-    # Refreshes the abbreviation
+    # Description: Refreshes a given state.
+    # Parameters: none.
+    # Return: actual_sanction.
     def update_state
-        actual_sanction = State.find_by_abbreviation(self.abbreviation)
+        actual_sanction = State.find_by_abbreviation( self.abbreviation )
+        assert_object_is_not_null( actual_sanction )
+        return actual_sanction
     end
 
-    # Returns acronyms of states
+    # Description: Prepares all state's abbreviations. 
+    # Parameters: none.
+    # Return: states.
     def self.get_all_states
         states = [ "BA", "DF", "RJ", "PA", "MG", "SP", "AM", "RS", "SC",
         "ES", "PR", "PB", "RN", "CE", "AL", "RR", "SE", "RO","PI" , "AC",
