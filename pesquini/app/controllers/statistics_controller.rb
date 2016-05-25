@@ -5,7 +5,8 @@
 ######################################################################
 
 class StatisticsController < ApplicationController
-
+    include ApplicationHelper
+    
     #A list that stores all states.
     @@STATES_LIST = State.get_all_states
     #A list that stores the sanctions of all years.

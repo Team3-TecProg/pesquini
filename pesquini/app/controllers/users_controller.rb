@@ -5,6 +5,8 @@
 ######################################################################
 
 class UsersController < ApplicationController
+    include ApplicationHelper
+    
     # Description: Creates a new user.
     # Parameters: none.
     # Return: user.

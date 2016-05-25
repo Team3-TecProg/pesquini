@@ -5,6 +5,8 @@
 ######################################################################
 
 class WelcomeController < ApplicationController
+    include ApplicationHelper
+    
     # Description: Searches for an Enterprise from the database
     # according to the information provided by the user.
     # Parameters: none.
