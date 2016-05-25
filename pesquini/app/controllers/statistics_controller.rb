@@ -63,87 +63,93 @@ class StatisticsController < ApplicationController
         sanction_param = {sanctions_count: @QUANTITY}
         @ENTERPRISES = Enterprise.where( sanction_param ).paginate( page_param )
         assert_object_is_not_null( @ENTERPRISES )
-
+       
         return @ENTERPRISES
     end
 
-    # Description: This method return the 10 most payeds enterprises per page.
+    # Description: This method returns the 10 most payed enterprises per page.
     # Parameters: none.
     # Return: @ENTERPRISES.
     def payment_group_ranking
         @QUANTITY = params[:payments_count]
-        @ENTERPRISES = Enterprise.where(payments_count:
-                                        @QUANTITY).paginate(:page =>
-                                                              params[:page],
-                                                              :per_page => 10)
-        assert_object_is_not_null( @enterprises )
+        page_param = {:page =>params[:page], :per_page => 10}
+        payment_param = {payments_count: @QUANTITY}
+        @ENTERPRISES = Enterprise.where( payment_param ).paginate( page_param )
+        assert_object_is_not_null( @ENTERPRISES )
 
         return @ENTERPRISES
     end
 
-    # Description: This method prepare the data to be ploted in JS using
-    # highChart, the global variable @CHART do this. The chart is about the
-    # states where sanctions made in each state.
+    # Description: This method prepares the data to be plotted in JSon using
+    # the highChart gem, through the instance variable @CHART. The chart shows 
+    # the country' states and their respective sanctions.
     # Parameters: none.
     # Return: none.
     def sanction_by_state_graph
         gon.states = @@STATES_LIST
         gon.dados = total_by_state
-        tittle = "Gráfico de Sanções por Estado"
 
         @CHART = LazyHighCharts::HighChart.new('graph') do |graph_function|
+        tittle = "Gráfico de Sanções por Estado"
         graph_function.title(:text => tittle)
 
-            if(params[:year_].to_i != 0)
-                graph_function.title(:text => params[:year_].to_i )
-            end
+        if(params[:year_].to_i != 0)
+            graph_function.title(:text => params[:year_].to_i )
+        end
 
-            graph_function.xAxis(:categories => @@STATES_LIST)
-            graph_function.series(:name => "Número de Sanções", :yAxis => 0, :data =>
-                     total_by_state)
-            graph_function.yAxis [
-            {:title => {:text => "Sanções", :margin => 30} },
-                    ]
-            graph_function.legend(:align => 'right', :verticalAlign => 'top', :y => 75,
-                     :x => -50, :layout => 'vertical',)
-            graph_function.chart({:defaultSeriesType=>"column"})
+        graph_function.xAxis(:categories => @@STATES_LIST)
+        header = "Número de Sansções"
+        series_param = {:name => header, :yAxis => 0, :data => total_by_state}
+        graph_function.series( series_param )
+        yAxis_title = {:text => "Sanções", :margin => 30}
+        graph_function.yAxis[{:title => yAxis_title },]
+        graph_alignment = {:align => 'right', :verticalAlign => 'top', :y => 75,
+                            :x => -50, :layout => 'vertical',}
+        graph_function.legend(graph_alignment)
+        graph_function.chart({:defaultSeriesType=>"column"})
         end
     end
 
-    # Description: This method prepare the data to be ploted in JS using
-    # highChart, the global variable @CHART do this. The chart is about the
-    # states where the kind of sanctions were made in each state.
+    # Description: This method prepares the data to be plotted in JSon using
+    # the highChart gem, through the instance variable @CHART. The chart shows 
+    # the country' states and their respective sanction kinds.
     # Parameters: none.
     # Return: none.
     def sanction_by_type_graph
-        tittle = "Gráfico Sanções por Tipo"
         @CHART = LazyHighCharts::HighChart.new('pie') do |graph_function|
-            graph_function.chart({:defaultSeriesType=>"pie" ,:margin=> [50, 10, 10, 10]} )
+            graph_function.chart( {
+                :defaultSeriesType=>"pie" , 
+                :margin=> [50, 10, 10, 10]
+                } )
             graph_function.series({
                 :type=> 'pie',
                 :name=> 'Sanções Encontradas',
                 :data => total_by_type
             })
+            tittle = "Gráfico Sanções por Tipo"
             graph_function.options[:title][:text] = tittle
-            graph_function.legend(:layout=> 'vertical',:style=> {:left=> 'auto',
-                                                    :bottom=> 'auto',
-                                                    :right=> '50px',
-                                                    :top=> '100px'})
-            graph_function.plot_options(:pie=>{:allowPointSelect=>true,
-                                  :cursor=>"pointer" ,
-                                  :dataLabels=> { :enabled=>true,
-                                                  :color=>"black",
-                                                  :style=> { :font =>
-                                                  "12px Trebuchet MS, "+
-                                                  "Verdana, sans-serif" }
-                                                }
-                                 }
-                          )
+            graph_function.legend(
+                :layout=> 'vertical',
+                :style=> {:left=> 'auto',
+                          :bottom=> 'auto',
+                          :right=> '50px',
+                          :top=> '100px'
+                         } )
+            font = "12px Trebuchet MS, "+ "Verdana, sans-serif" 
+            graph_function.plot_options(
+                :pie=>{:allowPointSelect=>true,
+                :cursor=>"pointer" ,
+                :dataLabels=> { :enabled=>true,
+                                :color=>"black",
+                                :style=> { :font => font
+                                          }
+                              } 
+                        } )
         end
 
         if (!@STATES)
             @STATES = @@STATES_LIST.clone
-            @STATES.unshift("Todos")
+            @STATES.unshift( "Todos" )
         end
 
         respond_to do |format|
@@ -152,30 +158,27 @@ class StatisticsController < ApplicationController
         end
     end
 
-# Move this to helper.
-######################################################
-# Auxiliary methods
-
-    #Retrieves an array with the sanctions filtered by a state, in a specific year.
+    # Retrieves an array with the sanctions filtered by a state, in a specific 
+    # year.
     # Parameters: none.
     # Return: total_sanction_state.
     def total_by_state
         total_sanction_state = []
         @years = @@sanjana
 
-        @@STATES_LIST.each do |s|
-            state = State.find_by_abbreviation("#{s}")
+        @@STATES_LIST.each do |sanction|
+            state = State.find_by_abbreviation("#{sanction}")
             sanctions_by_state = Sanction.where(state_id: state[:id])
             selected_year = []
-            if(params[:year_].to_i != 0)
-                sanctions_by_state.each do |s|
-                    if(s.initial_date.year ==  params[:year_].to_i)
-                        selected_year << s
+            if( params[:year_].to_i != 0 )
+                sanctions_by_state.each do |sanction|
+                    if( s.initial_date.year ==  params[:year_].to_i )
+                        selected_year << sanction
                     end
-            end
-            total_sanction_state << (selected_year.count)
+                end
+                total_sanction_state << ( selected_year.count )
             else
-                total_sanction_state << (sanctions_by_state.count)
+                total_sanction_state << ( sanctions_by_state.count )
             end
         end
         assert_object_is_not_null( total_sanction_state )
@@ -183,7 +186,7 @@ class StatisticsController < ApplicationController
         return total_sanction_state
     end
 
-    #Retrieves an array with the sanctions filtered by its type.
+    # Retrieves an array with the sanctions filtered by its type.
     # Parameters: none.
     # Return: total_sanction_state.
     def total_by_type
@@ -191,35 +194,37 @@ class StatisticsController < ApplicationController
         total_sanction_state = []
         # Array of total types of sanctions.
         total_sanction_type = []
-        # Iterator begining in 0. contains the quantity of sanctions by type.
+        # Iterator beginning in 0. Contains the quantity of sanctions by type.
         count_total_types_of_sanctions = 0
 
-        state = State.find_by_abbreviation(params[:state_])
+        state = State.find_by_abbreviation( params[:state_] )
 
-        @@SANCTION_LIST_TYPE.each do |s|
-            sanction = SanctionType.find_by_description(s[0])
-            sanctions_by_type = Sanction.where(sanction_type:  sanction)
-            if (params[:state_] && params[:state_] != "Todos")
-                sanctions_by_type = sanctions_by_type.where(state_id: state[:id])
+        @@SANCTION_LIST_TYPE.each do |selected_sanction|
+            sanction = SanctionType.find_by_description(selected_sanction[0])
+            sanctions_by_type = Sanction.where( sanction_type:  sanction )
+            if ( params[:state_] && params[:state_] != "Todos" )
+                sanction_param = {state_id: state[:id] }
+                sanctions_by_type = sanctions_by_type.where( sanction_param )
             end
             count_total_types_of_sanctions = count_total_types_of_sanctions
-                                             + (sanctions_by_type.count)
-            total_sanction_type  << s[1]
-            total_sanction_type  << (sanctions_by_type.count)
+                                             + ( sanctions_by_type.count )
+            total_sanction_type  << selected_sanction[1]
+            total_sanction_type  << ( sanctions_by_type.count )
             total_sanction_state << total_sanction_type
             total_sanction_type  = []
         end
 
         total_sanction_type  << "Não Informado"
-            if (params[:state_] && params[:state_] != "Todos")
-                total = Sanction.where(state_id: state[:id] ).count
+            if ( params[:state_] && params[:state_] != "Todos" )
+                total = Sanction.where( state_id: state[:id] ).count
             else
                 total = Sanction.count
             end
 
-        total_sanction_type  << (total - count_total_types_of_sanctions)
+        total_sanction_type  << ( total - count_total_types_of_sanctions )
         total_sanction_state << total_sanction_type
-        total_sanction_state = total_sanction_state.sort_by { |iterator| iterator[0] }
+        total_sanction_state = 
+                        total_sanction_state.sort_by{ |iterator| iterator[0] }
         assert_object_is_not_null( total_sanction_state )
 
         return total_sanction_state
