@@ -6,6 +6,7 @@
 
 class Sanction < ActiveRecord::Base
     include Assertions
+    extend Assertions
 
     belongs_to :enterprise, counter_cache: true
     belongs_to :sanction_type

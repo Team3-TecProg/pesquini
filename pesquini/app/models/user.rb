@@ -6,6 +6,7 @@
 
 class User < ActiveRecord::Base
   include Assertions
+  extend Assertions
   
 	#Validates login and password
 	has_secure_password
