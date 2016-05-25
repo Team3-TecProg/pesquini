@@ -4,23 +4,23 @@ require 'rails_helper'
 describe Enterprise do
 
   before do
-    @enterprise = Enterprise.new
+    @ENTERPRISE = Enterprise.new
     @sanction = Sanction.new
     @payment = Payment.new
-    @enterprise.cnpj = "555"
-    @enterprise.corporate_name = "Samsung"
-    @enterprise.save
+    @ENTERPRISE.cnpj = "555"
+    @ENTERPRISE.corporate_name = "Samsung"
+    @ENTERPRISE.save
 
     @sanction.initial_date = "01/02/2010".to_date
-    @sanction.enterprise_id = @enterprise.id
+    @sanction.enterprise_id = @ENTERPRISE.id
     @sanction.save
 
     @payment.sign_date = "01/02/2011".to_date
-    @payment.enterprise_id = @enterprise.id
+    @payment.enterprise_id = @ENTERPRISE.id
     @payment.save
   end
 
-  subject { @enterprise }
+  subject { @ENTERPRISE }
     it { should respond_to(:cnpj) }
     it { should respond_to(:corporate_name) }
   it { should be_valid }
@@ -51,13 +51,13 @@ describe Enterprise do
         expect(e.payment_after_sanction?).to be false
       end
       it "should return false if don't have payment after sanction" do
-        expect(@enterprise.payment_after_sanction?).to be false
+        expect(@ENTERPRISE.payment_after_sanction?).to be false
       end
 
       it "should return true if have  payment after sanction" do
         @sanction.initial_date = "01/02/2015".to_date
         @sanction.save
-        expect(@enterprise.payment_after_sanction?).to be true
+        expect(@ENTERPRISE.payment_after_sanction?).to be true
       end
     end
 
@@ -83,7 +83,7 @@ describe Enterprise do
       end
 
       it "should not return other enterprise" do
-        expect(@e.update_enterprise).not_to eq(@enterprise);
+        expect(@e.update_enterprise).not_to eq(@ENTERPRISE);
       end
     end
   end

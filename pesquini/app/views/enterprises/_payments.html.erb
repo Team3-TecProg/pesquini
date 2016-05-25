@@ -1,6 +1,6 @@
         <div class =" lowercase-letter">
-    <% @payments.each_with_index do |p, index| %>
-          <h4><b><div class= "index_number"><%= @page_number*@results_per_page + index +1%></div></b></h4>
+    <% @PAYMENTS.each_with_index do |p, index| %>
+          <h4><b><div class= "index_number"><%= @PAGE_NUMBER*@RESULTS_PER_PAGE + index +1%></div></b></h4>
           <h4> <b>Identificador: </b> <%= p.identifier %> </h4>
           <h4> <b>Número do processo: </b> <%= p.process_number %> </h4>
           <h4> <b>Valor inicial: </b> <%= number_to_currency(p.initial_value, unit: "R$ ", separator: ",", delimiter: ".")%> </h4>
@@ -10,9 +10,9 @@
           <hr align="left">
      <% end %>
 
-      <% if @payments.empty? %>
+      <% if @PAYMENTS.empty? %>
         <h3> Dados sobre pagamentos não informados </h3>
       <% end %>
-      <%= will_paginate @payments,  renderer: BootstrapPagination::Rails %>
+      <%= will_paginate @PAYMENTS,  renderer: BootstrapPagination::Rails %>
 
       </div>

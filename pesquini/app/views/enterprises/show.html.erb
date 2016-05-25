@@ -4,10 +4,10 @@
   <div class="container">
 
     <div class="section-title">
-      <h2><%= @enterprise.corporate_name %> </h2><br>
-      <h4> <b>CNPJ da Empresa:  </b><%= @enterprise.cnpj %> </h4>
-      <h4> <b>Posição no <%= link_to "grupo", controller: 'statistics', action: 'most_sanctioned_ranking' %> do ranking de empresas mais sancionadas: </b><%= @position %> </h4>
-      <h4> <b>Posição no ranking de empresas que mais receberam verbas de pagamentos : </b><%= @payment_position %> </h4>
+      <h2><%= @ENTERPRISE.corporate_name %> </h2><br>
+      <h4> <b>CNPJ da Empresa:  </b><%= @ENTERPRISE.cnpj %> </h4>
+      <h4> <b>Posição no <%= link_to "grupo", controller: 'statistics', action: 'most_sanctioned_ranking' %> do ranking de empresas mais sancionadas: </b><%= @POSITION %> </h4>
+      <h4> <b>Posição no ranking de empresas que mais receberam verbas de pagamentos : </b><%= @PAYMENT_POSITION %> </h4>
 
     </div>
 
