@@ -1,29 +1,32 @@
 ######################################################################
 # Class name: Enterprise.
 # File name: enterprise.rb.
-# Description: Represents a brazilian enterprise that will be searched
-# by the user.
+# Description: Represents a Brazilian enterprise, with sanctions and payments.
 ######################################################################
 
 class Enterprise < ActiveRecord::Base
 
     has_many :sanctions
     has_many :payments
-    # CNPJ is an identifier that all brazilian enterprises must have.
+    # CNPJ is an identifier that all Brazilian enterprises must have.
     validates_uniqueness_of :cnpj
 
-    scope :featured_sanctions, -> ( number = nil ) {number ? order( 'sanctions_count DESC' ).limit( number ) :order( 'sanctions_count DESC' ) }
-    scope :featured_payments, -> ( number = nil ) { number ? order( 'payments_sum DESC' ).limit( number ) :order( 'payments_sum DESC' ) }
+    scope :featured_sanctions, 
+    -> ( number = nil ) {number ? order( 'sanctions_count DESC' ).
+        limit( number ) :order( 'sanctions_count DESC' ) }
+    scope :featured_payments, 
+    -> ( number = nil ) { number ? order( 'payments_sum DESC' ).
+        limit( number ) :order( 'payments_sum DESC' ) }
 
-    #Description: Finds and returns the last sanction,
-    # by date, of an Enterprise object.
+    #Description: Finds and returns the last sanction, by date, of an Enterprise 
+    # object.
     #Parameters: none.
     #return: last_sanction.
     def last_sanction
         last_sanction = self.sanctions.last
         # Runs through all the sanctions, selecting that which has the most.
         # recent date.
-        if ( not last_sanction.nil? )
+        if ( !last_sanction.nil? )
             self.sanctions.each do | sanction |
                 if ( sanction.initial_date > last_sanction.initial_date )
                     last_sanction = sanction
@@ -43,7 +46,7 @@ class Enterprise < ActiveRecord::Base
     #return: most_recent_payment
     def last_payment
         most_recent_payment = self.payments.last
-        if ( not most_recent_payment.nil? )
+        if ( !most_recent_payment.nil? )
             self.payments.each do | payment |
                 if ( payment.sign_date > most_recent_payment.sign_date )
                     most_recent_payment = payment
@@ -58,8 +61,8 @@ class Enterprise < ActiveRecord::Base
         return most_recent_payment
     end
 
-    # Description: Verifies that the initial date of sanction
-    # is greather than sign date of payment.
+    # Description: Verifies that the initial date of sanction is greater than 
+    # sign date of payment.
     # Parameters: none
     # return: boolean
     def payment_after_sanction?
@@ -85,7 +88,8 @@ class Enterprise < ActiveRecord::Base
     # return: enterprise
     def self.enterprise_position( enterprise )
         ordered_sanctions = self.featured_sanctions
-        grouped_sanctions = ordered_sanctions.uniq.group_by( &:sanctions_count ).to_a
+        grouped_sanctions = ordered_sanctions.uniq.
+        group_by( &:sanctions_count ).to_a
         # Finds the enterprise position based on its sanctions.
         grouped_sanctions.each_with_index do | sanction, enterprise_index |
             enterprise_identifier = 1
@@ -97,28 +101,28 @@ class Enterprise < ActiveRecord::Base
         end
     end
 
-    # Descríption: Returns a variable with the
-    # enterprises sorted and grouped.
+    # Description: Returns a variable with the enterprises sorted and grouped.
     # Parameters: none.
-    # return: @enterprise_group_array
+    # return: enterprise_group_array
     def self.most_sanctioned_ranking
+        #Sorts all enterprise by its sanctions_count attributes.
+        sorted_enterprises = Enterprise.all.sort_by{ | enterprise | enterprise.
+        sanctions_count }
+        #Filters possible repetition of enterprise.
+        filtered_enteprises = sorted_enterprises.uniq.
+        group_by( &:sanctions_count ).to_a.reverse
         enterprise_group = []
         enterprise_group_count = []
-        @enterprise_group_array = []
-        #Sorts all enterprise by its sanctions_count attributes.
-        sorted_enterprises = Enterprise.all.sort_by{ | x | x.sanctions_count }
-        #Filters possible repetition of enterprise.
-        filtered_enteprises = sorted_enterprises.uniq.group_by( &:sanctions_count ).to_a.reverse
-
         filtered_enteprises.each do | enterprise |
             enterprise_group << enterprise[0]
             enterprise_group_count << enterprise[1].count
         end
 
-        @enterprise_group_array << enterprise_group
-        @enterprise_group_array << enterprise_group_count
+        enterprise_group_array = []
+        enterprise_group_array << enterprise_group
+        enterprise_group_array << enterprise_group_count
 
-        return @enterprise_group_array
+        return enterprise_group_array
     end
 
 end
