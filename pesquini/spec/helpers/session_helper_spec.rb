@@ -1,5 +1,5 @@
 require 'rails_helper'
-  
+
 include SessionsHelper
 
 RSpec.describe SessionsHelper, :type => :helper do

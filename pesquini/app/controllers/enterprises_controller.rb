@@ -31,7 +31,7 @@ class EnterprisesController < ApplicationController
             assert_object_is_not_null ( @SEARCH )
             pages = {:page => params[:page], :per_page => enterprises_per_page}
             @ENTERPRISES = Enterprise.paginate( pages )
-            assert_object_is_not_null ( @ENTERPRISES )       
+            assert_object_is_not_null ( @ENTERPRISES )
         end
         return @ENTERPRISES
     end
@@ -55,7 +55,7 @@ class EnterprisesController < ApplicationController
         end
 
         # Instance variables to be used in the Enterprise Show view.
-        
+
         # Fetches an enterprise based on its ID.
         @ENTERPRISE = Enterprise.find( params[:id] )
         assert_object_is_not_null ( @ENTERPRISE )
@@ -65,7 +65,7 @@ class EnterprisesController < ApplicationController
         assert_object_is_not_null ( single_sanction )
 
         #Takes payments from the enterprise and shows them in groups of  10.
-        payment_page = {:page => params[:page], :per_page => @RESULTS_PER_PAGE} 
+        payment_page = {:page => params[:page], :per_page => @RESULTS_PER_PAGE}
         enterprise = {enterprise_id: @ENTERPRISE.id}
         @PAYMENTS = Payment.where( enterprise ).paginate( payment_page )
         assert_object_is_not_null ( @PAYMENTS)

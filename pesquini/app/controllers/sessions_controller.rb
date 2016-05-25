@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
         assert_object_is_not_null ( password )
         user = User.find_by(login: login)
         assert_object_is_not_null ( user )
+
         # Verifies if the provided password is correct.
         if ( user && user.authenticate( password ) )
             sign_in user

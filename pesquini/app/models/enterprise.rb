@@ -1,7 +1,8 @@
 ######################################################################
 # Class name: Enterprise.
 # File name: enterprise.rb.
-# Description: Represents a Brazilian enterprise, with sanctions and payments.
+# Description: Represents a Brazilian enterprise, with sanctions and
+# payments.
 ######################################################################
 
 class Enterprise < ActiveRecord::Base
@@ -13,14 +14,14 @@ class Enterprise < ActiveRecord::Base
     # CNPJ is an identifier that all Brazilian enterprises must have.
     validates_uniqueness_of :cnpj
 
-    scope :featured_sanctions, 
+    scope :featured_sanctions,
     -> ( number = nil ) {number ? order( 'sanctions_count DESC' ).
         limit( number ) :order( 'sanctions_count DESC' ) }
-    scope :featured_payments, 
+    scope :featured_payments,
     -> ( number = nil ) { number ? order( 'payments_sum DESC' ).
         limit( number ) :order( 'payments_sum DESC' ) }
 
-    #Description: Finds and returns the last sanction, by date, of an Enterprise 
+    #Description: Finds and returns the last sanction, by date, of an Enterprise
     # object.
     #Parameters: none.
     #Return: last_sanction.
@@ -63,7 +64,7 @@ class Enterprise < ActiveRecord::Base
         return most_recent_payment
     end
 
-    # Description: Verifies that the initial date of sanction is greater than 
+    # Description: Verifies that the initial date of sanction is greater than
     # sign date of payment.
     # Parameters: none.
     # Return: boolean.
@@ -97,7 +98,7 @@ class Enterprise < ActiveRecord::Base
         assert_object_is_not_null( ordered_sanctions )
         grouped_sanctions = ordered_sanctions.uniq.
         group_by( &:sanctions_count ).to_a
-        assert_object_is_not_null( grouped_sanctions ) 
+        assert_object_is_not_null( grouped_sanctions )
         # Finds the enterprise position based on its sanctions.
         grouped_sanctions.each_with_index do | sanction, enterprise_index |
             enterprise_identifier = 1
