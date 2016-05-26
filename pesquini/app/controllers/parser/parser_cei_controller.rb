@@ -12,12 +12,6 @@ class Parser::ParserCeiController < Parser::ParserController
     :build_state, :build_sanction_type, :build_enterprise, :build_sanction,
     :check_and_save]
 
-    # Description: Renders the 'Index' view of the ParserCeiController class.
-    # Parameters: none.
-    # Return: none.
-    def index
-    end
-
     # Description: Transforms the "nil" ASCII statement in a string.
     # Parameters: text.
     # Return: String.
