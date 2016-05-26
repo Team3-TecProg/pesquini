@@ -1,5 +1,5 @@
         <div class =" lowercase-letter">
-          <% @sanctions.each_with_index do |p, index| %>
+          <% @SANCTIONS.each_with_index do |p, index| %>
             <h4><b><div class= "index_number"><%= @PAGE_NUMBER*@RESULTS_PER_PAGE + index +1%></div></b></h4>
             <h4> <b>Órgao Sancionador: </b> <%= p.sanction_organ.downcase! %> </h4>
             <h4> <b> Número do processo: </b> <%= p.process_number %> </h4>
@@ -15,9 +15,9 @@
             <hr align="left">
          <% end %>
 
-         <% if @sanctions.empty? %>
+         <% if @SANCTIONS.empty? %>
            <h3> Dados sobre sanções não informados </h3>
          <% end %>
-         <%= will_paginate @sanctions,  renderer: BootstrapPagination::Rails %>
+         <%= will_paginate @SANCTIONS,  renderer: BootstrapPagination::Rails %>
 
        </div>

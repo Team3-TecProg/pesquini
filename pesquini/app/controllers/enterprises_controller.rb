@@ -72,8 +72,8 @@ class EnterprisesController < ApplicationController
 
         #Takes 10 sanctions to show in the same page.
         sanction_page = {:page => params[:page], :per_page => @RESULTS_PER_PAGE}
-        @sanctions = single_sanction.paginate( sanction_page )
-        assert_object_is_not_null ( @sanctions )
+        @SANCTIONS = single_sanction.paginate( sanction_page )
+        assert_object_is_not_null ( @SANCTIONS )
 
         #Takes a ordered list of payments from the enterprise.
         @PAYMENT_POSITION = enterprise_payment_position( @ENTERPRISE )
