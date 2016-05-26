@@ -1,3 +1,9 @@
+######################################################################
+# File name: state_spec.rb.
+# Description: This file contains all units tests for state
+# model.
+######################################################################
+
 require 'spec_helper'
 require 'rails_helper'
 

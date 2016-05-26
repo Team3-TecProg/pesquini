@@ -1,3 +1,9 @@
+######################################################################
+# File name: sanction_spec.rb.
+# Description: This file contains all units tests for sanction
+# model.
+######################################################################
+
 require 'spec_helper'
 require 'rails_helper'
 

@@ -1,5 +1,4 @@
 ######################################################################
-# Class name: Enterprise.
 # File name: enterprise_spec.rb.
 # Description: This file contains all units tests for enterprise
 # model.
@@ -9,7 +8,6 @@ require 'spec_helper'
 require 'rails_helper'
 
 describe Enterprise do
-
     before do
         @ENTERPRISE = Enterprise.new
         @sanction = Sanction.new
@@ -34,13 +32,33 @@ describe Enterprise do
     end
 
     describe "#last_sanction" do
-        it "should return the sanction that has the earliest date" do
+        it "should return the sanction that has the earliest initial date" do
             expected_sanction_date = "01/02/2010".to_date
 
             returned_sanction = @ENTERPRISE.last_sanction
 
             expect(returned_sanction.initial_date)
             .to eq(expected_sanction_date);
+        end
+    end
+
+    describe "#self.get_sorted_enterprises_by_id" do
+        it "should return all enterprises sorted by its id" do
+            boolean_sort = true
+            previous_enterprise_sanction_count = 0
+            returned_sorted_enterprises = Enterprise.get_sorted_enterprises_by_sanctions_count
+
+            returned_sorted_enterprises.each do |enterprise|
+                if enterprise.sanctions_count >= previous_enterprise_sanction_count
+                    #nothing to do
+                else
+                    boolean_sort = false
+                end
+
+                previous_enterprise_sanction_count = enterprise.sanctions_count
+            end
+
+            expect(boolean_sort).to eq(true);
         end
     end
 
@@ -67,6 +85,18 @@ describe Enterprise do
         end
     end
 
+    describe "#last_payment" do
+        it "should return the payment that has the earliest sign date" do
+            expected_sign_date = "01/02/2011".to_date
+
+            returned_payment = @ENTERPRISE.last_payment
+
+            expect(returned_payment.sign_date)
+            .to eq(expected_sign_date);
+        end
+    end
+
+
     describe "#payment_after_sanction" do
         it "should return false if have any sanction or any payment" do
             e = Enterprise.new
@@ -88,11 +118,11 @@ describe Enterprise do
 
     describe "#self.enterprise_position" do
         it "should return 1 if there is only 1 enterprise" do
-            e = Enterprise.new
-            e.sanctions_count = 10000
-            e.save
+            enterprise = Enterprise.new
+            enterprise.sanctions_count = 10000
+            enterprise.save
 
-            expect(Enterprise.enterprise_position(e)).to eq(1);
+            expect(Enterprise.enterprise_position(enterprise)).to eq(1);
         end
     end
 

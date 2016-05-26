@@ -1,3 +1,9 @@
+######################################################################
+# File name: user_spec.rb.
+# Description: This file contains all units tests for user
+# model.
+######################################################################
+
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do

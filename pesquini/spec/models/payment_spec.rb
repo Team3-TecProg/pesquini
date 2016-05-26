@@ -1,3 +1,9 @@
+######################################################################
+# File name: payment_spec.rb.
+# Description: This file contains all units tests for payment
+# model.
+######################################################################
+
 require 'spec_helper'
 require 'rails_helper'
 

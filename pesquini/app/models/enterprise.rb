@@ -112,13 +112,23 @@ class Enterprise < ActiveRecord::Base
         end
     end
 
+    # Description: Returns all the enterprises sorted by its sanctions count.
+    # Parameters: none.
+    # return: sorted_enterprises.
+    def self.get_sorted_enterprises_by_sanctions_count
+        sorted_enterprises = Enterprise.all.sort_by{ | enterprise | enterprise.
+        sanctions_count }
+
+        return sorted_enterprises
+    end
+
     # Description: Returns a variable with the enterprises sorted and grouped.
     # Parameters: none.
     # return: enterprise_group_array
     def self.most_sanctioned_ranking
         #Sorts all enterprise by its sanctions_count attributes.
-        sorted_enterprises = Enterprise.all.sort_by{ | enterprise | enterprise.
-        sanctions_count }
+        sorted_enterprises = get_sorted_enterprises_by_sanctions_count
+
         assert_object_is_not_null( sorted_enterprises )
         #Filters possible repetition of enterprise.
         filtered_enteprises = sorted_enterprises.uniq.
