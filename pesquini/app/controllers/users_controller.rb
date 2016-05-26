@@ -6,12 +6,13 @@
 
 class UsersController < ApplicationController
     include Assertions
-    
+
     # Description: Creates a new user.
     # Parameters: none.
     # Return: user.
     def new
         @user = User.new
         assert_object_is_not_null( @user )
+        return user
     end
  end
