@@ -14,8 +14,8 @@ describe SanctionType do
         @sanction_type.save
     end
 
-    subject {@sanction_type}
-    it { should respond_to(:description) }
+    subject { @sanction_type }
+    it { should respond_to( :description ) }
     it { should be_valid }
 
     describe "uniqueness validation of description" do
@@ -23,7 +23,7 @@ describe SanctionType do
             it "should be_valid" do
                 uniqueness_sanction_type = SanctionType.new
                 uniqueness_sanction_type.description = "Inidoneidade - Lei de Licitações"
-                expect(uniqueness_sanction_type).to be_valid
+                expect( uniqueness_sanction_type ).to be_valid
             end
         end
 
@@ -31,23 +31,23 @@ describe SanctionType do
             it "should not be_valid" do
                 duplicated_sanction_type = SanctionType.new
                 duplicated_sanction_type.description = "Proibição - Lei Eleitoral"
-                expect(duplicated_sanction_type).not_to be_valid
+                expect( duplicated_sanction_type ).not_to be_valid
             end
         end
 
         describe "#update" do
             before do
-                @s = SanctionType.new
-                @s.description = "Teste 1"
-                @s.save
+                @sanction_type_update = SanctionType.new
+                @sanction_type_update.description = "Teste 1"
+                @sanction_type_update.save
             end
 
             it "should return SanctionType" do
-              expect(@s.update_sanction_type).to eq(@s);
+              expect( @sanction_type_update.update_sanction_type ).to eq( @sanction_type_update );
             end
 
             it "should not return other SanctionType" do
-              expect(@s.update_sanction_type).not_to eq(@sanction_type);
+              expect( @sanction_type_update.update_sanction_type ).not_to eq( @sanction_type );
             end
         end
 
@@ -78,7 +78,7 @@ describe SanctionType do
             ]
 
             it "should return an array with all years" do
-                expect(SanctionType.get_all_sanction_types).to eq(expected_array_of_sanction_types)
+                expect( SanctionType.get_all_sanction_types ).to eq( expected_array_of_sanction_types )
             end
         end
     end
