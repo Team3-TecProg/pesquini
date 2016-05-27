@@ -14,11 +14,11 @@ describe State do
         @state.save
     end
 
-    subject {@state}
-        it { should respond_to(:abbreviation) }
-        it { should respond_to(:id) }
-        it { should respond_to(:code) }
-        it { should respond_to(:name) }
+    subject { @state }
+        it { should respond_to( :abbreviation ) }
+        it { should respond_to( :id ) }
+        it { should respond_to( :code ) }
+        it { should respond_to( :name ) }
     it { should be_valid }
 
     describe "uniqueness validation of abbreviation" do
@@ -28,7 +28,7 @@ describe State do
             uniqueness_state = State.new
             uniqueness_state.abbreviation = "SP1"
             uniqueness_state.save
-            expect(uniqueness_state).to be_valid
+            expect( uniqueness_state ).to be_valid
         end
     end
 
@@ -49,11 +49,11 @@ describe State do
         end
 
         it "should return state" do
-            expect(@new_state.update_state).to eq(@new_state);
+            expect( @new_state.update_state ).to eq( @new_state );
         end
 
         it "should not return other state" do
-            expect(@new_state.update_state).not_to eq(@state);
+            expect( @new_state.update_state ).not_to eq( @state );
         end
     end
 
@@ -64,7 +64,7 @@ describe State do
         "Não Informado" ]
 
         it "should return an array with all states" do
-            expect(State.get_all_states).to eq(expected_returned_array_of_states)
+            expect( State.get_all_states ).to eq( expected_returned_array_of_states )
         end
     end
   end
