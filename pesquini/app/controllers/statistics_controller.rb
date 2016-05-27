@@ -6,18 +6,20 @@
 
 class StatisticsController < ApplicationController
     include Assertions
-    
-    #A list that stores all states.
-    @@STATES_LIST = State.get_all_states
-    #A list that stores the sanctions of all years.
-    @@sanjana = Sanction.get_all_years
-    #A list that stores all the types of sanctions.
-    @@SANCTION_LIST_TYPE = SanctionType.get_all_sanction_types
 
     # Description: Method to call the Statistics 'Index' view.
     # Parameters: none.
     # Return: none.
     def  index
+    end
+
+    # Description: This method obtains a list of all the country' states.
+    # Parameters: none.
+    # Return: states_list.
+    def all_states
+        states_list = State.get_all_states
+        assert_object_is_not_null( states_list )
+        return states_list
     end
 
     # Description: This method returns an array with the ranking of sanctioned
@@ -87,27 +89,24 @@ class StatisticsController < ApplicationController
     # Parameters: none.
     # Return: none.
     def sanction_by_state_graph
-        gon.states = @@STATES_LIST
-        gon.dados = total_by_state
-
         @CHART = LazyHighCharts::HighChart.new('graph') do |graph_function|
-        tittle = "Gráfico de Sanções por Estado"
-        graph_function.title(:text => tittle)
+            tittle = "Gráfico de Sanções por Estado"
+            graph_function.title(:text => tittle)
 
-        if(params[:year_].to_i != 0)
-            graph_function.title(:text => params[:year_].to_i )
-        end
+            if(params[:year_].to_i != 0)
+                graph_function.title(:text => params[:year_].to_i )
+            end
 
-        graph_function.xAxis(:categories => @@STATES_LIST)
-        header = "Número de Sansções"
-        series_param = {:name => header, :yAxis => 0, :data => total_by_state}
-        graph_function.series( series_param )
-        yAxis_title = {:text => "Sanções", :margin => 30}
-        graph_function.yAxis[{:title => yAxis_title },]
-        graph_alignment = {:align => 'right', :verticalAlign => 'top', :y => 75,
-                            :x => -50, :layout => 'vertical',}
-        graph_function.legend(graph_alignment)
-        graph_function.chart({:defaultSeriesType=>"column"})
+            graph_function.xAxis(:categories => all_states)
+            header = "Número de Sansções"
+            series_param = {:name => header,:yAxis => 0,:data => total_by_state}
+            graph_function.series( series_param )
+            yAxis_title = {:text => "Sanções", :margin => 30}
+            graph_function.yAxis[{:title => yAxis_title },]
+            graph_alignment = {:align => 'right', :verticalAlign => 'top', 
+            :y => 75, :x => -50, :layout => 'vertical',}
+            graph_function.legend(graph_alignment)
+            graph_function.chart({:defaultSeriesType=>"column"})
         end
     end
 
@@ -115,7 +114,7 @@ class StatisticsController < ApplicationController
     # the highChart gem, through the instance variable @CHART. The chart shows 
     # the country' states and their respective sanction kinds.
     # Parameters: none.
-    # Return: none.
+    # Return: format_sanction_by_type_graph.
     def sanction_by_type_graph
         @CHART = LazyHighCharts::HighChart.new('pie') do |graph_function|
             graph_function.chart( {
@@ -147,10 +146,18 @@ class StatisticsController < ApplicationController
                               } 
                         } )
         end
+        return format_sanction_by_type_graph
+    end
 
+    # Description: prepares the sanction by type graph to HTML and JSon format.
+    # Parameters: none
+    # Return: none.
+    def format_sanction_by_type_graph
         if (!@STATES)
-            @STATES = @@STATES_LIST.clone
+            @STATES = all_states.clone
             @STATES.unshift( "Todos" )
+        else 
+            # Nothing to do.
         end
 
         respond_to do |format|
@@ -165,26 +172,46 @@ class StatisticsController < ApplicationController
     # Return: total_sanction_state.
     def total_by_state
         total_sanction_state = []
-        @years = @@sanjana
+        @years = Sanction.get_all_years
 
-        @@STATES_LIST.each do |sanction|
-            state = State.find_by_abbreviation("#{sanction}")
-            sanctions_by_state = Sanction.where(state_id: state[:id])
-            selected_year = []
-            if( params[:year_].to_i != 0 )
-                sanctions_by_state.each do |sanction|
-                    if( s.initial_date.year ==  params[:year_].to_i )
-                        selected_year << sanction
-                    end
-                end
-                total_sanction_state << ( selected_year.count )
-            else
-                total_sanction_state << ( sanctions_by_state.count )
-            end
+        all_states.each do |sanction|
+            group_sanction_by_state( sanction, total_sanction_state )
         end
         assert_object_is_not_null( total_sanction_state )
-
         return total_sanction_state
+    end
+
+    # Description: Group sanctions by their states, in order to group them by 
+    # year.
+    # Parameters: sanction, total_sanction_state
+    # Return: total_sanction_state
+    def group_sanction_by_state ( sanction, total_sanction_state )
+        state = State.find_by_abbreviation( "#{sanction}" )
+        sanctions_by_state = Sanction.where( state_id: state[:id] )
+        selected_year = []
+        if( params[:year_].to_i != 0 )
+            sanctions_by_state.each do |sanction|
+                group_sanction_by_year( sanction, selected_year )
+            end
+            total_sanction_state << ( selected_year.count )
+            return total_sanction_state
+        else
+            total_sanction_state << ( sanctions_by_state.count )
+            return total_sanction_state
+        end
+    end
+
+    # Description: Verifies if the sanction belongs to a given year, grouping it
+    # in an array.
+    # Parameters: sanction, selected_year.
+    # Return: selected_year.
+    def group_sanction_by_year ( sanction, selected_year )
+        if( sanction.initial_date.year ==  params[:year_].to_i )
+            selected_year << sanction
+            return selected_year
+        else 
+            # Nothing to do.
+        end
     end
 
     # Retrieves an array with the sanctions filtered by its type.
@@ -199,8 +226,11 @@ class StatisticsController < ApplicationController
         count_total_types_of_sanctions = 0
 
         state = State.find_by_abbreviation( params[:state_] )
+        assert_object_is_not_null( state )
+        all_sanctions = SanctionType.get_all_sanction_types
+        assert_object_is_not_null( all_sanctions )
 
-        @@SANCTION_LIST_TYPE.each do |selected_sanction|
+        ( all_sanctions ).each do |selected_sanction|
             sanction = SanctionType.find_by_description(selected_sanction[0])
             sanctions_by_type = Sanction.where( sanction_type:  sanction )
             if ( params[:state_] && params[:state_] != "Todos" )
@@ -216,19 +246,18 @@ class StatisticsController < ApplicationController
         end
 
         total_sanction_type  << "Não Informado"
-            if ( params[:state_] && params[:state_] != "Todos" )
-                total = Sanction.where( state_id: state[:id] ).count
-            else
-                total = Sanction.count
-            end
+        if ( params[:state_] && params[:state_] != "Todos" )
+            total = Sanction.where( state_id: state[:id] ).count
+        else
+            total = Sanction.count
+        end
 
         total_sanction_type  << ( total - count_total_types_of_sanctions )
         total_sanction_state << total_sanction_type
         total_sanction_state = 
-                        total_sanction_state.sort_by{ |iterator| iterator[0] }
+        total_sanction_state.sort_by{ |iterator| iterator[0] }
         assert_object_is_not_null( total_sanction_state )
 
         return total_sanction_state
     end
-
 end
