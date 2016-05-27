@@ -1,32 +1,35 @@
+######################################################################
+# File name: sessions_controller_spec.rb.
+# Description: This file contains all units tests for the sessions
+# controller.
+######################################################################
 require 'rails_helper'
 
-RSpec.configure do |config|
-    config.expect_with :rspec do |c|
-        c.syntax = [:should, :expect]
-    end
-end
-
 RSpec.describe SessionsController, :type => :controller do
-    user = User.new(login: 'sanjaninha', password: 'sanjana123')
-    user.save
+    
+    before(:all) do
+       @user = User.new(login: 'foobar', password: '12345678', 
+        password_confirmation: '12345678')
+       @user.save
+    end
 
-    subject { post :create, :session => {:login => 'sanjana', :password => 'sanjana123'}}
-    describe   "GET" do
-        describe '#create' do
-            it "should log in user with correct login and password" do
-                post :create, :session => {:login =>"sanjaninha", :password => 'sanjana123'}
-                expect(response).to redirect_to(root_path)
-            end
-            it "shoul show a message of error when the login or password is invalid" do
-                post :create, :session => {:login =>"sanjaninha", :password => 'sanjana'}
-                flash[:error].should eq('Login ou senha invalidos!')
-            end
+    describe 'POST #create' do
+        it "should log in user with correct login and password" do
+            post :create,:session => {:login =>'foobar',:password => '12345678'}
+            expect(session[:user_id]).to eq(@user.id)
+            expect(response).to redirect_to(root_path)
+        end
+
+        it "should show an error message with invalid login or password" do
+            post :create, :session => {:login =>'foobarz', :password => '12345'}
+            expect(flash[:error]).to eq('Login ou senha invalidos!')
+            expect(response).to render_template("new")
         end
     end
 
-    describe "#destroy" do
+    describe "GET #destroy" do
         it "should sign out the user" do
-            post :create, :session => {:login =>"sanjaninha", :password => 'sanjana123'}
+            post :create,:session => {:login =>'foobar',:password => '12345678'}
             get :destroy
             expect(session[:user_id]).to be(nil)
             expect(response).to redirect_to(root_path)
