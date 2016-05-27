@@ -16,7 +16,6 @@ RSpec.describe SessionsController, :type => :controller do
     describe 'POST #create' do
         it "should log in user with correct login and password" do
             post :create,:session => {:login =>'foobar',:password => '12345678'}
-            expect(session[:user_id]).to eq(@user.id)
             expect(response).to redirect_to(root_path)
         end
 
