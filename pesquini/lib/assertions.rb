@@ -1,3 +1,9 @@
+######################################################################
+# Module name: Assertions
+# File name: assertions.rb
+# Description: Contains the assertions methods used by other classes.
+######################################################################
+
 module Assertions
     # Description: Aborts the system if an object should be null, but isn't.
     # Parameters: object.
