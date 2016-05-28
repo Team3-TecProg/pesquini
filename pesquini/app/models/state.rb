@@ -16,10 +16,11 @@ class State < ActiveRecord::Base
     def update_state
         actual_sanction = State.find_by_abbreviation( self.abbreviation )
         assert_object_is_not_null( actual_sanction )
+
         return actual_sanction
     end
 
-    # Description: Prepares all state's abbreviations. 
+    # Description: Prepares all state's abbreviations.
     # Parameters: none.
     # Return: states.
     def self.get_all_states

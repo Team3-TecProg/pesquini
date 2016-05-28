@@ -21,7 +21,7 @@ class Enterprise < ActiveRecord::Base
     -> ( number = nil ) { number ? order( 'payments_sum DESC' ).
         limit( number ) :order( 'payments_sum DESC' ) }
 
-    # Description: Finds and returns the last sanction, by date, of an 
+    # Description: Finds and returns the last sanction, by date, of an
     # Enterprise object.
     # Parameters: none.
     # Return: last_sanction.
@@ -87,10 +87,11 @@ class Enterprise < ActiveRecord::Base
     def update_enterprise
         enterprise = Enterprise.find_by_cnpj( self.cnpj )
         assert_object_is_not_null ( enterprise )
+
         return enterprise
     end
 
-    # Description: Creates groups of enterprises based on their number of 
+    # Description: Creates groups of enterprises based on their number of
     # sanctions.
     # Parameters: none.
     # Return: grouped_sanctions.
@@ -100,6 +101,7 @@ class Enterprise < ActiveRecord::Base
         grouped_sanctions = ordered_sanctions.uniq.
         group_by( &:sanctions_count ).to_a
         assert_object_is_not_null( grouped_sanctions )
+
         return grouped_sanctions
     end
 
@@ -107,12 +109,16 @@ class Enterprise < ActiveRecord::Base
     # Parameters: enterprise.
     # Return: enterprise_index.
     def self.enterprise_position( enterprise )
+        first_position = 0
+        enterprise_identifier = 1
+
         grouped_sanctions = self.group_sanctions
         assert_object_is_not_null( grouped_sanctions )
+
         # Finds the enterprise position based on its sanctions.
         grouped_sanctions.each_with_index do | sanction, enterprise_index |
-            enterprise_identifier = 1
-            if ( sanction[0] == enterprise.sanctions_count )
+            enterprise_identifier = enterprise_identifier
+            if ( sanction[first_position] == enterprise.sanctions_count )
                 enterprise_position = enterprise_index + enterprise_identifier
                 assert_object_is_not_null( enterprise_position )
                 return enterprise_position
@@ -139,9 +145,13 @@ class Enterprise < ActiveRecord::Base
     def self.sort_and_filter_enterprises
         sorted_enterprises = get_sorted_enterprises_by_sanctions_count
         assert_object_is_not_null( sorted_enterprises )
+
+        # Get all the enterprises in descendet order,
+        # grouped by its sanctions_count
         filtered_enteprises = sorted_enterprises.uniq.
         group_by( &:sanctions_count ).to_a.reverse
         assert_object_is_not_null( filtered_enteprises )
+
         return filtered_enteprises
     end
 
@@ -149,13 +159,17 @@ class Enterprise < ActiveRecord::Base
     # Parameters: none.
     # return: enterprise_group_array
     def self.most_sanctioned_ranking
-        filtered_enteprises = self.sort_and_filter_enterprises
-        assert_object_is_not_null( filtered_enteprises )
+        first_position = 0
+        second_position = 1
+
         enterprise_group = []
         enterprise_group_count = []
+
+        filtered_enteprises = self.sort_and_filter_enterprises
+        assert_object_is_not_null( filtered_enteprises )
         filtered_enteprises.each do | enterprise |
-            enterprise_group << enterprise[0]
-            enterprise_group_count << enterprise[1].count
+            enterprise_group << enterprise[first_position]
+            enterprise_group_count << enterprise[second_position].count
         end
 
         enterprise_group_array = []

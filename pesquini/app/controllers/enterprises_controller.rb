@@ -1,14 +1,14 @@
 ######################################################################
 # Class name: EnterprisesController
 # File name: enterprises_controller.rb
-# Description: Controller for the Enterprises model, which holds methods to
-# link it to the Enterprise views.
+# Description: Controller for the Enterprises model, which holds
+# methods to link it to the Enterprise views.
 ######################################################################
 
 class EnterprisesController < ApplicationController
     include Assertions
 
-    # Description: Shows enterprises after they have been searched and 
+    # Description: Shows enterprises after they have been searched and
     # paginated.
     # Parameters: none.
     # Return: @ENTERPRISES.
@@ -43,8 +43,6 @@ class EnterprisesController < ApplicationController
         assert_object_is_not_null( paginated_result )
         return paginated_result
     end
-
-
 
     # Description: Sets the main parameters for exhibition of enterprises, like
     # quantity of enterprises by page and the enterprise's informations that

@@ -12,7 +12,7 @@ class Sanction < ActiveRecord::Base
     belongs_to :sanction_type
     belongs_to :state
     validates_uniqueness_of :process_number
-    scope :by_year, 
+    scope :by_year,
     lambda { |year| where( 'extract(year from initial_date) = ?', year ) }
 
     # Description: returns all the relevant years.
@@ -33,10 +33,11 @@ class Sanction < ActiveRecord::Base
     def update_sanction
         actual_sanction = Sanction.find_by_process_number( self.process_number )
         assert_object_is_not_null( actual_sanction )
+
         return actual_sanction
     end
 
-    # Description: discovers percentage value of a sanction according to total 
+    # Description: discovers percentage value of a sanction according to total
     # of sanctions.
     # Parameters: value.
     # Return: percentage.
@@ -46,6 +47,7 @@ class Sanction < ActiveRecord::Base
         one_hundred = 100.0
         percentage = value * one_hundred / total
         assert_object_is_not_null( percentage )
+
         return percentage
     end
 
