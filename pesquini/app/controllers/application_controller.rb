@@ -2,7 +2,7 @@
 # Class name: ApplicationController
 # File name: application_controller.rb
 # Description: Default parent controller, all others controllers
-# inherit it
+# inherit it.
 ######################################################################
 
 class ApplicationController < ActionController::Base

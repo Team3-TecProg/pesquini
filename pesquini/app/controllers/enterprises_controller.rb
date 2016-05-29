@@ -1,8 +1,8 @@
 ######################################################################
 # Class name: EnterprisesController
 # File name: enterprises_controller.rb
-# Description: Controller for the Enterprises model, which holds methods to
-# link it to the Enterprise views.
+# Description: Controller for the Enterprises model, which holds
+# methods to link it to the Enterprise views.
 ######################################################################
 
 class EnterprisesController < ApplicationController
@@ -16,20 +16,20 @@ class EnterprisesController < ApplicationController
         enterprises_per_page = 10
         # The query symbol is the information provided by the user to perform a
         # search.
-        if !params[:query].nil?
+        if !params[ :query ].nil?
             # cnpj is National Register of Legal Entities.
-            params[:query][:cnpj_eq] = params[:query][:corporate_name_cont]
-            @SEARCH = Enterprise.search( params[:query].try( :merge, m: 'or' ) )
+            params[ :query ][ :cnpj_eq ] = params[ :query ][ :corporate_name_cont ]
+            @SEARCH = Enterprise.search( params[ :query ].try( :merge, m: 'or' ) )
             assert_object_is_not_null ( @SEARCH )
 
-            pages = {:page => params[:page], :per_page => enterprises_per_page}
+            pages = { :page => params[ :page ], :per_page => enterprises_per_page }
             @ENTERPRISES = @SEARCH.result.paginate( pages )
             assert_object_is_not_null ( @ENTERPRISES )
 
         else
-            @SEARCH = Enterprise.search( params[:query] )
+            @SEARCH = Enterprise.search( params[ :query ] )
             assert_object_is_not_null ( @SEARCH )
-            pages = {:page => params[:page], :per_page => enterprises_per_page}
+            pages = { :page => params[ :page ], :per_page => enterprises_per_page }
             @ENTERPRISES = Enterprise.paginate( pages )
             assert_object_is_not_null ( @ENTERPRISES )
         end
@@ -47,8 +47,8 @@ class EnterprisesController < ApplicationController
         page_invalid = 0
         page_valid = 1
 
-        if ( params[:page].to_i > page_invalid )
-            @PAGE_NUMBER = params[:page].to_i - page_valid
+        if ( params[ :page ].to_i > page_invalid )
+            @PAGE_NUMBER = params[ :page ].to_i - page_valid
             assert_object_is_not_null ( @PAGE_NUMBER )
         else
             @PAGE_NUMBER = 0
@@ -57,7 +57,7 @@ class EnterprisesController < ApplicationController
         # Instance variables to be used in the Enterprise Show view.
 
         # Fetches an enterprise based on its ID.
-        @ENTERPRISE = Enterprise.find( params[:id] )
+        @ENTERPRISE = Enterprise.find( params[ :id ] )
         assert_object_is_not_null ( @ENTERPRISE )
 
         #Takes a sanction from the enterprise.
@@ -65,13 +65,13 @@ class EnterprisesController < ApplicationController
         assert_object_is_not_null ( single_sanction )
 
         #Takes payments from the enterprise and shows them in groups of  10.
-        payment_page = {:page => params[:page], :per_page => @RESULTS_PER_PAGE}
-        enterprise = {enterprise_id: @ENTERPRISE.id}
+        payment_page = { :page => params[ :page ], :per_page => @RESULTS_PER_PAGE }
+        enterprise = { enterprise_id: @ENTERPRISE.id }
         @PAYMENTS = Payment.where( enterprise ).paginate( payment_page )
         assert_object_is_not_null ( @PAYMENTS)
 
         #Takes 10 sanctions to show in the same page.
-        sanction_page = {:page => params[:page], :per_page => @RESULTS_PER_PAGE}
+        sanction_page = { :page => params[ :page ], :per_page => @RESULTS_PER_PAGE }
         @SANCTIONS = single_sanction.paginate( sanction_page )
         assert_object_is_not_null ( @SANCTIONS )
 

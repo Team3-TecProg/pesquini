@@ -9,10 +9,10 @@ class UsersController < ApplicationController
 
     # Description: Creates a new user.
     # Parameters: none.
-    # Return: user.
+    # Return: @user.
     def new
         @user = User.new
         assert_object_is_not_null( @user )
-        return user
+        return @user
     end
  end
