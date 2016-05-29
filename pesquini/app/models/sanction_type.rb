@@ -16,6 +16,7 @@ class SanctionType < ActiveRecord::Base
     def update_sanction_type
         actual_sanction = SanctionType.find_by_description( self.description )
         assert_object_is_not_null( actual_sanction )
+
         return actual_sanction
     end
 

@@ -21,13 +21,13 @@ class Enterprise < ActiveRecord::Base
     -> ( number = nil ) { number ? order( 'payments_sum DESC' ).
         limit( number ) :order( 'payments_sum DESC' ) }
 
-    #Description: Finds and returns the last sanction, by date, of an Enterprise
-    # object.
-    #Parameters: none.
-    #Return: last_sanction.
+    # Description: Finds and returns the last sanction, by date, of an
+    # Enterprise object.
+    # Parameters: none.
+    # Return: last_sanction.
     def last_sanction
         last_sanction = self.sanctions.last
-        # Runs through all the sanctions, selecting that which has the most.
+        # Runs through all the sanctions, selecting that which has the most
         # recent date.
         if ( !last_sanction.nil? )
             self.sanctions.each do | sanction |
@@ -44,9 +44,9 @@ class Enterprise < ActiveRecord::Base
         return last_sanction
     end
 
-    #Description: Finds and returns the last Payment object.
-    #Parameters: none.
-    #Return: most_recent_payment.
+    # Description: Finds and returns the last Payment object.
+    # Parameters: none.
+    # Return: most_recent_payment.
     def last_payment
         most_recent_payment = self.payments.last
         if ( !most_recent_payment.nil? )
@@ -75,7 +75,7 @@ class Enterprise < ActiveRecord::Base
         assert_object_is_not_null( payment )
 
         if ( sanction && payment )
-            payment.sign_date < sanction.initial_date
+            return payment.sign_date < sanction.initial_date
         else
             return false
         end
@@ -87,22 +87,38 @@ class Enterprise < ActiveRecord::Base
     def update_enterprise
         enterprise = Enterprise.find_by_cnpj( self.cnpj )
         assert_object_is_not_null ( enterprise )
+
         return enterprise
+    end
+
+    # Description: Creates groups of enterprises based on their number of
+    # sanctions.
+    # Parameters: none.
+    # Return: grouped_sanctions.
+    def self.group_sanctions
+        ordered_sanctions = self.featured_sanctions
+        assert_object_is_not_null( ordered_sanctions )
+        grouped_sanctions = ordered_sanctions.uniq.
+        group_by( &:sanctions_count ).to_a
+        assert_object_is_not_null( grouped_sanctions )
+
+        return grouped_sanctions
     end
 
     # Description: Returns the index of an specific enterprise.
     # Parameters: enterprise.
     # Return: enterprise_index.
     def self.enterprise_position( enterprise )
-        ordered_sanctions = self.featured_sanctions
-        assert_object_is_not_null( ordered_sanctions )
-        grouped_sanctions = ordered_sanctions.uniq.
-        group_by( &:sanctions_count ).to_a
+        first_position = 0
+        enterprise_identifier = 1
+
+        grouped_sanctions = self.group_sanctions
         assert_object_is_not_null( grouped_sanctions )
+
         # Finds the enterprise position based on its sanctions.
         grouped_sanctions.each_with_index do | sanction, enterprise_index |
-            enterprise_identifier = 1
-            if ( sanction[0] == enterprise.sanctions_count )
+            enterprise_identifier = enterprise_identifier
+            if ( sanction[first_position] == enterprise.sanctions_count )
                 enterprise_position = enterprise_index + enterprise_identifier
                 assert_object_is_not_null( enterprise_position )
                 return enterprise_position
@@ -122,23 +138,38 @@ class Enterprise < ActiveRecord::Base
         return sorted_enterprises
     end
 
+    # Description: Sorts all enterprise by its sanctions_count attribute,
+    # eliminating possible repetitions in the process.
+    # Parameters: none.
+    # Return: filtered_enterprises.
+    def self.sort_and_filter_enterprises
+        sorted_enterprises = get_sorted_enterprises_by_sanctions_count
+        assert_object_is_not_null( sorted_enterprises )
+
+        # Get all the enterprises in descendet order,
+        # grouped by its sanctions_count
+        filtered_enteprises = sorted_enterprises.uniq.
+        group_by( &:sanctions_count ).to_a.reverse
+        assert_object_is_not_null( filtered_enteprises )
+
+        return filtered_enteprises
+    end
+
     # Description: Returns a variable with the enterprises sorted and grouped.
     # Parameters: none.
     # return: enterprise_group_array
     def self.most_sanctioned_ranking
-        #Sorts all enterprise by its sanctions_count attributes.
-        sorted_enterprises = get_sorted_enterprises_by_sanctions_count
+        first_position = 0
+        second_position = 1
 
-        assert_object_is_not_null( sorted_enterprises )
-        #Filters possible repetition of enterprise.
-        filtered_enteprises = sorted_enterprises.uniq.
-        group_by( &:sanctions_count ).to_a.reverse
-        assert_object_is_not_null( filtered_enteprises )
         enterprise_group = []
         enterprise_group_count = []
+
+        filtered_enteprises = self.sort_and_filter_enterprises
+        assert_object_is_not_null( filtered_enteprises )
         filtered_enteprises.each do | enterprise |
-            enterprise_group << enterprise[0]
-            enterprise_group_count << enterprise[1].count
+            enterprise_group << enterprise[first_position]
+            enterprise_group_count << enterprise[second_position].count
         end
 
         enterprise_group_array = []

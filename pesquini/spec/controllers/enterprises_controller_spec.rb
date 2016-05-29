@@ -3,11 +3,12 @@
 # Description: This file contains all units tests for the enterprise
 # controller.
 ######################################################################
+
 require 'rails_helper'
 
 RSpec.describe EnterprisesController, :type => :controller do
     before do
-        @ENTERPRISE = Enterprise.create( cnpj: "12345", 
+        @ENTERPRISE = Enterprise.create( cnpj: "12345",
         corporate_name: "FooBarBaz" )
         @PAYMENT = Payment.create
         @ENTERPRISE.payments << @PAYMENT
@@ -36,7 +37,6 @@ RSpec.describe EnterprisesController, :type => :controller do
             get :index, :query => {:corporate_name_cont => "12345"}
             expect( assigns( :ENTERPRISES ).all ).to include( @ENTERPRISE)
         end
-
     end
 
     describe 'GET #show' do
@@ -45,7 +45,7 @@ RSpec.describe EnterprisesController, :type => :controller do
             expect( response ).to have_http_status( :success )
         end
 
-        it "should show the correct enterprise" do 
+        it "should show the correct enterprise" do
             get :show, :id => @ENTERPRISE.id
             expect( assigns( :ENTERPRISE ) ).to eq( @ENTERPRISE )
         end

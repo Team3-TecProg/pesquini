@@ -8,32 +8,40 @@
 class EnterprisesController < ApplicationController
     include Assertions
 
-    # Description: Searches for an enterprise according to the query sent by the
-    # user. Then, shows a set of paginated enterprises.
+    # Description: Shows enterprises after they have been searched and
+    # paginated.
     # Parameters: none.
     # Return: @ENTERPRISES.
     def index
-        enterprises_per_page = 10
         # The query symbol is the information provided by the user to perform a
         # search.
-        if !params[ :query ].nil?
-            # cnpj is National Register of Legal Entities.
-            params[ :query ][ :cnpj_eq ] = params[ :query ][ :corporate_name_cont ]
-            @SEARCH = Enterprise.search( params[ :query ].try( :merge, m: 'or' ) )
-            assert_object_is_not_null ( @SEARCH )
-
-            pages = { :page => params[ :page ], :per_page => enterprises_per_page }
-            @ENTERPRISES = @SEARCH.result.paginate( pages )
-            assert_object_is_not_null ( @ENTERPRISES )
-
-        else
-            @SEARCH = Enterprise.search( params[ :query ] )
-            assert_object_is_not_null ( @SEARCH )
-            pages = { :page => params[ :page ], :per_page => enterprises_per_page }
-            @ENTERPRISES = Enterprise.paginate( pages )
-            assert_object_is_not_null ( @ENTERPRISES )
-        end
+        @SEARCH = search_for_query
+        @ENTERPRISES = paginate_results( @SEARCH )
+        assert_object_is_not_null ( @ENTERPRISES )
         return @ENTERPRISES
+    end
+
+    # Description: Performs a search with the query provided by the user. If no
+    # query is provided, returns all enterprises.
+    # Parameters: none.
+    # Return: search.
+    def search_for_query
+        # CNPJ is National Register of Legal Entities.
+        params[:query][:cnpj_eq] = params[:query][:corporate_name_cont]
+        search = Enterprise.search( params[:query].try( :merge, m: 'or' ) )
+        assert_object_is_not_null ( search )
+        return search
+    end
+
+    # Description: Shows the search results in groups of 10 per page.
+    # Parameters: search.
+    # Return: paginated_result.
+    def paginate_results( search )
+        enterprises_per_page = 10
+        pages = {:page => params[:page], :per_page => enterprises_per_page}
+        paginated_result = search.result.paginate( pages )
+        assert_object_is_not_null( paginated_result )
+        return paginated_result
     end
 
     # Description: Sets the main parameters for exhibition of enterprises, like
