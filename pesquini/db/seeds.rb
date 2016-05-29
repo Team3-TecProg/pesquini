@@ -6,6 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+#State
+27.times do |i|
+  State.create(code: "#{i}", name: "Estado ##{i}", abbreviation: "Ab. ##{i}")
+end
+
+#Enterprise
 5.times do |i|
   Enterprise.create(cnpj: "CNPJ ##{i}", corporate_name: "corporate_name ##{i}")
 end
+
+
