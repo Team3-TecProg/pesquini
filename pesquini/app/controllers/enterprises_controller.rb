@@ -15,6 +15,13 @@ class EnterprisesController < ApplicationController
     def index
         # The query symbol is the information provided by the user to perform a
         # search.
+        # If exists content in params make the assignment, else nothing to do.
+        if ( params[:query] )
+            params[:query][:cnpj_eq] = params[:query][:corporate_name_cont]    
+        else
+            # Nothing to do.
+        end
+        
         @SEARCH = search_for_query
         @ENTERPRISES = paginate_results( @SEARCH )
         assert_object_is_not_null ( @ENTERPRISES )
@@ -26,8 +33,7 @@ class EnterprisesController < ApplicationController
     # Parameters: none.
     # Return: search.
     def search_for_query
-        # CNPJ is National Register of Legal Entities.
-        params[:query][:cnpj_eq] = params[:query][:corporate_name_cont]
+        # CNPJ is National Register of Legal Entities.        
         search = Enterprise.search( params[:query].try( :merge, m: 'or' ) )
         assert_object_is_not_null ( search )
         return search
