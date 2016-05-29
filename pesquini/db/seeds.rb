@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+5.times do |i|
+  Enterprise.create(cnpj: "CNPJ ##{i}", corporate_name: "corporate_name ##{i}")
+end
