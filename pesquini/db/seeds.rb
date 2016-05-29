@@ -48,3 +48,7 @@ end
 				   process_number: "Número do processo ##{i}",
 				   initial_value: "##{i}")
 end
+
+# User
+# Create one generic user.
+User.create(login: "usuario", password_digest: "senha", remember_token: "")
