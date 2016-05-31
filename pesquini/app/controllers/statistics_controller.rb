@@ -230,6 +230,7 @@ class StatisticsController < ApplicationController
         all_sanctions = SanctionType.get_all_sanction_types
         assert_object_is_not_null ( all_sanctions )
 
+        # Insert sanctions made to states in a list.
         total_sanction_state = list_sanction_from_states all_sanctions,
             total_sanction_type,total_sanction_state,
             count_total_types_of_sanctions, state
@@ -252,8 +253,12 @@ class StatisticsController < ApplicationController
         return total_sanction_state
     end
 
-    def list_sanction_from_states ( all_sanctions, total_sanction_type, total_sanction_state,
-            count_total_types_of_sanctions, state )
+    # Description: Insert Sanctions made from states in a list.
+    # Parameters: all_sanctions, total_sanction_type,
+    # total_sanction_state, count_total_types_of_sanctions, state
+    # Return: total_sanction_state.
+    def list_sanction_from_states ( all_sanctions, total_sanction_type,
+     total_sanction_state, count_total_types_of_sanctions, state )
         all_sanctions.each do |selected_sanction|
             sanction = SanctionType.find_by_description(selected_sanction[0])
             sanctions_by_type = Sanction.where( sanction_type:  sanction )
