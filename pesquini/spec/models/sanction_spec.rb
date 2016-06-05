@@ -20,9 +20,9 @@
 
         describe 'percentual_sanction' do
             it " to do work" do
-                percentual = @sanction.percentual_sanction( 10000 )
+                percentual = @sanction.percentual_sanction( 1 )
                 percentual_sanction_current = percentual.to_i
-                expect( percentual_sanction_current ).to eq( 188 )
+                expect( percentual_sanction_current ).to eq( 100 )
             end
         end
 
