@@ -14,15 +14,6 @@ class StatisticsController < ApplicationController
     def  index
     end
 
-    # Description: This method obtains a list of all the country' states.
-    # Parameters: none.
-    # Return: states_list.
-    def take_all_states
-        states_list = State.get_all_states
-        assert_object_is_not_null( states_list )
-        return states_list
-    end
-
     # Description: This method returns an array with the ranking of sanctioned
     # enterprises.
     # Parameters: none.
@@ -38,6 +29,17 @@ class StatisticsController < ApplicationController
         # Sends the second element to a global variable.
         @ENTERPRISE_GROUP_COUNT = enterprise_group_array[1]
         assert_object_is_not_null( @ENTERPRISE_GROUP )
+    end
+
+    private
+
+    # Description: This method obtains a list of all the country' states.
+    # Parameters: none.
+    # Return: states_list.
+    def take_all_states
+        states_list = State.get_all_states
+        assert_object_is_not_null( states_list )
+        return states_list
     end
 
     # Description: This method returns the 10 most sanctioned enterprises.
