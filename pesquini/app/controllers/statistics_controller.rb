@@ -94,8 +94,8 @@ class StatisticsController < ApplicationController
             tittle = "Gráfico de Sanções por Estado"
             graph_function.title( :text => tittle )
 
-            if( params[ :year_ ].to_i != 0 )
-                graph_function.title( :text => params[ :year_ ].to_i )
+            if( params[ :year_sanction ].to_i != 0 )
+                graph_function.title( :text => params[ :year_sanction ].to_i )
             end
 
             graph_function.xAxis( :categories => take_all_states )
@@ -189,9 +189,9 @@ class StatisticsController < ApplicationController
     # Return: total_sanction_state
     def group_sanction_by_state ( sanction, total_sanction_state )
         state = State.find_by_abbreviation( "#{sanction}" )
-        sanctions_by_state = Sanction.where( state_id: state[:id] )
+        sanctions_by_state = Sanction.where( state_id: state[ :id ] )
         selected_year = []
-        if( params[ :year_ ].to_i != 0 )
+        if( params[ :year_sanction ].to_i != 0 )
             sanctions_by_state.each do |sanction|
                 group_sanction_by_year( sanction, selected_year )
             end
@@ -208,7 +208,7 @@ class StatisticsController < ApplicationController
     # Parameters: sanction, selected_year.
     # Return: selected_year.
     def group_sanction_by_year ( sanction, selected_year )
-        if( sanction.initial_date.year ==  params[ :year_ ].to_i )
+        if( sanction.initial_date.year ==  params[ :year_sanction ].to_i )
             selected_year << sanction
             return selected_year
         else
@@ -224,7 +224,7 @@ class StatisticsController < ApplicationController
         new_sanction_type = SanctionType.new
         count_types_of_sanctions = 0
 
-        all_states = State.find_by_abbreviation( params[:state_] )
+        all_states = State.find_by_abbreviation( params[ :state_sanction ] )
         assert_object_is_not_null ( all_states )
         all_sanctions = new_sanction_type.get_all_sanction_types
         assert_object_is_not_null ( all_sanctions )
@@ -235,7 +235,7 @@ class StatisticsController < ApplicationController
 
         total_sanction_type = []
         total_sanction_type  << "Não Informado"
-        if ( params[ :state_ ] && params[ :state_ ] != "Todos" )
+        if ( params[ :state_sanction] && params[ :state_sanction ] != "Todos" )
             total = Sanction.where( state_id: all_states[ :id ] ).count
         else
             total = Sanction.count
@@ -266,7 +266,7 @@ class StatisticsController < ApplicationController
             sanction = SanctionType.find_by_description(selected_sanction[0])
             sanctions_by_type = Sanction.where( sanction_type:  sanction )
 
-            if ( params[ :state_ ] && params[ :state_ ] != "Todos" )
+            if ( params[ :state_sanction] && params[ :state_sanction ] != "Todos" )
                 sanction_param = { state_id: all_states[ :id ] }
                 sanctions_by_type = sanctions_by_type.where( sanction_param )
             else
