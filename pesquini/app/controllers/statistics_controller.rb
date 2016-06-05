@@ -31,7 +31,7 @@ class StatisticsController < ApplicationController
         assert_object_is_not_null( @ENTERPRISE_GROUP )
     end
 
-    private
+    
 
     # Description: This method obtains a list of all the country' states.
     # Parameters: none.
@@ -102,7 +102,7 @@ class StatisticsController < ApplicationController
 
             graph_function.xAxis( :categories => take_all_states )
             header = "Número de Sansções"
-            series_param = { :name => header,:yAxis => 0,:data => total_by_state }
+            series_param = { :name => header,:yAxis =>0,:data =>total_by_state }
             graph_function.series( series_param )
             yAxis_title = { :text => "Sanções", :margin => 30 }
             graph_function.yAxis[ { :title => yAxis_title }, ]
@@ -220,32 +220,34 @@ class StatisticsController < ApplicationController
 
     # Description: Retrieves an array with the sanctions filtered by its type.
     # Parameters: none.
-    # Return: total_sanction_state.
+    # Return: total_sanction_state
     def total_by_type
-        # Iterator beginning in 0. Contains the quantity of sanctions by type.
-        new_sanction_type = SanctionType.new
-        count_types_of_sanctions = 0
-
-        all_states = State.find_by_abbreviation( params[ :state_sanction ] )
-        assert_object_is_not_null ( all_states )
-        all_sanctions = new_sanction_type.get_all_sanction_types
-        assert_object_is_not_null ( all_sanctions )
-
-        # Insert sanctions made to states in a list.
-        total_sanction_state = list_sanction_from_states all_sanctions,
-            count_types_of_sanctions, all_states
-
+        # Array of total sanctions made in a state.
+        total_sanction_state = []
+        # Array of total types of sanctions.
         total_sanction_type = []
+        # Iterator beginning in 0. Contains the quantity of sanctions by type.
+        count_total_types_of_sanctions = 0
+
+        state = State.find_by_abbreviation( params[:state_] )
+        assert_object_is_not_null( state )
+        all_sanctions = SanctionType.new.get_all_sanction_types
+        assert_object_is_not_null( all_sanctions )
+
+        total_sanction_type = (list_sanction_from_state all_sanctions, 
+                              total_sanction_type, total_sanction_state, state )
+        
+
         total_sanction_type  << "Não Informado"
-        if ( params[ :state_sanction] && params[ :state_sanction ] != "Todos" )
-            total = Sanction.where( state_id: all_states[ :id ] ).count
+        if ( params[:state_] && params[:state_] != "Todos" )
+            total = Sanction.where( state_id: state[:id] ).count
         else
             total = Sanction.count
         end
 
-        total_sanction_type  << ( total - count_types_of_sanctions )
+        total_sanction_type  << ( total - count_total_types_of_sanctions )
         total_sanction_state << total_sanction_type
-        total_sanction_state =
+        total_sanction_state = 
         total_sanction_state.sort_by{ |iterator| iterator[0] }
         assert_object_is_not_null( total_sanction_state )
 
@@ -256,34 +258,22 @@ class StatisticsController < ApplicationController
     # Parameters: all_sanctions, total_sanction_type,
     # count_types_of_sanctions, all_states
     # Return: total_sanction_state.
-    def list_sanction_from_states ( all_sanctions, count_types_of_sanctions,
-        all_states )
-        # Array of total types of sanctions.
-        total_sanction_type = []
-
-        # Array of total sanctions made in a all_states.
-        total_sanction_state = []
-
-        all_sanctions.each do |selected_sanction|
+    def list_sanction_from_state ( all_sanctions, total_sanction_type, 
+                                    total_sanction_state, state )
+        ( all_sanctions ).each do |selected_sanction|
             sanction = SanctionType.find_by_description(selected_sanction[0])
             sanctions_by_type = Sanction.where( sanction_type:  sanction )
-
-            if ( params[ :state_sanction] && params[ :state_sanction ] != "Todos" )
-                sanction_param = { state_id: all_states[ :id ] }
+            if ( params[:state_] && params[:state_] != "Todos" )
+                sanction_param = {state_id: state[:id] }
                 sanctions_by_type = sanctions_by_type.where( sanction_param )
-            else
-                # Nothing to do.
             end
-
-            count_types_of_sanctions = count_types_of_sanctions +
-                                       sanctions_by_type.count
-
+            count_total_types_of_sanctions = count_total_types_of_sanctions
+                                             + ( sanctions_by_type.count )
             total_sanction_type  << selected_sanction[1]
             total_sanction_type  << ( sanctions_by_type.count )
             total_sanction_state << total_sanction_type
             total_sanction_type  = []
         end
-
-        return total_sanction_state
+        return total_sanction_type
     end
 end
