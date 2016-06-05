@@ -17,8 +17,8 @@ class EnterprisesController < ApplicationController
         # search.
         # If exists content in params make the assignment, else nothing to do.
         if ( params[ :query ] )
-            params[ :query ][ :cnpj_eq ] = params[ :query ]
-                                                 [ :corporate_name_cont ]
+            params[ :query ][ :cnpj_eq ] = params[ :query ] \
+                                           [ :corporate_name_cont ]
         else
             # Nothing to do.
         end
