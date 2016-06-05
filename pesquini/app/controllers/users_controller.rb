@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     def new
         @user = User.new
         assert_object_is_not_null( @user )
+
         return @user
     end
  end

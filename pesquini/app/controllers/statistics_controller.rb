@@ -146,6 +146,7 @@ class StatisticsController < ApplicationController
                               }
                         } )
         end
+
         return format_sanction_by_type_graph
     end
 
