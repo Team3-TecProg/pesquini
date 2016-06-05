@@ -6,7 +6,7 @@
 
 module SessionsHelper
 
-    # Description: Log in the user in the application, creating an unique token 
+    # Description: Log in the user in the application, creating an unique token
     # and saving it in a cookie.
     # Parameters: user.
     # Return: none.
@@ -17,9 +17,9 @@ module SessionsHelper
         self.current_user = user
     end
 
-    # Description: Method called by the sign_in and sign_out methods. Assigns an 
-    # user object to an instance variable, if the user is connecting, or assigns 
-    # nil if the user is disconnecting. 
+    # Description: Method called by the sign_in and sign_out methods. Assigns an
+    # user object to an instance variable, if the user is connecting, or assigns
+    # nil if the user is disconnecting.
     # Parameters: user.
     # Return: @current_user.
     def current_user= ( user )
@@ -35,7 +35,7 @@ module SessionsHelper
         return @current_user
   	end
 
-    # Description: Verifies if there is an user currently logged in the 
+    # Description: Verifies if there is an user currently logged in the
     # application.
     # Parameters: none.
     # Return: boolean.
@@ -43,7 +43,7 @@ module SessionsHelper
         return !current_user.nil?
   	end
 
-    # Description: Prevents unauthorized access to some contents of the 
+    # Description: Prevents unauthorized access to some contents of the
     # application to not logged guests.
     # Parameters: none.
     # Return: none.

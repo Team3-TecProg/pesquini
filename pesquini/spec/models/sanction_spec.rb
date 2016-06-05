@@ -20,7 +20,7 @@
 
         describe 'percentual_sanction' do
             it " to do work" do
-                percentual = Sanction.percentual_sanction( 10000 )
+                percentual = @sanction.percentual_sanction( 10000 )
                 percentual_sanction_current = percentual.to_i
                 expect( percentual_sanction_current ).to eq( 188 )
             end
@@ -67,7 +67,8 @@
                 2013,2014, 2015]
 
                 it "should return an array with all years" do
-                    expect( Sanction.get_all_years ).to eq( expected_returned_array_of_years )
+                    expect( @sanction.get_all_years ).
+                    to eq( expected_returned_array_of_years )
                 end
             end
         end

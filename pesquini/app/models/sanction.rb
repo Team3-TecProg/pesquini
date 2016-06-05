@@ -15,10 +15,11 @@ class Sanction < ActiveRecord::Base
     scope :by_year,
     lambda { |year| where( 'extract(year from initial_date) = ?', year ) }
 
+    public
     # Description: returns all the relevant years.
     # Parameters: none.
     # Return: years.
-    def self.get_all_years
+    def get_all_years
         # Array to be used for statistics in StatisticsController.
         years = ["Todos",1988, 1991, 1992, 1995, 1996, 1997, 1998,
         1999, 2000, 2001, 2002,2003, 2004, 2005, 2006, 2007, 2008,
@@ -41,7 +42,7 @@ class Sanction < ActiveRecord::Base
     # of sanctions.
     # Parameters: value.
     # Return: percentage.
-    def self.percentual_sanction( value )
+    def percentual_sanction( value )
         total = Sanction.all.count
         assert_object_is_not_null( total )
         one_hundred = 100.0

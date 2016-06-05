@@ -171,8 +171,9 @@ class StatisticsController < ApplicationController
     # Parameters: none.
     # Return: total_sanction_state.
     def total_by_state
+        sanction = Sanction.new
         total_sanction_state = []
-        @years = Sanction.get_all_years
+        @years = sanction.get_all_years
 
         take_all_states.each do |sanction|
             group_sanction_by_state sanction, total_sanction_state
