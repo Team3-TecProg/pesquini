@@ -37,8 +37,8 @@ describe Enterprise do
 
             returned_sanction = @ENTERPRISE.last_sanction
 
-            expect(returned_sanction.initial_date)
-            .to eq(expected_sanction_date);
+            expect( returned_sanction.initial_date )
+            .to eq( expected_sanction_date );
         end
     end
 
@@ -58,13 +58,13 @@ describe Enterprise do
                 previous_enterprise_sanction_count = enterprise.sanctions_count
             end
 
-            expect(boolean_sort).to eq(true);
+            expect( boolean_sort ).to eq( true );
         end
     end
 
     subject { @ENTERPRISE }
-        it { should respond_to(:cnpj) }
-        it { should respond_to(:corporate_name) }
+        it { should respond_to( :cnpj ) }
+        it { should respond_to( :corporate_name ) }
     it { should be_valid }
 
     describe "uniqueness validation of cnpj" do
@@ -73,7 +73,7 @@ describe Enterprise do
         it "should be_valid" do
             uniqueness_enterprise = Enterprise.new
             uniqueness_enterprise.cnpj = "1234"
-            expect(uniqueness_enterprise).to be_valid
+            expect( uniqueness_enterprise ).to be_valid
         end
     end
 
@@ -81,7 +81,7 @@ describe Enterprise do
         it "should not be_valid" do
             duplicated_enterprise = Enterprise.new
             duplicated_enterprise.cnpj = "555"
-            expect(duplicated_enterprise).not_to be_valid
+            expect( duplicated_enterprise ).not_to be_valid
         end
     end
 
@@ -91,8 +91,8 @@ describe Enterprise do
 
             returned_payment = @ENTERPRISE.last_payment
 
-            expect(returned_payment.sign_date)
-            .to eq(expected_sign_date);
+            expect( returned_payment.sign_date )
+            .to eq( expected_sign_date );
         end
     end
 
@@ -100,19 +100,19 @@ describe Enterprise do
     describe "#payment_after_sanction" do
         it "should return false if have any sanction or any payment" do
             enterprise = Enterprise.new
-            expect(enterprise.sanctions.count).to be(0)
-            expect(enterprise.payments.count).to be(0)
-            expect(enterprise.payment_after_sanction?).to be false
+            expect( enterprise.sanctions.count ).to be( 0 )
+            expect( enterprise.payments.count ).to be( 0 )
+            expect( enterprise.payment_after_sanction? ).to be false
         end
 
         it "should return false if don't have payment after sanction" do
-            expect(@ENTERPRISE.payment_after_sanction?).to be false
+            expect( @ENTERPRISE.payment_after_sanction? ).to be false
         end
 
         it "should return true if have  payment after sanction" do
             @sanction.initial_date = "01/02/2015".to_date
             @sanction.save
-            expect(@ENTERPRISE.payment_after_sanction?).to be false
+            expect( @ENTERPRISE.payment_after_sanction? ).to be false
         end
     end
 
@@ -122,7 +122,7 @@ describe Enterprise do
             enterprise.sanctions_count = 10000
             enterprise.save
 
-            expect(Enterprise.enterprise_position(enterprise)).to eq(1);
+            expect( Enterprise.enterprise_position( enterprise ) ).to eq( 1 );
         end
     end
 
@@ -134,11 +134,11 @@ describe Enterprise do
         end
 
         it "should return enterprise" do
-            expect(@enterprise.update_enterprise).to eq(@enterprise);
+            expect( @enterprise.update_enterprise ).to eq( @enterprise );
         end
 
         it "should not return other enterprise" do
-            expect(@enterprise.update_enterprise).not_to eq(@ENTERPRISE);
+            expect( @enterprise.update_enterprise ).not_to eq( @ENTERPRISE );
         end
     end
   end

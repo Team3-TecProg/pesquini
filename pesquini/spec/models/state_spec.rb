@@ -36,7 +36,7 @@ describe State do
         it "should not be_valid" do
             duplicated_state = State.new
             duplicated_state.abbreviation = "DF1"
-            expect(duplicated_state).not_to be_valid
+            expect( duplicated_state ).not_to be_valid
         end
     end
 

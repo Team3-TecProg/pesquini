@@ -32,7 +32,7 @@
                 it "should be_valid" do
                     uniqueness_sanction = Sanction.new
                     uniqueness_sanction.process_number = "123"
-                    expect(uniqueness_sanction).to be_valid
+                    expect( uniqueness_sanction ).to be_valid
                 end
             end
 
@@ -40,7 +40,7 @@
                 it "should not be_valid" do
                     duplicated_sanction = Sanction.new
                     duplicated_sanction.process_number = "9090"
-                    expect(duplicated_sanction).not_to be_valid
+                    expect( duplicated_sanction ).not_to be_valid
                 end
             end
 
