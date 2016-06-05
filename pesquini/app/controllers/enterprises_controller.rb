@@ -16,8 +16,9 @@ class EnterprisesController < ApplicationController
         # The query symbol is the information provided by the user to perform a
         # search.
         # If exists content in params make the assignment, else nothing to do.
-        if ( params[:query] )
-            params[:query][:cnpj_eq] = params[:query][:corporate_name_cont]
+        if ( params[ :query ] )
+            params[ :query ][ :cnpj_eq ] = params[ :query ]
+                                                 [ :corporate_name_cont ]
         else
             # Nothing to do.
         end
@@ -83,7 +84,7 @@ class EnterprisesController < ApplicationController
     # Return: paginated_result.
     def paginate_results( search )
         enterprises_per_page = 10
-        pages = {:page => params[:page], :per_page => enterprises_per_page}
+        pages = { :page => params[ :page ], :per_page => enterprises_per_page }
         paginated_result = search.result.paginate( pages )
         assert_object_is_not_null( paginated_result )
 
@@ -96,7 +97,7 @@ class EnterprisesController < ApplicationController
     # Return: search.
     def search_for_query
         # CNPJ is National Register of Legal Entities.
-        search = Enterprise.search( params[:query].try( :merge, m: 'or' ) )
+        search = Enterprise.search( params[ :query ].try( :merge, m: 'or' ) )
         assert_object_is_not_null ( search )
 
         return search
