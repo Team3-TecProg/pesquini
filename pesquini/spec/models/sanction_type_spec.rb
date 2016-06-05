@@ -43,11 +43,13 @@ describe SanctionType do
             end
 
             it "should return SanctionType" do
-              expect( @sanction_type_update.update_sanction_type ).to eq( @sanction_type_update );
+              expect( @sanction_type_update.update_sanction_type ).
+              to eq( @sanction_type_update );
             end
 
             it "should not return other SanctionType" do
-              expect( @sanction_type_update.update_sanction_type ).not_to eq( @sanction_type );
+              expect( @sanction_type_update.update_sanction_type ).
+              not_to eq( @sanction_type );
             end
         end
 
@@ -78,7 +80,8 @@ describe SanctionType do
             ]
 
             it "should return an array with all years" do
-                expect( SanctionType.get_all_sanction_types ).to eq( expected_array_of_sanction_types )
+                expect( @sanction_type.get_all_sanction_types ).
+                to eq( expected_array_of_sanction_types )
             end
         end
     end

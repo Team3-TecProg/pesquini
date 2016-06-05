@@ -219,11 +219,12 @@ class StatisticsController < ApplicationController
     # Return: total_sanction_state.
     def total_by_type
         # Iterator beginning in 0. Contains the quantity of sanctions by type.
+        new_sanction_type = SanctionType.new
         count_types_of_sanctions = 0
 
         all_states = State.find_by_abbreviation( params[:state_] )
         assert_object_is_not_null ( all_states )
-        all_sanctions = SanctionType.get_all_sanction_types
+        all_sanctions = new_sanction_type.get_all_sanction_types
         assert_object_is_not_null ( all_sanctions )
 
         # Insert sanctions made to states in a list.
