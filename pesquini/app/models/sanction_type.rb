@@ -41,6 +41,7 @@ class SanctionType < ActiveRecord::Base
         [ "IMPEDIMENTO - LEI DO RDC", "Impedimento - Lei do RDC"],
         [ "PROIBIçãO - LEI AMBIENTAL", "Proibição - Lei Ambiental" ],
         ]
+        assert_object_is_not_null( sanction_types )
 
         return sanction_types
     end

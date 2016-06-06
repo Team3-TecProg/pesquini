@@ -121,6 +121,7 @@ class Enterprise < ActiveRecord::Base
             if ( sanction[first_position] == enterprise.sanctions_count )
                 enterprise_position = enterprise_index + enterprise_identifier
                 assert_object_is_not_null( enterprise_position )
+                
                 return enterprise_position
             else
                 # Nothing to do.
@@ -134,6 +135,7 @@ class Enterprise < ActiveRecord::Base
     def self.get_sorted_enterprises_by_sanctions_count
         sorted_enterprises = Enterprise.all.sort_by{ | enterprise | enterprise.
         sanctions_count }
+        assert_object_is_not_null( sorted_enterprises )
 
         return sorted_enterprises
     end
@@ -147,7 +149,7 @@ class Enterprise < ActiveRecord::Base
         assert_object_is_not_null( sorted_enterprises )
 
         # Get all the enterprises in descendet order,
-        # grouped by its sanctions_count
+        # grouped by its sanctions_count.
         filtered_enteprises = sorted_enterprises.uniq.
         group_by( &:sanctions_count ).to_a.reverse
         assert_object_is_not_null( filtered_enteprises )
@@ -157,7 +159,7 @@ class Enterprise < ActiveRecord::Base
 
     # Description: Returns a variable with the enterprises sorted and grouped.
     # Parameters: none.
-    # return: enterprise_group_array
+    # return: enterprise_group_array.
     def self.most_sanctioned_ranking
         first_position = 0
         second_position = 1

@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
     def self.new_remember_token
         secure_token = SecureRandom.urlsafe_base64
         assert_object_is_not_null( secure_token )
+        
         return secure_token
     end
 
@@ -29,7 +30,8 @@ class User < ActiveRecord::Base
     # Return: encripted_token.
     def self.digest( token )
         encripted_token = Digest::SHA1.hexdigest( token.to_s )
-        #assert_object_is_not_null( encripted_token )
+        assert_object_is_not_null( encripted_token )
+
         return encripted_token
     end
 end
