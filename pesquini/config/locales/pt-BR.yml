@@ -1,0 +1,9 @@
+"pt-BR":
+  hello: "Olá mundo"
+  enterprise: "empresa"
+  payment: "pagamento"
+  sanction: "sanção"
+  sanction_type: "tipo de sanção"
+  state: "estado"
+  user: "usuário"
+

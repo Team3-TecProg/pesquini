@@ -33,4 +33,8 @@ class ApplicationController < ActionController::Base
             f.html{ render :template => "errors/404", :status => 404 }
         end
     end
+
+    def internationalization_test
+        @example_date = DateTime.now
+    end
 end
