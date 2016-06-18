@@ -1,12 +1,12 @@
 <div class =" lowercase-letter">
-    <% @PAYMENTS.each_with_index do |p, index| %>
+    <% @PAYMENTS.each_with_index do |payment, index| %>
         <h4><b><div class= "index_number"><%= @PAGE_NUMBER*@RESULTS_PER_PAGE + index +1%></div></b></h4>
-        <h4> <b><%= t('Identificador')%>: </b> <%= p.identifier %> </h4>
-        <h4> <b><%= t('Número do processo')%>: </b> <%= p.process_number %> </h4>
-        <h4> <b><%= t('Valor inicial')%>: </b> <%= number_to_currency(p.initial_value, unit: "R$ ", separator: ",", delimiter: ".")%> </h4>
-        <h4> <b><%= t('Data de assinatura')%>: </b> <%= p.sign_date.strftime("%d/%m/%Y") %> </h4>
-        <h4> <b><%= t('Inicio do pagamento')%>: </b> <%= p.start_date.strftime("%d/%m/%Y") %> </h4>
-        <h4> <b><%= t('Fim do pagamento')%>: </b> <%= p.end_date.strftime("%d/%m/%Y") %> </h4>
+        <h4> <b><%= t('Identificador')%>: </b> <%= payment.identifier %> </h4>
+        <h4> <b><%= t('Número do processo')%>: </b> <%= payment.process_number %> </h4>
+        <h4> <b><%= t('Valor inicial')%>: </b> <%= number_to_currency(payment.initial_value, unit: "R$ ", separator: ",", delimiter: ".")%> </h4>
+        <h4> <b><%= t('Data de assinatura')%>: </b> <%= payment.sign_date.strftime("%d/%m/%Y") %> </h4>
+        <h4> <b><%= t('Inicio do pagamento')%>: </b> <%= payment.start_date.strftime("%d/%m/%Y") %> </h4>
+        <h4> <b><%= t('Fim do pagamento')%>: </b> <%= payment.end_date.strftime("%d/%m/%Y") %> </h4>
         <hr align="left">
     <% end %>
 
