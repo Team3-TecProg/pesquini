@@ -20,4 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  olá: "Hello world"
+
+  #internationalizations for _payments.html.erb
+  Identificador: "Identifier"
+  Número do processo: "Process number"
+  Valor inicial: "Initial value"
+  Data de assinatura: "Signature date"
+  Início do pagamento: "Start of payment"
+  Fim fo pagamento: "End of payment"
+  Dados sobre pagamentos não informados: "Payment data not reported"

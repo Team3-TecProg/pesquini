@@ -1,18 +1,18 @@
-        <div class =" lowercase-letter">
+<div class =" lowercase-letter">
     <% @PAYMENTS.each_with_index do |p, index| %>
-          <h4><b><div class= "index_number"><%= @PAGE_NUMBER*@RESULTS_PER_PAGE + index +1%></div></b></h4>
-          <h4> <b>Identificador: </b> <%= p.identifier %> </h4>
-          <h4> <b>Número do processo: </b> <%= p.process_number %> </h4>
-          <h4> <b>Valor inicial: </b> <%= number_to_currency(p.initial_value, unit: "R$ ", separator: ",", delimiter: ".")%> </h4>
-          <h4> <b>Data de assinatura: </b> <%= p.sign_date.strftime("%d/%m/%Y") %> </h4>
-          <h4> <b>Inicio do pagamento: </b> <%= p.start_date.strftime("%d/%m/%Y") %> </h4>
-          <h4> <b>Fim do pagamento: </b> <%= p.end_date.strftime("%d/%m/%Y") %> </h4>
-          <hr align="left">
-     <% end %>
+        <h4><b><div class= "index_number"><%= @PAGE_NUMBER*@RESULTS_PER_PAGE + index +1%></div></b></h4>
+        <h4> <b><%= t('Identificador')%>: </b> <%= p.identifier %> </h4>
+        <h4> <b><%= t('Número do processo')%>: </b> <%= p.process_number %> </h4>
+        <h4> <b><%= t('Valor inicial')%>: </b> <%= number_to_currency(p.initial_value, unit: "R$ ", separator: ",", delimiter: ".")%> </h4>
+        <h4> <b><%= t('Data de assinatura')%>: </b> <%= p.sign_date.strftime("%d/%m/%Y") %> </h4>
+        <h4> <b><%= t('Inicio do pagamento')%>: </b> <%= p.start_date.strftime("%d/%m/%Y") %> </h4>
+        <h4> <b><%= t('Fim do pagamento')%>: </b> <%= p.end_date.strftime("%d/%m/%Y") %> </h4>
+        <hr align="left">
+    <% end %>
 
-      <% if @PAYMENTS.empty? %>
-        <h3> Dados sobre pagamentos não informados </h3>
-      <% end %>
-      <%= will_paginate @PAYMENTS,  renderer: BootstrapPagination::Rails %>
+    <% if @PAYMENTS.empty? %>
+        <h3> <%= t('Dados sobre pagamentos não informados')%> </h3>
+    <% end %>
 
-      </div>
+    <%= will_paginate @PAYMENTS,  renderer: BootstrapPagination::Rails %>
+</div>
