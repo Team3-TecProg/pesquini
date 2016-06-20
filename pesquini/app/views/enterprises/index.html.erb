@@ -1,54 +1,43 @@
 <div id="enterprises_index">
-
-
-  <div class="search_form">
-      <div class="container">
-
-        <div class="service">
-
+    <div class="search_form">
+        <div class="container">
+            <div class="service">
+            </div>
+            <div class="search_form_enterprises">
+                <h1><%= t('Ferramenta de busca') %></h1>
+                <hr>
+                <%= search_form_for @SEARCH do |f| %>
+                    <%= f.label :corporate_name_cont, "Nome ou CNPJ:" %>
+                    <%= f.search_field :corporate_name_cont%>
+                    <%= f.submit %>
+                <% end %>
+            </div>
         </div>
+    </div>
 
-        <div class="search_form_enterprises">
-          <h1>Ferramenta de busca</h1>
-          <hr>
-          <%= search_form_for @SEARCH do |f| %>
-            <%= f.label :corporate_name_cont, "Nome ou CNPJ:" %>
-            <%= f.search_field :corporate_name_cont%>
-            <%= f.submit %>
-          <% end %>
- <!--         <div class="additional_search">
-            <i class="fa fa-angle-double-down fa_down"></i>
-            <h4><strong>Mais opções de busca</strong></h4>
-          </div>-->
+    <span class="division"> <hr> </span>
+
+    <div class="container">
+        <% if @ENTERPRISES.blank? %>
+          <div class="entreprises_title">
+              <h3><%= t('Não existem sanções contra a empresa procurada'%>. </h3>
+              <hr>
+          </div>
+
+        <% else %>
+            <div class="entreprises_title">
+                <h1><%= t('Lista das empresas encontradas') %></h1>
+                <hr>
+            </div>
+            <% @ENTERPRISES.each do |p| %>
+                <span class="same_line">  <h3><%= t('Empresa') %>:</h3><%= link_to p.corporate_name, p %>  </span>
+                <span class="same_line">  <h3>CNPJ:</h3> <%= p.cnpj %>  </span>
+                <hr>
+            <% end %>
+        <% end %>
+
+        <div class="pagination">
+            <%= will_paginate @ENTERPRISES, renderer: BootstrapPagination::Rails %>
         </div>
-
     </div>
-  </div>
-
-  <span class="division"> <hr> </span>
-
-  <div class="container">
-
-    <% if @ENTERPRISES.blank? %>
-      <div class="entreprises_title">
-        <h3>Não existem sanções contra a empresa procurada.</h3>
-        <hr>
-      </div>
-
-    <% else %>
-      <div class="entreprises_title">
-        <h1> Lista das empresas encontradas</h1>
-        <hr>
-      </div>
-      <% @ENTERPRISES.each do |p| %>
-        <span class="same_line">  <h3>Empresa:</h3><%= link_to p.corporate_name, p %>  </span>
-        <span class="same_line">  <h3>CNPJ:</h3> <%= p.cnpj %>  </span>
-        <hr>
-      <% end %>
-    <% end %>
-   <div class="pagination">
-      <%= will_paginate @ENTERPRISES, renderer: BootstrapPagination::Rails %>
-    </div>
-  </div>
-
 </div>

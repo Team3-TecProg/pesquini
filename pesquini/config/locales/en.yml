@@ -21,12 +21,19 @@
 
 en:
   olá: "Hello world"
+  empresa: "enterprise"
+  Empresa: "Enterprise"
+  pagamento: "payment"
+  sanção: "sanction"
+  tipo de sanção: "sanction type"
+  estado: "state"
+  usuário: "user"
   Identificador: "Identifier"
   Número do processo: "Process number"
   Valor inicial: "Initial value"
   Data de assinatura: "Signature date"
   Início do pagamento: "Start of payment"
-  Fim fo pagamento: "End of payment"
+  Fim do pagamento: "End of payment"
   Dados sobre pagamentos não informados: "Payment data not reported"
   Dado nao informado: "Data not reported"
   Órgão Sancionador:
@@ -35,3 +42,7 @@ en:
   Tipo de Sanção: "Sanction type"
   Contrato pós Sanção: "Post sanction contract"
   Dados sobre sanções não informados: "Sanction data not reported"
+  Ferramenta de busca: "Search tool"
+  Não existem sanções contra a empresa procurada: "There is no sanction against the enterprise searched"
+  Lista das empresas encontradas: "Searched enterprises list"
+
