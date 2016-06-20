@@ -3,9 +3,9 @@
         <h4><b><div class= "index_number"><%= @PAGE_NUMBER*@RESULTS_PER_PAGE + index +1%></div></b></h4>
         <h4> <b><%= t('Órgão Sancionador') %>: </b> <%= payment.sanction_organ.downcase! %> </h4>
         <h4> <b> <%= t('Número do processo') %>: </b> <%= payment.process_number %> </h4>
-        <h4> <b><%= t('Data de Início da Sanção') %>: </b> <%= payment.initial_date.nil? ? "Dado nao informado" :p.initial_date.strftime("%d/%m/%Y") %> </h4>
-        <h4> <b> <%= t('Data final da Sanção') %>: </b> <%= payment.final_date.nil? ? "Dado nao informado"  :p.final_date.strftime("%d/%m/%Y") %> </h4>
-        <h4> <b> UF: </b> <%= payment.state.nil? ? "Dado nao informado" : payment.state.abbreviation %> </h4>
+        <h4> <b><%= t('Data de Início da Sanção') %>: </b> <%= payment.initial_date.nil? ? "Dado não informado" :p.initial_date.strftime("%d/%m/%Y") %> </h4>
+        <h4> <b> <%= t('Data final da Sanção') %>: </b> <%= payment.final_date.nil? ? "Dado não informado"  :p.final_date.strftime("%d/%m/%Y") %> </h4>
+        <h4> <b> UF: </b> <%= payment.state.nil? ? "Dado não informado" : payment.state.abbreviation %> </h4>
         <h4> <b> <%= t('Tipo de Sanção') %>: </b> <%= payment.sanction_type.nil? ? "Dado não informado" : payment.sanction_type.description.downcase! %> </h4>
 
         <% if @ENTERPRISE.payment_after_sanction? %>

@@ -21,8 +21,6 @@
 
 en:
   olá: "Hello world"
-
-  #internationalizations for _payments.html.erb
   Identificador: "Identifier"
   Número do processo: "Process number"
   Valor inicial: "Initial value"
@@ -30,3 +28,10 @@ en:
   Início do pagamento: "Start of payment"
   Fim fo pagamento: "End of payment"
   Dados sobre pagamentos não informados: "Payment data not reported"
+  Dado nao informado: "Data not reported"
+  Órgão Sancionador:
+  Data de Início da Sanção: "Sanction initial date"
+  Data final da Sanção: "Sanction final date"
+  Tipo de Sanção: "Sanction type"
+  Contrato pós Sanção: "Post sanction contract"
+  Dados sobre sanções não informados: "Sanction data not reported"
