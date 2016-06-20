@@ -24,7 +24,9 @@ en:
   empresa: "enterprise"
   Empresa: "Enterprise"
   pagamento: "payment"
+  Pagamentos: "Payments"
   sanção: "sanction"
+  Sanções: "Sanctions"
   tipo de sanção: "sanction type"
   estado: "state"
   usuário: "user"
@@ -45,4 +47,8 @@ en:
   Ferramenta de busca: "Search tool"
   Não existem sanções contra a empresa procurada: "There is no sanction against the enterprise searched"
   Lista das empresas encontradas: "Searched enterprises list"
+  Posição no ranking de empresas que mais receberam verbas de pagamentos: "Position at ranking
+  of enterprises that receives most payments"
+  Posição no: "Position at"
+  do ranking de empresas mais sancionadas: "of rankig enterprises that receives most sanctioned"
 

@@ -1,33 +1,29 @@
 <%= javascript_include_tag("pagination.js") %>
 
 <div id="enterprises_show">
-  <div class="container">
+    <div class="container">
+        <div class="section-title">
+            <h2><%= @ENTERPRISE.corporate_name %> </h2><br>
+            <h4> <b>CNPJ da Empresa:  </b><%= @ENTERPRISE.cnpj %> </h4>
+            <h4> <b><%= t('Posição no') %> <%= link_to "grupo", controller: 'statistics', action: 'most_sanctioned_ranking' %> <%= t('do ranking de empresas mais sancionadas') %>: </b><%= @POSITION %> </h4>
+            <h4> <b><%= t('Posição no ranking de empresas que mais receberam verbas de pagamentos') %> :  </b><%= @PAYMENT_POSITION %> </h4>
+        </div>
 
-    <div class="section-title">
-      <h2><%= @ENTERPRISE.corporate_name %> </h2><br>
-      <h4> <b>CNPJ da Empresa:  </b><%= @ENTERPRISE.cnpj %> </h4>
-      <h4> <b>Posição no <%= link_to "grupo", controller: 'statistics', action: 'most_sanctioned_ranking' %> do ranking de empresas mais sancionadas: </b><%= @POSITION %> </h4>
-      <h4> <b>Posição no ranking de empresas que mais receberam verbas de pagamentos : </b><%= @PAYMENT_POSITION %> </h4>
+        <span id="title-hr"><hr></span>
 
+        <div id ="enterprises_selection">
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active" id="sanction-info-btn"><a href="#"><%= t('Sanções') %></a></li>
+                <li role="presentation" id="payment-info-btn"><a href="#"><%= t('Pagamentos') %></a></li>
+            </ul>
+        </div>
+
+        <div class="sanction-info">
+            <%= render "sanctions" %>
+        </div>
+
+        <div class="payment-info">
+            <%= render "payments" %>
+       </div>
     </div>
-
-    <span id="title-hr"><hr></span>
-
-    <div id ="enterprises_selection">
-      <ul class="nav nav-tabs">
-        <li role="presentation" class="active" id="sanction-info-btn"><a href="#">Sanções</a></li>
-        <li role="presentation" id="payment-info-btn"><a href="#">Pagamentos</a></li>
-      </ul>
-    </div>
-
-    <div class="sanction-info">
-      <%= render "sanctions" %>
-    </div>
-
-
-     <div class="payment-info">
-      <%= render "payments" %>
-     </div>
-
-  </div>
 </div>
