@@ -20,6 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  # Home page translations.
+  Pesquisa : "Search "
+  de empresas: "of enterprises "
+  Inidôneas: "disreputable"
+  O que são: "What is "
+  # Others translations.
   olá: "Hello world"
   empresa: "enterprise"
   Empresa: "Enterprise"
