@@ -21,6 +21,7 @@
 
 en:
   # Home page translations.
+  #############################################################################
   Pesquisa : "Search "
   de empresas: "of enterprises "
   Inidôneas: "disreputable"
@@ -43,8 +44,31 @@ en:
   Realizar a pesquisa através da razão social da empresa: "Realize a search from reason social of a enterprize."
   Mostrar todas as empresas: "Show all enterprizes"
   Mostrar todas as empresas cadastradas: "Show all enterprizes indexed"
+  Estatísticas: "Statistics"
+  sobre empresas: "about enterprizes"
+  Visualização de gráficos e rankings sobre empresas inidôneas: "Views of chart and rankings about enterprizes disreputable."
+  Por meio dessa ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral: "With this tool its possible take some informations about disreputables enterprizes in a generic way."
+  Estados com mais sanções: "States with more sanctions"
+  Gráfico que indica a quantidade de sanções por Unidade Federativa: "Chart thats show the quantity of sanctions from Federative units"
+  Empresas com mais sanções: "Enterprizes with more sanctions"
+  Ranking que indica a quantidade de empresas com mais sançoes: "Ranking thats shows the enterprize with more sanctions"
+  Tipos de sanções: "Sanctions types."
+  Gráfico que indica os tipos de sanção mais recorrentes e suas quantidades: "Chart thats shows sanctions types there most occurred"
+  Empresas com maior numero de pagamentos: "Enterprizes with the bigest number of payments"
+  Ranking que indica as empresas que mais receberam pagamentos do governo: "Ranking thats show the enterprizes there have more payments of the government"
+  Sobre o: "About"
+  O sistema pesquini visa disponibilizar informaçoes sobre empresas brasileiras inidôneas de forma mais interativa e atrativa por meio de elementos visuais: "The pesquini system look for disponibilization of the informations about brazilian disreputable enterprizes with an interactive an atractive way with views elements"
+  como gráficos: "like charts"
+  tabelas e rankings para a população em geral: " tables and rakings to the population."
+  Sobre: "About"
+  nós: "us"
+  Somos alunos da Universidade de Brasilia: "We are students of University of Brasilia" 
+  Desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software: "This software were developed as a project from the course of software development methods"
+
+
 
   # Others translations.
+  #############################################################################
   olá: "Hello world"
   empresa: "enterprise"
   Empresa: "Enterprise"
@@ -76,5 +100,3 @@ en:
   of enterprises that receives most payments"
   Posição no: "Position at"
   do ranking de empresas mais sancionadas: "of rankig enterprises that receives most sanctioned"
-  Sobre nós: "About us"
-  Equipe de alunos UnB, disciplina MDS/GPP: "Students from University of Brasília, schedules MDS/GPP"

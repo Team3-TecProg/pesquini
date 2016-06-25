@@ -185,12 +185,13 @@
 <div id="tf-services" class="text-center">
   <div class="container">
     <div class="section-title center">
-      <h2><strong>Estatísticas</strong> sobre empresas</h2>
+      <h2><strong><%= t('Estatísticas')%></strong> <%= t('sobre empresas')%></h2>
       <div class="line">
         <hr>
       </div>
       <div class="clearfix"></div>
-      <em>Visualização de gráficos e rankings sobre empresas inidôneas. Por meio dessa ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral.</em>
+      <em><%= t('Visualização de gráficos e rankings sobre empresas inidôneas')%>
+     <%= t('Por meio dessa ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral')%></em>
     </div>
     <div class="space"></div>
     <div class="row">
@@ -198,32 +199,32 @@
       <div class="col-md-3 col-sm-6 service">
         <%= link_to(statistics_path(:anchor => "tf-sanction_by_state"))do %>
         <i class="fa fa-bar-chart"></i>
-        <h4><strong>Estados com mais sanções</strong></h4>
-        <p>Gráfico que indica  a quantidade de sanções por Unidade Federativa.</p>
+        <h4><strong><%= t('Estados com mais sanções')%></strong></h4>
+        <p><%= t('Gráfico que indica a quantidade de sanções por Unidade Federativa')%></p>
         <% end %>
       </div>
 
       <div class="col-md-3 col-sm-6 service">
         <%= link_to(statistics_path(:anchor => "tf-most_sanctioned_ranking"))do %>
         <i class="fa fa-line-chart"></i>
-        <h4><strong>Empresas com mais sanções</strong></h4>
-        <p>Ranking que indica  a quantidade de empresas com mais sançoes.</p>
+        <h4><strong><%= t('Empresas com mais sanções')%></strong></h4>
+        <p><%= t('Ranking que indica a quantidade de empresas com mais sançoes')%></p>
         <% end %>
       </div>
 
        <div class="col-md-3 col-sm-6 service">
         <%= link_to(statistics_path(:anchor => "tf-sanction_by_type"))do %>
         <i class="fa fa-pie-chart"></i>
-        <h4><strong>Tipos de sanções</strong></h4>
-        <p>Gráfico que indica os tipos de sanção mais recorrentes e suas quantidades.</p>
+        <h4><strong><%= t('Tipos de sanções')%></strong></h4>
+        <p><%= t('Gráfico que indica os tipos de sanção mais recorrentes e suas quantidades')%></p>
         <% end %>
       </div>
 
        <div class="col-md-3 col-sm-6 service">
         <%= link_to(statistics_path(:anchor => "tf-payment_rankings"))do %>
         <i class="fa fa-usd"></i>
-        <h4><strong>Empresas com maior numero de pagamentos</strong></h4>
-        <p>Ranking que indica as empresas que mais receberam pagamentos do governo.</p>
+        <h4><strong><%= t('Empresas com maior numero de pagamentos')%></strong></h4>
+        <p><%= t('Ranking que indica as empresas que mais receberam pagamentos do governo')%></p>
         <% end %>
       </div>
       <!--
@@ -259,18 +260,22 @@
 
       <div class="about_pesquini">
         <div class="section-title center">
-          <h2>Sobre o <strong>pesquini</strong></h2>
+          <h2><%= t('Sobre o')%> <strong> <%= t('pesquini')%></strong></h2>
         </div>
         <hr>
-        <h3>O sistema pesquini visa disponibilizar informaçoes sobre empresas brasileiras inidôneas de forma mais interativa e atrativa por meio de elementos visuais , como gráficos, tabelas e rankings para a população em geral.</h3>
+        <h3><%= t('O sistema pesquini visa disponibilizar informaçoes sobre empresas brasileiras inidôneas de forma mais interativa e atrativa por meio de elementos visuais')%> , 
+       <%= t('como gráficos')%>, <%= t('tabelas e rankings para a população em geral')%>.</h3>
       </div>
 
       <div class="about_us">
         <div class="section-title center">
-          <h2>Sobre <strong>nós</strong></h2>
+          <h2><%= t('Sobre')%> <strong><%= t('nós')%></strong></h2>
         </div>
         <hr>
-        <h3>Somos alunos da Universidade de Brasilia (UnB - FGA). Desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software</h3>
+        <h3>
+        <%= t('Somos alunos da Universidade de Brasilia')%> (UnB - FGA).
+        <%= t('Desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software')%>
+        </h3>
       </div>
 
     </div>
