@@ -28,44 +28,122 @@ en:
   O que são: "What is "
   empresas: "enterprises"
   Inidônias: "Disreputable"
-  As empresas que constam como sendo inidôneas são aquelas que receberam sanções que tenham como efeito, ou restrição ao direito de participar em licitações ou de celebrar contratos com a Administração Pública: "The disreputable enterprize's the one there had recived sanctions thats have effect, or restrition about the rights of the participation in bids or make contracts with publics administrations."
-  Algumas das sanções que uma empresa pode sofrer: "Some sanctions of enterprises may sofer:" 
+  As empresas que constam como sendo inidôneas são aquelas que receberam sanções que tenham como efeito, ou restrição ao direito de participar em licitações ou de celebrar contratos com a Administração Pública: "The\
+  disreputable enterprize's the one there had recived sanctions thats have\
+  effect, or restrition about the rights of the participation in bids or make\
+  contracts with publics administrations."
+  Algumas das sanções que uma empresa pode sofrer: "Some sanctions of\
+  enterprises may sofer:" 
   Suspensão: "Suspension" 
   temporária: "temporary" 
   Declaração: "Declaration"
   de inidoneidade: "of unsuitability"
   Proibição: "Prohibition"
-  de participar de licitações e de contratar: " of participation in bids and make hires."
+  de participar de licitações e de contratar: " of participation in bids and\
+  make hires."
   Outras: "Others"
-  Clique aqui para saber sobre mais sanções e informações sobre elas: "Click here to learn more about sanctions and more informations."
+  Clique aqui para saber sobre mais sanções e informações sobre elas: "Click\
+  here to learn more about sanctions and more informations."
   Formas de: "Ways of"
   pesquisa: "search"
   Pesquisa por nome ou CNPJ: "Sarch for name or CNPJ"
-  Realizar a pesquisa através da razão social da empresa: "Realize a search from reason social of a enterprize."
+  Realizar a pesquisa através da razão social da empresa: "Realize a search\
+  from reason social of a enterprize."
   Mostrar todas as empresas: "Show all enterprizes"
   Mostrar todas as empresas cadastradas: "Show all enterprizes indexed"
   Estatísticas: "Statistics"
   sobre empresas: "about enterprizes"
-  Visualização de gráficos e rankings sobre empresas inidôneas: "Views of chart and rankings about enterprizes disreputable."
-  Por meio dessa ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral: "With this tool its possible take some informations about disreputables enterprizes in a generic way."
+  Visualização de gráficos e rankings sobre empresas inidôneas: "Views of\
+  chart and rankings about enterprizes disreputable."
+  Por meio dessa ferramenta é possivel obter algumas informações relacionadas empresas inidôneas de uma forma geral: "With\
+  this tool its possible take some informations about disreputables\
+  enterprizes in a generic way."
   Estados com mais sanções: "States with more sanctions"
-  Gráfico que indica a quantidade de sanções por Unidade Federativa: "Chart thats show the quantity of sanctions from Federative units"
+  Gráfico que indica a quantidade de sanções por Unidade Federativa: "Chart\
+  thats show the quantity of sanctions from Federative units"
   Empresas com mais sanções: "Enterprizes with more sanctions"
-  Ranking que indica a quantidade de empresas com mais sançoes: "Ranking thats shows the enterprize with more sanctions"
+  Ranking que indica a quantidade de empresas com mais sançoes: "Ranking thats\
+  shows the enterprize with more sanctions"
   Tipos de sanções: "Sanctions types."
-  Gráfico que indica os tipos de sanção mais recorrentes e suas quantidades: "Chart thats shows sanctions types there most occurred"
-  Empresas com maior numero de pagamentos: "Enterprizes with the bigest number of payments"
-  Ranking que indica as empresas que mais receberam pagamentos do governo: "Ranking thats show the enterprizes there have more payments of the government"
+  Gráfico que indica os tipos de sanção mais recorrentes e suas quantidades: "Chart\
+  thats shows sanctions types there most occurred"
+  Empresas com maior numero de pagamentos: "Enterprizes with the bigest number\
+  of payments"
+  Ranking que indica as empresas que mais receberam pagamentos do governo: "Ranking\
+  thats show the enterprizes there have more payments of the government"
   Sobre o: "About"
-  O sistema pesquini visa disponibilizar informaçoes sobre empresas brasileiras inidôneas de forma mais interativa e atrativa por meio de elementos visuais: "The pesquini system look for disponibilization of the informations about brazilian disreputable enterprizes with an interactive an atractive way with views elements"
+  O sistema pesquini visa disponibilizar informaçoes sobre empresas brasileiras inidôneas de forma mais interativa e atrativa por meio de elementos visuais: "The\
+  pesquini system look for disponibilization of the informations about\
+  brazilian disreputable enterprizes with an interactive an atractive way\
+  with views elements"
   como gráficos: "like charts"
-  tabelas e rankings para a população em geral: " tables and rakings to the population."
+  tabelas e rankings para a população em geral: " tables and rakings to the\
+  population."
   Sobre: "About"
   nós: "us"
-  Somos alunos da Universidade de Brasilia: "We are students of University of Brasilia" 
-  Desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software: "This software were developed as a project from the course of software development methods"
+  Somos alunos da Universidade de Brasilia: "We are students of University of \
+  Brasilia" 
+  Desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software: "This \
+  software were developed as a project from the course of software development \
+  methods"
 
+  # Statistics index translation.
+  #############################################################################
 
+  Estados: "States"
+  com mais sanções: "With more sanctions"
+  Este gráfico ilustra quais tipo de sanções as empresas: "This chart shows \
+  wich kind of brazilian enterprizes sanctions"
+  brasileiras mais sofreram de forma geral: "more existis"
+  Como também: "Like"
+  demonstra através de um filtro por estado: "demonstration with filter"
+  qual o tipo de sanção mais ocorreu em cada uma das unidades: "wich sanction \
+  kind occured more in each"
+  federativas do Brasil: "federatives units from Brazil"
+  Clique aqui para ser redirecionado para a página: "Click here to learn \
+  more"
+
+  #############################################################################
+
+  Empresas: "Enterprizes"
+  Este ranking possui informações sobre as empresas que: "This raking\
+  have more informations about enterprizes there"
+  mais receberam sanções desde 1988: "have recieved more sanctions since 1998"
+  separando-as por: "Separated for" 
+  grupos de número de sanções: "Sanctions number groups."
+
+  #############################################################################
+
+  Tipos: "Kinds"
+  de sanções: " of sanctions"
+  Este gráfico ilustra quais tipos de sanções as empresas: "This chart shows \
+  wich kinds of brazilian enterprizes sanctions"
+  brasileiras mais sofreram de forma geral: "occured more"
+  São elas: "They are"
+  suspensão temporária: "Temporary suspension"
+  declaração de inidoneidade: "disreputable declaration"
+  impedimento de licitar e contratar: "impedment of bid and hire"
+  proibição de participar de licitações e de contratar: "proibition of \
+  participation of bids and hire"
+  Esta estatística também demonstra: "This statistic demonstrates"
+  através de um filtro por estado: "the data with states datas"
+  qual o tipo de sanção mais ocorreu em cada: "wich the kind of sanction more \
+  ocurred in each one"
+  uma das unidades federativas do Brasil: "in brazilian federative\
+  units"
+
+  #############################################################################
+
+  com mais pagamentos: "with more payments"
+  Nesse tópico está disponivel o ranking: "In this tipic its avaible \
+  the ranking"
+  com as informações sobre as empresas que mais: "with the informations about \
+  the enterprizes thats"
+  recebram pagamentos referentes a licitaçoes do governo: "recieved more \
+  payments about gounavment bids"
+  desde o começo da obtenção de dados: "since the begining of the data \
+  catch"
+  
 
   # Others translations.
   #############################################################################
@@ -94,9 +172,11 @@ en:
   Contrato pós Sanção: "Post sanction contract"
   Dados sobre sanções não informados: "Sanction data not reported"
   Ferramenta de busca: "Search tool"
-  Não existem sanções contra a empresa procurada: "There is no sanction against the enterprise searched"
+  Não existem sanções contra a empresa procurada: "There is no sanction\
+  against the enterprise searched"
   Lista das empresas encontradas: "Searched enterprises list"
-  Posição no ranking de empresas que mais receberam verbas de pagamentos: "Position at ranking
-  of enterprises that receives most payments"
+  Posição no ranking de empresas que mais receberam verbas de pagamentos: "Position\
+  at ranking of enterprises that receives most payments"
   Posição no: "Position at"
-  do ranking de empresas mais sancionadas: "of rankig enterprises that receives most sanctioned"
+  do ranking de empresas mais sancionadas: "of rankig enterprises that\
+  receives most sanctioned"
