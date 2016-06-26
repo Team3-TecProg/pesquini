@@ -1,6 +1,7 @@
 en:
     # Home page translations.
-    #############################################################################
+    ############################################################################
+
     Pesquisa : "Search "
     de empresas: "of enterprises "
     Inidôneas: "disreputable"
@@ -17,9 +18,9 @@ en:
     celebrar contratos com a Administração Pública: "or make \
     contracts with publics administrations."
     Algumas das sanções que uma empresa pode sofrer: "Some sanctions \
-    of enterprises may sofer:" 
-    Suspensão: "Suspension" 
-    temporária: "temporary" 
+    of enterprises may sofer:"
+    Suspensão: "Suspension"
+    temporária: "temporary"
     Declaração: "Declaration"
     de inidoneidade: "of unsuitability"
     Proibição: "Prohibition"
@@ -66,13 +67,13 @@ en:
     Sobre: "About"
     nós: "us"
     Somos alunos da Universidade de Brasilia: "We are students of University of \
-    Brasilia" 
+    Brasilia"
     Desenvolvemos esse software como um projeto da disciplina Métodos de Desenvolvimento de software: "This \
     software were developed as a project from the course of software development \
     methods"
 
     # Statistics index translation.
-    #############################################################################
+    ############################################################################
 
     Estados: "States"
     com mais sanções: "With more sanctions"
@@ -87,16 +88,16 @@ en:
     Clique aqui para ser redirecionado para a página: "Click here to learn \
     more"
 
-    #############################################################################
+    ############################################################################
 
     Empresas: "Enterprizes"
     Este ranking possui informações sobre as empresas que: "This raking\
     have more informations about enterprizes there"
     mais receberam sanções desde 1988: "have recieved more sanctions since 1998"
-    separando-as por: "Separated for" 
+    separando-as por: "Separated for"
     grupos de número de sanções: "Sanctions number groups."
 
-    #############################################################################
+    ############################################################################
 
     Tipos: "Kinds"
     de sanções: " of sanctions"
@@ -116,7 +117,7 @@ en:
     uma das unidades federativas do Brasil: "in brazilian federative\
     units"
 
-    #############################################################################
+    ############################################################################
 
     com mais pagamentos: "with more payments"
     Nesse tópico está disponivel o ranking: "In this tipic its avaible \
@@ -127,10 +128,11 @@ en:
     payments about gounavment bids"
     desde o começo da obtenção de dados: "since the begining of the data \
     catch"
-    
+
 
     # Others translations.
-    #############################################################################
+    ############################################################################
+
     olá: "Hello world"
     empresa: "enterprise"
     Empresa: "Enterprise"
@@ -164,3 +166,69 @@ en:
     Posição no: "Position at"
     do ranking de empresas mais sancionadas: "of rankig enterprises that \
     receives most sanctioned"
+
+    # Welcome page translations.
+    ############################################################################
+
+    Conheça as sanções que uma empresa pode sofrer e seus motivos: "Meet the sanctions that a company can suffer and their reasons:"
+    Suspensão temporária (Lei de Licitações):
+    -Art. 87, inciso III, da Lei nº 8.666, de 1993:
+    Art. 87.  Pela inexecução total ou parcial do contrato a Administração poderá, garantida a prévia defesa, aplicar ao contratado as seguintes sanções:
+    III - suspensão temporária de participação em licitação e impedimento de contratar com a Administração, por prazo não superior a 2 (dois) anos;:
+    Obs. Art. 88 da Lei nº 8.666, de 1993:
+    Art. 88.  As sanções previstas nos incisos III e IV do artigo anterior poderão também ser aplicadas às empresas ou aos profissionais que, em razão dos contratos regidos por esta Lei:
+    I - tenham sofrido condenação definitiva por praticarem, por meios dolosos, fraude fiscal no recolhimento de quaisquer tributos;:
+    II - tenham praticado atos ilícitos visando a frustrar os objetivos da licitação;:
+    III - demonstrem não possuir idoneidade para contratar com a Administração em virtude de atos ilícitos praticados.:
+    Declaração de inidoneidade (Lei de Licitações):
+    -Art. 87, inciso IV, da Lei nº 8.666, de 1993:
+    Art. 87.  Pela inexecução total ou parcial do contrato a Administração poderá, garantida a prévia defesa, aplicar ao contratado as seguintes sanções:
+    IV - declaração de inidoneidade para licitar ou contratar com a Administração Pública enquanto perdurarem os motivos determinantes da punição ou até que seja promovida a reabilitação perante a própria autoridade que aplicou a penalidade, que será concedida sempre que o contratado ressarcir a Administração pelos prejuízos resultantes e após decorrido o prazo da sanção aplicada com base no inciso anterior.:
+    -Obs. Art. 88 da Lei nº 8.666, de 1993:
+    Art. 88.  As sanções previstas nos incisos III e IV do artigo anterior poderão também ser aplicadas às empresas ou aos profissionais que, em razão dos contratos regidos por esta Lei:
+    I - tenham sofrido condenação definitiva por praticarem, por meios dolosos, fraude fiscal no recolhimento de quaisquer tributos;:
+    II - tenham praticado atos ilícitos visando a frustrar os objetivos da licitação;:
+    III - demonstrem não possuir idoneidade para contratar com a Administração em virtude de atos ilícitos praticados.:
+    Impedimento de licitar e contratar (Lei do Pregão):
+    -Art. 7º da Lei nº 10.520, de 2002:
+    Art. 7º  Quem, convocado dentro do prazo de validade da sua proposta, não celebrar o contrato, deixar de entregar ou apresentar documentação falsa exigida para o certame, ensejar o retardamento da execução de seu objeto, não mantiver a proposta, falhar ou fraudar na execução do contrato, comportar-se de modo inidôneo ou cometer fraude fiscal, ficará impedido de licitar e contratar com a União, Estados, Distrito Federal ou Municípios e, será descredenciado no Sicaf, ou nos sistemas de cadastramento de fornecedores a que se refere o inciso XIV do art. 4o desta Lei, pelo prazo de até 5 (cinco) anos, sem prejuízo das multas previstas em edital e no contrato e das demais cominações legais.:
+    Proibição de contratar (Lei de Improbidade Administrativa):
+    -Art. 12 da Lei nº 8.429, de 1992:
+    Art. 12.  Independentemente das sanções penais, civis e administrativas previstas na legislação específica, está o responsável pelo ato de improbidade sujeito às seguintes cominações, que podem ser aplicadas isolada ou cumulativamente, de acordo com a gravidade do fato (Redação dada pela Lei nº 12.120, de 2009).:
+    I - na hipótese do art. 9°, perda dos bens ou valores acrescidos ilicitamente ao patrimônio, ressarcimento integral do dano, quando houver, perda da função pública, suspensão dos direitos políticos de oito a dez anos, pagamento de multa civil de até três vezes o valor do acréscimo patrimonial e proibição de contratar com o Poder Público ou receber benefícios ou incentivos fiscais ou creditícios, direta ou indiretamente, ainda que por intermédio de pessoa jurídica da qual seja sócio majoritário, pelo prazo de dez anos;:
+    II - na hipótese do art. 10, ressarcimento integral do dano, perda dos bens ou valores acrescidos ilicitamente ao patrimônio, se concorrer esta circunstância, perda da função pública, suspensão dos direitos políticos de cinco a oito anos, pagamento de multa civil de até duas vezes o valor do dano e proibição de contratar com o Poder Público ou receber benefícios ou incentivos fiscais ou creditícios, direta ou indiretamente, ainda que por intermédio de pessoa jurídica da qual seja sócio majoritário, pelo prazo de cinco anos;:
+    III - na hipótese do art. 11, ressarcimento integral do dano, se houver, perda da função pública, suspensão dos direitos políticos de três a cinco anos, pagamento de multa civil de até cem vezes o valor da remuneração percebida pelo agente e proibição de contratar com o Poder Público ou receber benefícios ou incentivos fiscais ou creditícios, direta ou indiretamente, ainda que por intermédio de pessoa jurídica da qual seja sócio majoritário, pelo prazo de três anos.:
+    Proibição de participar de licitações e de contratar (Lei Eleitoral):
+    -Art. 81, § 3º, da Lei nº 9.504, de 1997:
+    Art. 81. As doações e contribuições de pessoas jurídicas para campanhas eleitorais poderão ser feitas a partir do registro dos comitês financeiros dos partidos ou coligações.:
+    § 3º Sem prejuízo do disposto no parágrafo anterior, a pessoa jurídica que ultrapassar o limite fixado no § 1º estará sujeita à proibição de participar de licitações públicas e de celebrar contratos com o Poder Público pelo período de cinco anos, por determinação da Justiça Eleitoral, em processo no qual seja assegurada ampla defesa.:
+    Declaração de inidoneidade pelo TCU (Lei Orgânica TCU):
+    -Art. 46 da Lei nº 8.443, de 1992:
+    Art. 46. Verificada a ocorrência de fraude comprovada à licitação, o Tribunal declarará a inidoneidade do licitante fraudador para participar, por até cinco anos, de licitação na Administração Pública Federal.:
+    Outras sanções: 
+    Outras sanções que tenham como efeito restrição ao direito de participar em licitações ou de celebrar contratos com a Administração Pública. Exemplos:
+    -Art. 10 da Lei 9.605, de 1998 (Lei de Crimes Ambientais):
+    Art. 10. As penas de interdição temporária de direito são a proibição de o condenado contratar com o Poder Público, de receber incentivos fiscais ou quaisquer outros benefícios, bem como de participar de licitações, pelo prazo de cinco anos, no caso de crimes dolosos, e de três anos, no de crimes culposos.:
+    -Art. 78-A, V, c/c art. 78-I, parágrafo único, da Lei nº 10.233, de 2001 (ANTT e ANTAQ):
+    Art. 78-A.  A infração a esta Lei e o descumprimento dos deveres estabelecidos no contrato de concessão, no termo de permissão e na autorização sujeitará o responsável às seguintes sanções, aplicáveis pela ANTT e pela ANTAQ, sem prejuízo das de natureza civil e penal  (Incluído pela Medida Provisória nº 2.217-3, de 4.9.2001):
+    V - declaração de inidoneidade.  (Incluído pela Medida Provisória nº 2.217-3, de 4.9.2001):
+    Art. 78-I.  A declaração de inidoneidade será aplicada a quem tenha praticado atos ilícitos visando frustrar os objetivos de licitação ou a execução de contrato. (Incluído pela Medida Provisória nº 2.217-3, de 4.9.2001):
+    Parágrafo único.  O prazo de vigência da declaração de inidoneidade não será superior a cinco anos.  (Incluído pela Medida Provisória nº 2.217-3, de 4.9.2001):
+    -Suspensão temporária e declaração de inidoneidade (Lei de Acesso à Informação):
+    Art. 33. A pessoa física ou entidade privada que detiver informações em virtude de vínculo de qualquer natureza com o poder público e deixar de observar o disposto nesta Lei estará sujeita às seguintes sanções:
+    IV - suspensão temporária de participar em licitação e impedimento de contratar com a administração pública por prazo não superior a 2 (dois) anos; e:
+    V - declaração de inidoneidade para licitar ou contratar com a administração pública, até que seja promovida a reabilitação perante a própria autoridade que aplicou a penalidade.:
+    § 1o As sanções previstas nos incisos I, III e IV poderão ser aplicadas juntamente com a do inciso II, assegurado o direito de defesa do interessado, no respectivo processo, no prazo de 10 (dez) dias.:
+    § 2o A reabilitação referida no inciso V será autorizada somente quando o interessado efetivar o ressarcimento ao órgão ou entidade dos prejuízos resultantes e após decorrido o prazo da sanção aplicada com base no inciso IV.:
+    § 3o A aplicação da sanção prevista no inciso V é de competência exclusiva da autoridade máxima do órgão ou entidade pública, facultada a defesa do interessado, no respectivo processo, no prazo de 10 (dez) dias da abertura de vista.:
+    -Impedimento de licitar e contratar (Lei do Regime Diferenciado de Contratações Públicas)':
+    Art. 47. Ficará impedido de licitar e contratar com a União, Estados, Distrito Federal ou Municípios, pelo prazo de até 5 (cinco) anos, sem prejuízo das multas previstas no instrumento convocatório e no contrato, bem como das demais cominações legais, o licitante que:
+    I - convocado dentro do prazo de validade da sua proposta não celebrar o contrato, inclusive nas hipóteses previstas no parágrafo único do art. 40 e no art. 41 desta Lei;:
+    II - deixar de entregar a documentação exigida para o certame ou apresentar documento falso;:
+    III - ensejar o retardamento da execução ou da entrega do objeto da licitação sem motivo justificado;:
+    IV - não mantiver a proposta, salvo se em decorrência de fato superveniente, devidamente justificado;:
+    V - fraudar a licitação ou praticar atos fraudulentos na execução do contrato;:
+    VI - comportar-se de modo inidôneo ou cometer fraude fiscal; ou:
+    VII - der causa à inexecução total ou parcial do contrato.:
+    § 1o A aplicação da sanção de que trata o caput deste artigo implicará ainda o descredenciamento do licitante, pelo prazo estabelecido no caput deste artigo, dos sistemas de cadastramento dos entes federativos que compõem a Autoridade Pública Olímpica.:
+    § 2o As sanções administrativas, criminais e demais regras previstas no Capítulo IV da Lei nº 8.666, de 21 de junho de 1993, aplicam-se às licitações e aos contratos regidos por esta Lei.:
