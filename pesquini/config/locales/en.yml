@@ -1,7 +1,11 @@
 en:
     # Home page translations.
     ############################################################################
-
+    Pesquisas: "Searches"
+    Estatisticas: "Statistics"
+    Sobre: "About"
+    Saiba Mais: "Learn More"
+    Digite nome ou CNPJ da empresa: "Enter name or CNPJ of the company"
     Pesquisa : "Search "
     de empresas: "of enterprises "
     Inidôneas: "disreputable"
@@ -221,7 +225,7 @@ en:
     § 1o As sanções previstas nos incisos I, III e IV poderão ser aplicadas juntamente com a do inciso II, assegurado o direito de defesa do interessado, no respectivo processo, no prazo de 10 (dez) dias.: "§ 1. The sanctions provided for in items I, III and IV may be used in conjunction with the item II, ensuring the right of interested defense, in its process, within ten (10) days ."
     § 2o A reabilitação referida no inciso V será  autorizada somente quando o interessado efetivar o ressarcimento ao órgão ou entidade dos prejuízos resultantes e após decorrido o prazo da sanção aplicada com base no inciso IV.: "§ 2 The rehabilitation referred to in item V shall be authorized only where the person concerned to effect reimbursement to the agency or entity of the damage resulting from and following the expiry of the penalty imposed on the basis of section IV."
     § 3o A aplicação da sanção prevista no inciso V é de competência exclusiva da autoridade máxima do órgão ou entidade pública, facultada a defesa do interessado, no respectivo processo, no prazo de 10 (dez) dias da abertura de vista.: "§ 3. The application of the penalty provided for in section V is the exclusive competence of the highest authority of the public body or entity, provided the defense of the person concerned in the respective proceedings, within 10 (ten) days from the opening of view."
-    -Impedimento de licitar e contratar (Lei do Regime Diferenciado de Contratações Públicas): 
+    -Impedimento de licitar e contratar (Lei do Regime Diferenciado de Contratações Públicas):
     Art. 47. Ficará impedido de licitar e contratar com a União, Estados, Distrito Federal ou Municípios, pelo prazo de até 5 (cinco) anos, sem prejuízo das multas previstas no instrumento convocatório e no contrato, bem como das demais cominações legais, o licitante que: "Art. 47. It will be prevented from bidding and contracting with the Federal, State, Federal District or municipalities for a period of five (5) years, subject to the fines provided for in the invitation and the contract, as well as other legal sanctions, the bidde"
     I - convocado dentro do prazo de validade da sua proposta não celebrar o contrato, inclusive nas hipóteses previstas no parágrafo único do art. 40 e no art. 41 desta Lei;: "I - convened within the period of validity of their proposal does not enter into the contract, including in the cases provided for in the sole paragraph of art. 40 and art. 41 of this Law ;"
     II - deixar de entregar a documentação exigida para o certame ou apresentar documento falso;: "II - fail to deliver the required documentation for the event or presenting false documents;"
