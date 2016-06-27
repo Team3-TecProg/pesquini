@@ -1,6 +1,8 @@
 en:
     # Home page translations.
     ############################################################################
+
+    Nome ou CNPJ: "Name or CNPJ"
     Pesquisas: "Searches"
     Estatisticas: "Statistics"
     Sobre: "About"
@@ -174,11 +176,11 @@ en:
     # Welcome page translations.
     ############################################################################
 
-    Conheça as sanções que uma empresa pode sofrer e seus motivos: "Meet the sanctions that a company can suffer and their reasons:"
+    Conheça as sanções que uma empresa pode sofrer e seus motivos: "Meet the sanctions that a company can suffer and their reasons"
     Suspensão temporária (Lei de Licitações): "Temporary suspension (Procurement Law):"
     -Art. 87, inciso III, da Lei nº 8.666, de 1993: "-art. 87, item III, of Law No. 8666, 1993"
     Art. 87.  Pela inexecução total ou parcial do contrato a Administração poderá, garantida a prévia defesa, aplicar ao contratado as seguintes sanções: "Art. 87. For the total or partial non-performance of the management contract is guaranteed prior defense, apply to the contractor the following sanctions"
-    III - suspensão temporária de participação em licitação e impedimento de contratar com a Administração, por prazo não superior a 2 (dois) anos;: " III - temporary suspension of participation in bidding and impediment to contract with the Administration for a period not exceeding two (2) years ;:"
+    III - suspensão temporária de participação em licitação e impedimento de contratar com a Administração, por prazo não superior a 2 (dois) anos;: " III - temporary suspension of participation in bidding and impediment to contract with the Administration for a period not exceeding two (2) years ;"
     Obs. Art. 88 da Lei nº 8.666, de 1993: "Note Article 88 of Law No. 8666, 1993."
     Art. 88.  As sanções previstas nos incisos III e IV do artigo anterior poderão também ser aplicadas às empresas ou aos profissionais que, em razão dos contratos regidos por esta Lei: " Art. 88. The penalties provided for in sections III and IV of the preceding article may also be applied to companies or professionals who, because of contracts governed by this Law"
     I - tenham sofrido condenação definitiva por praticarem, por meios dolosos, fraude fiscal no recolhimento de quaisquer tributos;: "I - have been finally convicted for practice, by means intentional, tax fraud in the payment of any taxes ;"
@@ -194,7 +196,7 @@ en:
     II - tenham praticado atos ilícitos visando a frustrar os objetivos da licitação;: " II - have committed illegal acts aimed at frustrating the objectives of the tender ;"
     III - demonstrem não possuir idoneidade para contratar com a Administração em virtude de atos ilícitos praticados.: "III - show does not have competence to contract with the Administration as a result of unlawful acts committed."
     Impedimento de licitar e contratar (Lei do Pregão): "Impediment to bid and hire (Trading Act)"
-    -Art. 7º da Lei nº 10.520, de 2002: "-Art. 7 of Law No. 10,520, 2002:"
+    -Art. 7º da Lei nº 10.520, de 2002: "-Art. 7 of Law No. 10,520, 2002"
     Art. 7º  Quem, convocado dentro do prazo de validade da sua proposta, não celebrar o contrato, deixar de entregar ou apresentar documentação falsa exigida para o certame, ensejar o retardamento da execução de seu objeto, não mantiver a proposta, falhar ou fraudar na execução do contrato, comportar-se de modo inidôneo ou cometer fraude fiscal, ficará impedido de licitar e contratar com a União, Estados, Distrito Federal ou Municípios e, será descredenciado no Sicaf, ou nos sistemas de cadastramento de fornecedores a que se refere o inciso XIV do art. 4o desta Lei, pelo prazo de até 5 (cinco) anos, sem prejuízo das multas previstas em edital e no contrato e das demais cominações legais.: "  Art. 7 Who convened within validity of the tender, does not conclude the contract, fails to deliver or present false documentation required for the event, give rise to delay the execution of its object, does not keep the proposal fails or defraud the contract, behave disreputable way or committing tax fraud will be barred from bidding and contracting with the Federal, State, Federal District or municipalities, and will be de-accredited in SICAF, or the suppliers registration systems referred to section XIV of art. 4 of this Act for a period of five (5) years, subject to the penalties provided for in tender and contract and other legal sanctions ."
     Proibição de contratar (Lei de Improbidade Administrativa): "Ineligibility (Administrative Misconduct Act)"
     -Art. 12 da Lei nº 8.429, de 1992: "-art. 12 of Law No. 8429, 1992"
@@ -206,7 +208,7 @@ en:
     -Art. 81, § 3º, da Lei nº 9.504, de 1997: "-art. 81, § 3 of Law No. 9504, 1997"
     Art. 81. As doações e contribuições de pessoas jurídicas para campanhas eleitorais poderão ser feitas a partir do registro dos comitês financeiros dos partidos ou coligações.: "Art. 81. Donations and corporate contributions to election campaigns can be made from the record of the finance committees of the parties or coalitions ."
     § 3º Sem prejuízo do disposto no parágrafo anterior, a pessoa jurídica que ultrapassar o limite fixado no § 1º estará sujeita à proibição de participar de licitações públicas e de celebrar contratos com o Poder Público pelo período de cinco anos, por determinação da Justiça Eleitoral, em processo no qual seja assegurada ampla defesa.: "§ 3. Notwithstanding the preceding paragraph, the legal entity that exceed the limit prescribed in § 1 will be subject to the prohibition to participate in public bids and enter into contracts with the government for a period of five years, for determination of Elections, in the process in which it is assured ample defense "
-    Declaração de inidoneidade pelo TCU (Lei Orgânica TCU): "Declaration of unfitness by TCU (Organic Law TCU):"
+    Declaração de inidoneidade pelo TCU (Lei Orgânica TCU): "Declaration of unfitness by TCU (Organic Law TCU)"
     -Art. 46 da Lei nº 8.443, de 1992: "-art. 46 of Law No. 8443, 1992"
     Art. 46. Verificada a ocorrência de fraude comprovada à licitação, o Tribunal declarará a inidoneidade do licitante fraudador para participar, por até cinco anos, de licitação na Administração Pública Federal.: "Art. 46. verified the occurrence of fraud proven to bid, the Court shall declare the unsuitability of the bidder fraudster to participate for up to five years from bidding in the Federal Public Administration ."
     Outras sanções: "Other sanctions"
@@ -219,8 +221,8 @@ en:
     Art. 78-I.  A declaração de inidoneidade será aplicada a quem tenha praticado atos ilícitos visando frustrar os objetivos de licitação ou a execução de contrato. (Incluído pela Medida Provisória nº 2.217-3, de 4.9.2001): "Art. 78-I. The declaration of unfitness will be applied to those who have committed unlawful acts aimed at frustrating the bid objectives or contract execution. (Included by Provisional Measure No. 2217-3, of 4.9.2001)"
     Parágrafo único.  O prazo de vigência da declaração de inidoneidade não será superior a cinco anos.  (Incluído pela Medida Provisória nº 2.217-3, de 4.9.2001): "Single paragraph. The term of the declaration of unfitness shall not exceed five years. (Included by Provisional Measure No. 2217-3, of 4.9.2001)"
     -Suspensão temporária e declaração de inidoneidade (Lei de Acesso à Informação): "temporary -Suspension and declaration of unfitness (Access to Information Act)"
-    Art. 33. A pessoa física ou entidade privada que detiver informações em virtude de vínculo de qualquer natureza com o poder público e deixar de observar o disposto nesta Lei estará sujeita às seguintes sanções: "Art. 33. The individual or private entity that holds information under the link of any kind with the government and fail to observe the provisions of this Law shall be subject to the following sanctions:"
-    IV - suspensão temporária de participar em licitação e impedimento de contratar com a administração pública por prazo não superior a 2 (dois) anos; e: " IV - temporary suspension from participating in bidding and impediment to contract with the government for a period not exceeding two (2) years; and:"
+    Art. 33. A pessoa física ou entidade privada que detiver informações em virtude de vínculo de qualquer natureza com o poder público e deixar de observar o disposto nesta Lei estará sujeita às seguintes sanções: "Art. 33. The individual or private entity that holds information under the link of any kind with the government and fail to observe the provisions of this Law shall be subject to the following sanctions"
+    IV - suspensão temporária de participar em licitação e impedimento de contratar com a administração pública por prazo não superior a 2 (dois) anos; e: " IV - temporary suspension from participating in bidding and impediment to contract with the government for a period not exceeding two (2) years; and"
     V - declaração de inidoneidade para licitar ou contratar com a administração pública, até que seja promovida a reabilitação perante a própria autoridade que aplicou a penalidade.: "V - declaration of unfitness to bid or contract with the government until the rehabilitation is promoted before the very authority that applied the penalty ."
     § 1o As sanções previstas nos incisos I, III e IV poderão ser aplicadas juntamente com a do inciso II, assegurado o direito de defesa do interessado, no respectivo processo, no prazo de 10 (dez) dias.: "§ 1. The sanctions provided for in items I, III and IV may be used in conjunction with the item II, ensuring the right of interested defense, in its process, within ten (10) days ."
     § 2o A reabilitação referida no inciso V será  autorizada somente quando o interessado efetivar o ressarcimento ao órgão ou entidade dos prejuízos resultantes e após decorrido o prazo da sanção aplicada com base no inciso IV.: "§ 2 The rehabilitation referred to in item V shall be authorized only where the person concerned to effect reimbursement to the agency or entity of the damage resulting from and following the expiry of the penalty imposed on the basis of section IV."

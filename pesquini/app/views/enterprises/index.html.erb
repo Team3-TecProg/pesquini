@@ -7,7 +7,7 @@
                 <h1><%= t('Ferramenta de busca') %></h1>
                 <hr>
                 <%= search_form_for @SEARCH do |f| %>
-                    <%= f.label :corporate_name_cont, "Nome ou CNPJ:" %>
+                    <%= f.label :corporate_name_cont, t('Nome ou CNPJ') %>
                     <%= f.search_field :corporate_name_cont%>
                     <%= f.submit %>
                 <% end %>
@@ -20,7 +20,7 @@
     <div class="container">
         <% if @ENTERPRISES.blank? %>
           <div class="entreprises_title">
-              <h3><%= t('Não existem sanções contra a empresa procurada'%>. </h3>
+              <h3><%= t('Não existem sanções contra a empresa procurada')%>. </h3>
               <hr>
           </div>
 
